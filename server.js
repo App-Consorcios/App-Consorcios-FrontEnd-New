@@ -5,10 +5,10 @@ const path = require ('path');
 const app = express ();
 
 // Servir solo los archivos estáticos del directorio dist
-app.use (express.static (__dirname + '/dist/adminpro'));
+app.use (express.static (__dirname + '/dist/app-consorcios-frontend'));
 app.get ('/ *',  (req, res) => {
 
-res.sendFile (path.join (__dirname + '/dist/adminpro/index.html'));
+res.sendFile (path.join (__dirname + '/dist/app-consorcios-frontend/index.html'));
 });
 
 // Iniciar la aplicación escuchando en el puerto Heroku predeterminado

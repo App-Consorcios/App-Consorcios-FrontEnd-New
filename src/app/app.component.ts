@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app-consorcios-frontend';
+  constructor(private auth: AuthService){
+  }
+  ngOnInit() {
+     this.auth.localAuthSetup();
+  }
+  getUsuario(){
+  }
 }

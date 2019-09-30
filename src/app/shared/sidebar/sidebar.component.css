@@ -1,0 +1,25 @@
+.bg-dark{
+  background: #303a40;
+}
+.navbar .navbar-brand-wrapper .navbar-brand img{
+  width: 300px;
+  height: auto;
+  margin:-20px;
+}
+.main-container{
+  padding-top:90px;
+}
+.menu-title-right{
+   padding-left: 100px;
+   font-size: 1.005rem;
+}
+.title-h6{
+  /* font-weight: bold; */
+  font-size: 16px;
+  /* padding-right: 57%; */
+}
+.title-h5{
+  font-size: 16px;
+  /* padding-right: 32%; */
+  /* font-weight: bold; */
+}

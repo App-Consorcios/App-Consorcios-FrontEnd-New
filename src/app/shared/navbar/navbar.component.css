@@ -1,0 +1,221 @@
+.icon-navbar{
+	padding-bottom: 20px;
+}
+.quick-actions_homepage{ width:100%; text-align:center; float:left; margin-top:10px;}
+.stat-boxes, .quick-actions, .quick-actions-horizontal, .stats-plain {
+    display: inline-block;
+    list-style: none outside none;
+    margin: 20px 0 10px;
+    text-align: center;
+}
+.stat-boxes2{ background:none; width:100%;  padding:0px;}
+ul.stat-boxes2 {padding:0px; margin:0 auto;}
+ul.stat-boxes2 li{ list-style:none; margin-bottom:10px; background:#fff; overflow:hidden; padding:0 10px; display:block; border:1px solid #dadada;}
+ul.stat-boxes2 li:hover{  background:#f6f6f6}
+.stat-boxes2 .right {color: #666666;    font-size: 12px;    padding:10px 10px 9px 10px;  border-left:1px solid #dadada; text-align:left; float:left}
+.stat-boxes2 .right strong{ font-size:22px; font-weight:bold; line-height:40px;}
+.stat-boxes2 .left{ padding: 15px 0px;    text-align: center; width:100px; float:left; }
+.stat-boxes2 .left span{ border-bottom:2px solid #dadada; padding:5px;}
+
+.stats-plain {	width: 100%;}
+
+.stat-boxes li, .quick-actions li, .quick-actions-horizontal li {
+    background: #F6F6F6;
+    border: 1px solid #D5D5D5;
+    box-shadow: 0 1px 0 0 #FFFFFF inset, 0 1px 0 rgba(255, 255, 255, 0.4);
+    display: inline-block;
+    line-height: 18px;
+    margin: 0 10px 10px;
+    padding: 0 10px;
+}
+.stat-boxes li a:hover, .quick-actions li a:hover, .quick-actions-horizontal li a:hover, .stat-boxes li:hover, .quick-actions li:hover, .quick-actions-horizontal li:hover{ background: #fff;}
+.quick-actions li {
+	min-width: 175px;
+}
+.quick-actions li, .quick-actions-horizontal li {
+	padding: 0;
+}
+.stats-plain li {
+	padding: 0 30px;
+	display: inline-block;
+	margin: 0 10px 20px;
+}
+.quick-actions li a {
+	padding: 10px 30px;
+}
+.stats-plain li h4 {
+	font-size: 40px;
+	margin-bottom: 15px;
+}
+.stats-plain li span {
+	font-size: 14px;
+	color: #555555;
+}
+.quick-actions-horizontal li a span {
+	padding: 10px 12px 10px 10px;
+	display: inline-block;
+}
+.quick-actions li a, .quick-actions-horizontal li a {
+	display: block;
+	color: #666666; font-weight:bold;
+	text-shadow: 0 1px 0 #ffffff;
+}
+.quick-actions li a i[class^="icon-"], .quick-actions li a i[class*=" icon-"] {
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: 0 0;
+	background-color: transparent;
+	width: 32px;
+	height: 32px;
+	display: block;
+	margin: 0 auto 5px;
+}
+.quick-actions-horizontal li a i[class^="icon-"], .quick-actions-horizontal li a i[class*=" icon-"] {
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: center;
+	background-color: transparent;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	margin: -2px 0 0 !important;
+	border-right: 1px solid #dddddd;
+	margin-right: 10px;
+	padding: 10px;
+	vertical-align: middle;
+}
+
+.quick-actions i.icon-book {
+	background-image: url('src/assets/img/icons/32/book.png');
+}
+.quick-actions i.icon-cabinet {
+	background-image: url('src/assets/img/icons/32/cabinet.png');
+}
+.quick-actions i.icon-calendar {
+	background-image: url('src/assets/img/icons/32/calendar.png');
+}
+.quick-actions i.icon-client {
+	background-image: url('src/assets/img/icons/32/client.png');
+}
+.quick-actions i.icon-database {
+	background-image: url('src/assets/img/icons/32/database.png');
+}
+.quick-actions i.icon-download {
+	background-image: url('src/assets/img/icons/32/download.png');
+}
+.quick-actions i.icon-graph {
+	background-image: url('src/assets/img/icons/32/graph.png');
+}
+.quick-actions i.icon-home {
+	background-image: url('src/assets/img/icons/32/home.png');
+}
+.quick-actions i.icon-lock {
+	background-image: url('src/assets/img/icons/32/lock.png');
+}
+.quick-actions i.icon-mail {
+	background-image: url('src/assets/img/icons/32/mail.png');
+}
+.quick-actions i.icon-pdf {
+	background-image: url('src/assets/img/icons/32/pdf.png');
+}
+.quick-actions i.icon-people {
+	background-image: url('src/assets/img/icons/32/people.png');
+}
+.quick-actions i.icon-piechart {
+	background-image: url('src/assets/img/icons/32/piechart.png');
+}
+.quick-actions i.icon-search {
+	background-image: url('src/assets/img/icons/32/search.png');
+}
+.quick-actions i.icon-shopping-bag {
+	background-image: url('src/assets/img/icons/32/shopping-bag.png');
+}
+.quick-actions i.icon-survey {
+	background-image: url('src/assets/img/icons/32/survey.png');
+}
+.quick-actions i.icon-tag {
+	background-image: url('src/assets/img/icons/32/tag.png');
+}
+.quick-actions i.icon-user {
+	background-image: url('src/assets/img/icons/32/user.png');
+}
+.quick-actions i.icon-wallet {
+	background-image: url('src/assets/img/icons/32/wallet.png');
+}
+.quick-actions i.icon-web {
+	background-image: url('src/assets/img/icons/32/web.png');
+}
+.quick-actions i.icon-dashboard {
+	background-image: url('src/assets/img/icons/32/dashboard.png');
+}
+.quick-actions-horizontal i.icon-book {
+	background-image: url('src/assets/img/icons/16/book.png');
+}
+.quick-actions-horizontal i.icon-cabinet {
+	background-image: url('src/assets/img/icons/16/cabinet.png');
+}
+.quick-actions-horizontal i.icon-calendar {
+	background-image: url('src/assets/img/icons/16/calendar.png');
+}
+.quick-actions-horizontal i.icon-client {
+	background-image: url('src/assets/img/icons/16/client.png');
+}
+.quick-actions-horizontal i.icon-database {
+	background-image: url('src/assets/img/icons/16/database.png');
+}
+.quick-actions-horizontal i.icon-download {
+	background-image: url('src/assets/img/icons/16/download.png');
+}
+.quick-actions-horizontal i.icon-graph {
+	background-image: url('src/assets/img/icons/16/graph.png');
+}
+.quick-actions-horizontal i.icon-home {
+	background-image: url('src/assets/img/icons/16/home.png');
+}
+.quick-actions-horizontal i.icon-lock {
+	background-image: url('src/assets/img/icons/16/lock.png');
+}
+.quick-actions-horizontal i.icon-mail {
+	background-image: url('src/assets/img/icons/16/mail.png');
+}
+.quick-actions-horizontal i.icon-pdf {
+	background-image: url('src/assets/img/icons/16/pdf.png');
+}
+.quick-actions-horizontal i.icon-people {
+	background-image: url('src/assets/img/icons/16/people.png');
+}
+.quick-actions-horizontal i.icon-piechart {
+	background-image: url('src/assets/img/icons/16/piechart.png');
+}
+.quick-actions-horizontal i.icon-search {
+	background-image: url('src/assets/img/icons/16/search.png');
+}
+.quick-actions-horizontal i.icon-shopping-bag {
+	background-image: url('src/assets/img/icons/16/shopping-bag.png');
+}
+.quick-actions-horizontal i.icon-survey {
+	background-image: url('src/assets/img/icons/16/survey.png');
+}
+.quick-actions-horizontal i.icon-tag {
+	background-image: url('src/assets/img/icons/16/tag.png');
+}
+.quick-actions-horizontal i.icon-user {
+	background-image: url('src/assets/img/icons/16/user.png');
+}
+.quick-actions-horizontal i.icon-wallet {
+	background-image: url('src/assets/img/icons/16/wallet.png');
+}
+.quick-actions-horizontal i.icon-web {
+	background-image: url('src/assets/img/icons/16/web.png');
+}
+
+
+.quick-actions li:active, .quick-actions-horizontal li:active  {
+	background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#EEEEEE), to(#F4F4F4));
+	background-image: -webkit-linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
+    background-image: -moz-linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
+    background-image: -ms-linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
+    background-image: -o-linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
+    background-image: linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
+    /* box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2) inset, 0 1px 0 rgba(255,255,255,0.4); */
+}

@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule} from "@angular/common/http";
+
 //Module personalizados
 import { PagesModule } from './pages/pages.module';
 import { ComponentsModule } from './components/components.module';
@@ -30,6 +32,7 @@ import { AppRoutingModule } from './app-routing.module';
     ComponentsModule,
     AuthModule,
     DirectivesModule,
+    HttpClientModule,
     GuardsModule,
     SharedModule,
     DashboardModule

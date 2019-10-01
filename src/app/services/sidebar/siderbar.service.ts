@@ -67,18 +67,18 @@ export class SidebarService {
             {
               titulo: 'Crear Reuniones',
               icono: 'fa fa-2x fa-edit icon-navbar',
-              url:'/crear-expensas',
+              url:'/reuniones/crear-expensas',
             },
             {
               titulo: 'Ver Reuniones',
               icono: 'fa fa-2x fa-eye icon-navbar',
-              url:'/ver-reuniones',
+              url:'/reuniones/ver-reuniones',
             }
             ,
             {
               titulo: 'Agendar Reuniones',
               icono: 'fa fa-2x fa-calendar icon-navbar',
-              url:'/agendar-expensas',
+              url:'/reuniones/agendar-expensas',
             }
           ]
         },
@@ -90,12 +90,12 @@ export class SidebarService {
             {
               titulo: 'Crear Estadísticas',
               icono: 'fa fa-2x fa-edit icon-navbar',
-              url:'/crear-estadisticas',
+              url:'/estadistica/crear-estadisticas',
             },
             {
-              titulo: 'Ver Reuniones',
+              titulo: 'Ver Estadísticas',
               icono: 'fa fa-2x fa-eye icon-navbar',
-              url:'/ver-estadisticas',
+              url:'/estadistica/ver-estadisticas',
             }
           ]
         },

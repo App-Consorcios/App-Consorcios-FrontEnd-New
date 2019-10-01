@@ -7,8 +7,7 @@ import {Routes, RouterModule} from '@angular/router';
 import { LoginComponent , RegisterComponent } from './auth0';
 import { PagesComponent } from './pages';
 import { PanelComponent } from './dashboard/panel/panel.component';
-import { CallbackComponent } from './components/callback/callback.component';
-import { AuthGuard } from './guards/auth.guard';
+// import { AuthGuard } from './guards/auth.guard';
 
 
 const appRoutes: Routes = [
@@ -21,8 +20,8 @@ const appRoutes: Routes = [
     loadChildren: () => import('./pages/pages.module').then( m => m.PagesModule),
     // canActivate:[ AuthGuard ]
   },
-  // { path: 'register', component: RegisterComponent },
-  { path: 'callback', component: CallbackComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: '**',pathMatch: 'full', redirectTo: 'panel' }
 ]
 @NgModule({

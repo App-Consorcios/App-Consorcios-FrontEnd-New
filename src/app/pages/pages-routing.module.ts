@@ -14,6 +14,11 @@ import { AsignarUnidadComponent } from './unidad-funcional/asignar-unidad/asigna
 import { CrearExpensasComponent } from './expensas/crear-expensas/crear-expensas.component';
 import { VerExpensasComponent } from './expensas/ver-expensas/ver-expensas.component';
 import { CalcularExpensasComponent } from './expensas/calcular-expensas/calcular-expensas.component';
+import { CrearReunionesComponent } from './reuniones/crear-reuniones/crear-reuniones.component';
+import { VerReunionesComponent } from './reuniones/ver-reuniones/ver-reuniones.component';
+import { AgendarReunionesComponent } from './reuniones/agendar-reuniones/agendar-reuniones.component';
+import { CrearEstadisticaComponent } from './estadisticas/crear-estadistica/crear-estadistica.component';
+import { VerEstadisticaComponent } from './estadisticas/ver-estadistica/ver-estadistica.component';
 
 const pagesRoutes: Routes =[
   { path: 'perfil',
@@ -22,7 +27,10 @@ const pagesRoutes: Routes =[
   },
   { path: 'estadistica',
    component: EstadisticasComponent,
-   data:{ titulo:"Estadística" }
+   children:[
+     { path: 'crear-estadisticas', component: CrearEstadisticaComponent },
+     { path: 'ver-estadisticas', component: VerEstadisticaComponent },
+     { path: '**',pathMatch: 'full', redirectTo: 'crear-estadistica' }]
   },
   { path: 'expensas',
    component: ExpensasComponent,
@@ -34,7 +42,11 @@ const pagesRoutes: Routes =[
   },
   { path: 'reuniones',
    component: ReunionesComponent,
-   data:{ titulo:"Reuniones"}
+   children:[
+     { path: 'crear-reuniones', component: CrearReunionesComponent },
+     { path: 'ver-reuniones', component: VerReunionesComponent },
+     { path: 'agendar-reuniones', component: AgendarReunionesComponent },
+     { path: '**',pathMatch: 'full', redirectTo: 'crear-reuniones' }]
   },
   { path: 'unidad-funcional',
    component: UnidadFuncionalComponent,
@@ -46,11 +58,17 @@ const pagesRoutes: Routes =[
   },
   { path: 'usuarios',
    component: UsuariosComponent,
-   data:{ titulo:"Usuarios"}
+   children:[
+     { path: 'ver-usuarios', component: CrearUnidadComponent },
+     { path: 'eliminar-usuario', component: VerUnidadComponent },
+     { path: '**',pathMatch: 'full', redirectTo: 'ver-usuarios' }]
   },
   { path: 'consorcios',
    component: ConsorciosComponent,
-   data:{ titulo:"Consorcios"}
+   children:[
+     { path: 'crear-consorcio', component: CrearUnidadComponent },
+     { path: 'ver-consorcios', component: VerUnidadComponent },
+     { path: '**',pathMatch: 'full', redirectTo: 'crear-consorcio' }]
   },
   {
     path: '',

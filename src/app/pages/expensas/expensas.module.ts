@@ -7,9 +7,18 @@ import { CalcularExpensasComponent } from './calcular-expensas/calcular-expensas
 
 
 @NgModule({
-  declarations: [CrearExpensasComponent, VerExpensasComponent, CalcularExpensasComponent],
+  declarations: [
+    CrearExpensasComponent,
+    VerExpensasComponent,
+    CalcularExpensasComponent
+  ],
   imports: [
     CommonModule
+  ],
+  exports:[
+    CrearExpensasComponent,
+    VerExpensasComponent,
+    CalcularExpensasComponent
   ]
 })
 export class ExpensasModule { }

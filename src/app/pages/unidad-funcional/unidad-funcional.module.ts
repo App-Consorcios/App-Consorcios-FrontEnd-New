@@ -16,8 +16,13 @@ import { SharedModule } from 'src/app/shared/shared.module';
   ],
   imports: [
     CommonModule,
-    // UnidadRoutingModule,
+    //UnidadRoutingModule,
     SharedModule
+  ],
+  exports: [
+    CrearUnidadComponent,
+    VerUnidadComponent,
+    AsignarUnidadComponent
   ]
 })
 export class UnidadFuncionalModule { }

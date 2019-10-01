@@ -1,0 +1,88 @@
+.login-register {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100%;
+  width: 100%;
+  padding: 10% 0;
+  position: fixed; }
+  .puntero{
+    cursor: pointer;
+  }
+
+.login-box {
+  width: 400px;
+  margin: 0 auto; }
+  .login-box .footer {
+    width: 100%;
+    left: 0px;
+    right: 0px; }
+  .login-box .social {
+    display: block;
+    margin-bottom: 30px; }
+
+#recoverform {
+  display: none; }
+
+.login-sidebar {
+  padding: 0px;
+  margin-top: 0px; }
+  .login-sidebar .login-box {
+    right: 0px;
+    position: absolute;
+    height: 100%; }
+    .btn-twitter {
+      color: #ffffff;
+      background-color: #55acee; }
+      .btn-twitter:hover {
+        color: #ffffff; }
+
+    .btn-linkedin {
+      color: #ffffff;
+      background-color: #007bb6; }
+      .btn-linkedin:hover {
+        color: #ffffff; }
+
+    .btn-dribbble {
+      color: #ffffff;
+      background-color: #ea4c89; }
+      .btn-dribbble:hover {
+        color: #ffffff; }
+
+    .btn-googleplus {
+      color: #ffffff;
+      background-color: #dd4b39; }
+      .btn-googleplus:hover {
+        color: #ffffff; }
+
+    .btn-instagram {
+      color: #ffffff;
+      background-color: #3f729b; }
+
+    .btn-pinterest {
+      color: #ffffff;
+      background-color: #cb2027; }
+
+    .btn-dropbox {
+      color: #ffffff;
+      background-color: #007ee5; }
+
+    .btn-flickr {
+      color: #ffffff;
+      background-color: #ff0084; }
+
+    .btn-tumblr {
+      color: #ffffff;
+      background-color: #32506d; }
+
+    .btn-skype {
+      color: #ffffff;
+      background-color: #00aff0; }
+
+    .btn-youtube {
+      color: #ffffff;
+      background-color: #bb0000; }
+
+    .btn-github {
+      color: #ffffff;
+      background-color: #171515; }

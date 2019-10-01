@@ -21,7 +21,11 @@ import { AsignarUnidadComponent } from './unidad-funcional/asignar-unidad/asigna
 import { CrearExpensasComponent } from './expensas/crear-expensas/crear-expensas.component';
 import { VerExpensasComponent } from './expensas/ver-expensas/ver-expensas.component';
 import { CalcularExpensasComponent } from './expensas/calcular-expensas/calcular-expensas.component';
-
+import { VerReunionesComponent } from './reuniones/ver-reuniones/ver-reuniones.component';
+import { CrearReunionesComponent } from './reuniones/crear-reuniones/crear-reuniones.component';
+import { AgendarReunionesComponent } from './reuniones/agendar-reuniones/agendar-reuniones.component';
+import { CrearEstadisticaComponent } from './estadisticas/crear-estadistica/crear-estadistica.component';
+import { VerEstadisticaComponent } from './estadisticas/ver-estadistica/ver-estadistica.component';
 
 
 @NgModule({
@@ -40,7 +44,12 @@ import { CalcularExpensasComponent } from './expensas/calcular-expensas/calcular
     AsignarUnidadComponent,
     CrearExpensasComponent,
     VerExpensasComponent,
-    CalcularExpensasComponent
+    CalcularExpensasComponent,
+    CrearReunionesComponent,
+    VerReunionesComponent,
+    AgendarReunionesComponent,
+    CrearEstadisticaComponent,
+    VerEstadisticaComponent
   ],
   imports: [
     CommonModule,

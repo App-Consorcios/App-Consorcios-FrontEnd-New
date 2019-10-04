@@ -5,12 +5,15 @@ import { VerConsorcioComponent } from './ver-consorcio/ver-consorcio.component';
 
 @NgModule({
   declarations: [
-
   CrearConsorcioComponent,
-
-  VerConsorcioComponent],
+  VerConsorcioComponent
+],
   imports: [
     CommonModule
+  ],
+  exports:[
+    CrearConsorcioComponent,
+    VerConsorcioComponent
   ]
 })
 export class ConsorciosModule { }

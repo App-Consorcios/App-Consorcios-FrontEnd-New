@@ -13,9 +13,12 @@ export class NavbarService {
   ngOnInit() {
   }
   cargarSubmenu(){
+    // console.log(this.menu,this.submenu)
+
     if(this.menu <0 && this.submenu <0){
       return this._sidebar.cargarMenu(0,1).action;
     }
-    return this._sidebar.cargarMenu(this.menu,this.submenu).action;
+
+     return this._sidebar.cargarMenu(this.menu,this.submenu).action;
   }
 }

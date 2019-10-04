@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
 import { SharedModule } from '../shared/shared.module';
 import { PipesModule } from '../pipes/pipes.module';
-import { EscritorioComponent } from './escritorio/escritorio.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ExpensasComponent } from './expensas/expensas.component';
 import { PagesRoutingModule } from './pages-routing.module';
@@ -26,12 +25,15 @@ import { CrearReunionesComponent } from './reuniones/crear-reuniones/crear-reuni
 import { AgendarReunionesComponent } from './reuniones/agendar-reuniones/agendar-reuniones.component';
 import { CrearEstadisticaComponent } from './estadisticas/crear-estadistica/crear-estadistica.component';
 import { VerEstadisticaComponent } from './estadisticas/ver-estadistica/ver-estadistica.component';
+import { VerUsuariosComponent } from './usuarios/ver-usuarios/ver-usuarios.component';
+import { EliminarUsuariosComponent } from './usuarios/eliminar-usuarios/eliminar-usuarios.component';
+import { CrearConsorcioComponent } from './consorcios/crear-consorcio/crear-consorcio.component';
+import { VerConsorcioComponent } from './consorcios/ver-consorcio/ver-consorcio.component';
 
 
 @NgModule({
   declarations: [
     PagesComponent,
-    EscritorioComponent,
     PerfilComponent,
     ExpensasComponent,
     ConsorciosComponent,
@@ -49,7 +51,12 @@ import { VerEstadisticaComponent } from './estadisticas/ver-estadistica/ver-esta
     VerReunionesComponent,
     AgendarReunionesComponent,
     CrearEstadisticaComponent,
-    VerEstadisticaComponent
+    VerEstadisticaComponent,
+    UsuariosComponent,
+    VerUsuariosComponent,
+    EliminarUsuariosComponent,
+    CrearConsorcioComponent,
+    VerConsorcioComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +69,6 @@ import { VerEstadisticaComponent } from './estadisticas/ver-estadistica/ver-esta
     PipesModule,
   ],
   exports:[
-    EscritorioComponent,
     PerfilComponent,
     ExpensasComponent,
     ConsorciosComponent,

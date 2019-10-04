@@ -8,7 +8,8 @@ export class SidebarService {
     {
       titulo: 'Perfil',
       icono: 'fa fa-user',
-      url:'/perfil'
+      url:'/perfil',
+      submenu:[]
     },
     {
       titulo:'Principal',
@@ -20,18 +21,18 @@ export class SidebarService {
           action:[
             {
               titulo: 'Crear Unidad',
-              icono: 'fa fa-2x  fa-edit  icon-navbar',
+              icono: 'fa fa-2x  fa-edit  icon-navbar text-success',
               url:'/unidad-funcional/crear-unidad',
             },
             {
               titulo: 'Ver Unidades',
-              icono: 'fa fa-2x fa-eye  icon-navbar',
+              icono: 'fa fa-2x fa-eye  icon-navbar text-info',
               url:'/unidad-funcional/ver-unidades',
             }
             ,
             {
               titulo: 'Asignar Unidades',
-              icono: 'fa fa-2x fa-check  icon-navbar',
+              icono: 'fa fa-2x fa-check  icon-navbar text-warning',
               url:'/unidad-funcional/asignar-unidad',
             }
           ]
@@ -43,18 +44,18 @@ export class SidebarService {
           action:[
             {
               titulo: 'Crear Expensas',
-              icono: 'fa fa-2x fa-edit icon-navbar',
+              icono: 'fa fa-2x fa-edit icon-navbar text-success',
               url:'/expensas/crear-expensas',
             },
             {
               titulo: 'Ver Expensas',
-              icono: 'fa fa-2x fa-eye icon-navbar',
+              icono: 'fa fa-2x fa-eye icon-navbar text-info',
               url:'/expensas/ver-expensas',
             }
             ,
             {
               titulo: 'Calcular Expensas',
-              icono: 'fa fa-2x fa-calculator icon-navbar',
+              icono: 'fa fa-2x fa-calculator icon-navbar text-warning',
               url:'/expensas/calcular-expensas',
             }
           ]
@@ -66,18 +67,18 @@ export class SidebarService {
           action:[
             {
               titulo: 'Crear Reuniones',
-              icono: 'fa fa-2x fa-edit icon-navbar',
+              icono: 'fa fa-2x fa-edit icon-navbar text-success',
               url:'/reuniones/crear-expensas',
             },
             {
               titulo: 'Ver Reuniones',
-              icono: 'fa fa-2x fa-eye icon-navbar',
+              icono: 'fa fa-2x fa-eye icon-navbar text-info',
               url:'/reuniones/ver-reuniones',
             }
             ,
             {
               titulo: 'Agendar Reuniones',
-              icono: 'fa fa-2x fa-calendar icon-navbar',
+              icono: 'fa fa-2x fa-calendar icon-navbar text-warning',
               url:'/reuniones/agendar-expensas',
             }
           ]
@@ -89,12 +90,12 @@ export class SidebarService {
           action:[
             {
               titulo: 'Crear Estadísticas',
-              icono: 'fa fa-2x fa-edit icon-navbar',
+              icono: 'fa fa-2x fa-edit icon-navbar text-success',
               url:'/estadistica/crear-estadisticas',
             },
             {
               titulo: 'Ver Estadísticas',
-              icono: 'fa fa-2x fa-eye icon-navbar',
+              icono: 'fa fa-2x fa-eye icon-navbar text-info',
               url:'/estadistica/ver-estadisticas',
             }
           ]
@@ -103,6 +104,7 @@ export class SidebarService {
     },
     {
       titulo:'Mentenimiento',
+      url:'/principal',
       submenu:[
         {
           titulo:'Consorcios',
@@ -111,13 +113,13 @@ export class SidebarService {
           action:[
             {
               titulo: 'Crear Consorcio',
-              icono: 'fa fa-2x fa-edit icon-navbar',
-              url:'/crear-consorcio',
+              icono: 'fa fa-2x fa-edit icon-navbar text-success',
+              url:'/consorcios/crear-consorcio',
             },
             {
               titulo: 'Ver Consorcios',
-              icono: 'fa fa-2x fa-eye icon-navbar',
-              url:'/ver-consorcios',
+              icono: 'fa fa-2x fa-eye icon-navbar text-info',
+              url:'/consorcios/ver-consorcios',
             }
           ]
         },
@@ -128,13 +130,13 @@ export class SidebarService {
           action:[
             {
               titulo: 'Ver Usuarios',
-              icono: 'fa fa-2x fa-edit icon-navbar',
-              url:'/ver-usuarios',
+              icono: 'fa fa-2x fa-edit icon-navbar text-info',
+              url:'/usuarios/ver-usuarios',
             },
             {
               titulo: 'Eliminar Usuario',
-              icono: 'fa fa-2x fa-eraser icon-navbar',
-              url:'/eliminar-usuario',
+              icono: 'fa fa-2x fa-eraser icon-navbar text-danger',
+              url:'/usuarios/eliminar-usuario',
             }
           ]
         }
@@ -144,7 +146,8 @@ export class SidebarService {
 
   constructor() { }
   cargarMenu(route:any,agrupador:any){
-    if(route>=0 && agrupador>0) return this.menu[agrupador].submenu[route]
+    if(route>=0 && agrupador>=0) return this.menu[agrupador].submenu[route]
+
     return this.menu ;
   }
 }

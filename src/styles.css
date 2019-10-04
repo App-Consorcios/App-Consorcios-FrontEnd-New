@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+.card{
+  min-width: 600px;
+  background-color: white;
+  height:600px;
+  margin-left:-3%;
+  margin-right:-3%;
+  margin-bottom: 30px; }
+
+  .card .card-subtitle {
+    font-weight: 300;
+    margin-bottom: 15px;
+    color: #99abb4; }
+  .card .card-title {
+    position: relative; }

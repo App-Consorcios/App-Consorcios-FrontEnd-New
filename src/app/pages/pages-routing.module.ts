@@ -19,6 +19,8 @@ import { VerReunionesComponent } from './reuniones/ver-reuniones/ver-reuniones.c
 import { AgendarReunionesComponent } from './reuniones/agendar-reuniones/agendar-reuniones.component';
 import { CrearEstadisticaComponent } from './estadisticas/crear-estadistica/crear-estadistica.component';
 import { VerEstadisticaComponent } from './estadisticas/ver-estadistica/ver-estadistica.component';
+import { VerUsuariosComponent } from './usuarios/ver-usuarios/ver-usuarios.component';
+import { EliminarUsuariosComponent } from './usuarios/eliminar-usuarios/eliminar-usuarios.component';
 
 const pagesRoutes: Routes =[
   { path: 'perfil',
@@ -30,7 +32,7 @@ const pagesRoutes: Routes =[
    children:[
      { path: 'crear-estadisticas', component: CrearEstadisticaComponent },
      { path: 'ver-estadisticas', component: VerEstadisticaComponent },
-     { path: '**',pathMatch: 'full', redirectTo: 'crear-estadistica' }]
+     { path: '**',pathMatch: 'full', redirectTo: 'crear-estadisticas' }]
   },
   { path: 'expensas',
    component: ExpensasComponent,
@@ -59,8 +61,8 @@ const pagesRoutes: Routes =[
   { path: 'usuarios',
    component: UsuariosComponent,
    children:[
-     { path: 'ver-usuarios', component: CrearUnidadComponent },
-     { path: 'eliminar-usuario', component: VerUnidadComponent },
+     { path: 'ver-usuarios', component: VerUsuariosComponent },
+     { path: 'eliminar-usuario', component: EliminarUsuariosComponent },
      { path: '**',pathMatch: 'full', redirectTo: 'ver-usuarios' }]
   },
   { path: 'consorcios',

@@ -1,8 +1,8 @@
 <span class="d-flex align-items-center purchase-popup">
   <div class="container-fluid">
-    <div class="quick-actions_homepage">
+    <div class="quick-actions_homepage button-background">
       <ul class="quick-actions">
-        <li routerLinkActive = "active" [routerLink]="[menu.url]"  (click)="probar(menu.url)" *ngFor="let menu of this._navbar.cargarSubmenu()"> <a  > {{menu.titulo}} </a> <i [class]="menu.icono"></i></li>
+        <li routerLinkActive = "active" [routerLink]="[menu.url]"  (click)="probar(menu.url)" *ngFor="let menu of this._navbar.cargarSubmenu()"> <i [class]="menu.icono"></i> <a> {{menu.titulo}} </a> </li>
       </ul>
     </div>
   </div>

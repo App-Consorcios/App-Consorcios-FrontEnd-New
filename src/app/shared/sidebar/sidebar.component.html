@@ -23,10 +23,10 @@
           </div>
         </span>
       </li>
-      <li *ngFor="let menu of _sidebar.menu[1].submenu, let i = index;" class="nav-item " >
-        <a routerLinkActive = "active" [routerLink]="[menu.url]" class="nav-link" (click) = "crearSubmenu(1,i)" >
-            <span class="menu-title" [ngClass]="{'text-success': item == menu.url }">{{menu.titulo}}</span>
-            <i [class]="menu.icono" [ngClass]="{'text-success': item == menu.url }"></i>
+      <li  *ngFor="let menu of _sidebar.menu[1].submenu, let i = index;" class="nav-item " >
+        <a  [routerLink]="[menu.url]" class="nav-link" (click) = "crearSubmenu(1,i)" >
+            <span [class.text-success]="isActive(menu.url)" class="menu-title">{{menu.titulo}}</span>
+            <i [ngClass]="{'text-success': isActive(menu.url)}" [class]="menu.icono"></i>
         </a>
       </li>
       <li class="nav-item sidebar-actions">
@@ -37,9 +37,9 @@
         </span>
       </li>
       <li *ngFor="let menu of _sidebar.menu[2].submenu, let i = index;" class="nav-item">
-        <a routerLinkActive = "active" [routerLink]="[menu.url]" class="nav-link" (click) = "crearSubmenu(2,i)">
-          <span class="menu-title" [ngClass]="{'text-success': item == menu.url }">{{menu.titulo}}</span>
-          <i [class]="menu.icono" [ngClass]="{'text-success': item == menu.url }"></i>
+        <a  [routerLinkActive]="['active']" [routerLink]="[menu.url]" class="nav-link" (click) = "crearSubmenu(2,i)">
+          <span  [class.text-success]="isActive(menu.url)" class="menu-title">{{menu.titulo}}</span>
+          <i [ngClass]="{'text-success': isActive(menu.url)}" [class]="menu.icono"></i>
         </a>
       </li>
     </ul>

@@ -7,7 +7,7 @@ import { VerEstadisticaComponent } from './ver-estadistica/ver-estadistica.compo
 const estadisticaRoutes:Routes = [
   { path: 'crear-estadisticas', component: CrearEstadisticaComponent },
   { path: 'ver-estadisticas', component: VerEstadisticaComponent },
-  { path: '**',pathMatch: 'full', redirectTo: 'crear-estadistica' }
+  { path: '',pathMatch: 'full', redirectTo: 'crear-estadistica' }
 ]
 
 @NgModule({

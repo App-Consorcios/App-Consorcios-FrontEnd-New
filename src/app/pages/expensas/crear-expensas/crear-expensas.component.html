@@ -8,7 +8,7 @@
                     <li class="box-label"><a href="javascript:void(0)">Tipos de conceptos<span></span></a></li>
                     <li class="divider"></li>
                     <li *ngFor="let item of tipos">
-                      <a href="javascript:void(0)"><i (click)="eliminarTipoConcepto(item)" class="fa fa-close" style="padding:10px"></i>{{item.nombre}}
+                      <a href="javascript:void(0)"><i (click)="eliminarTipoConcepto(item)" class="fa fa-close" style="padding:10px"></i>{{item.nombre | truncate: 10}}
                         <span class="label" [ngClass]="{'label-danger': item.color == 'Rojo',
                                                         'label-info': item.color == 'Celeste',
                                                         'label-warning': item.color == 'Amarillo',

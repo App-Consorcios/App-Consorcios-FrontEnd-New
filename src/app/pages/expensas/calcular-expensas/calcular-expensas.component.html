@@ -11,7 +11,7 @@
 
                     <div class="row" formArrayName="costos">
                       <div class="col-md-7">
-                        {{item.nombre}}
+                        {{item.nombre | truncate: 10}}
                       </div>
                         <input class="col-md-5"
                               align='right'

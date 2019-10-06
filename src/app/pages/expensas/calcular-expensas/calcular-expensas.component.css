@@ -1,0 +1,24 @@
+.scroll-aside{
+  width: auto;
+  height: 600px;
+  overflow: auto;
+}
+.left-aside{
+  height: 600px;
+}
+.label-danger {
+    background-color: #ef5350;
+}
+.label-warning {
+    background-color: #ffb22b;
+}
+.label-success {
+    background-color: #06d79c;
+}
+.label-info {
+    background-color: #398bf7;
+}
+
+.bg-light-part{
+  background-color: rgba(0, 0, 0, 0.02);
+}

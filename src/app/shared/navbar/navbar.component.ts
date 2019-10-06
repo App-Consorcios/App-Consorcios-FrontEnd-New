@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarService } from 'src/app/services/navbar/navbar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,14 +9,17 @@ import { NavbarService } from 'src/app/services/navbar/navbar.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public _navbar:NavbarService) { }
+  constructor(public _navbar:NavbarService,
+              private _router:Router) { }
 
   ngOnInit() {
-    
+
 
   }
   probar(value){
     console.log(value)
   }
-
+  isActive(url): boolean {
+      return this._router.url.includes(url);
+  }
 }

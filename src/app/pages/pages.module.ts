@@ -30,7 +30,6 @@ import { EliminarUsuariosComponent } from './usuarios/eliminar-usuarios/eliminar
 import { CrearConsorcioComponent } from './consorcios/crear-consorcio/crear-consorcio.component';
 import { VerConsorcioComponent } from './consorcios/ver-consorcio/ver-consorcio.component';
 
-
 @NgModule({
   declarations: [
     PagesComponent,

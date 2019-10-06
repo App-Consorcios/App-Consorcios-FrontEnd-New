@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 .card{
   min-width: 600px;
-  background-color: white;
   height:600px;
   margin-left:-3%;
   margin-right:-3%;
@@ -13,3 +12,8 @@
     color: #99abb4; }
   .card .card-title {
     position: relative; }
+h1, h2, h3, h4, h5, h6 {
+    color: #455a64;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+}

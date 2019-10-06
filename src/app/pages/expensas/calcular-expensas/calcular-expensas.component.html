@@ -1,6 +1,62 @@
 <div class="col-12">
     <div class="card">
-        <div class="card-body">
+        <div class="contact-page-aside">
+          <div class="left-aside bg-light-part" >
+            <form [formGroup]="forma" (ngSubmit)="guardarConcepto()" novalidate="novalidate" style="margin-top:20px">
+              <div class="form-group">
+              <ul class="list-style-none" >
+                <li class="box-label"><a href="javascript:void(0)">Totales <span> </span></a></li>
+                <li class="divider"></li>
+                <li *ngFor="let item of conceptos;let i = index" >
+
+                    <div class="row" formArrayName="costos">
+                      <div class="col-md-7">
+                        {{item.nombre}}
+                      </div>
+                        <input class="col-md-5"
+                              align='right'
+                              type='double'
+                              [formControlName]="i"
+                              name='costo'
+                              style="text-align:right;border:none;"
+                              [value]="costos[i]">
+                      </div>
+                  </li>
+                  <li class="box-label" (click) = "modificarSaldos()"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" class="btn btn-info text-white"><i class="fa fa-save" style="margin-right:10px"></i>Modificar Saldos</a></li>
+                </ul>
+              </div>
+          </form>
+          </div>
+          <div class="right-aside scroll-aside" style="margin-top:20px">
+              <div class="right-page-header">
+                  <div class="d-flex">
+                      <div class="align-self-center">
+                          <h4 class="card-title m-t-10">Costos / Unidad Funcional</h4></div>
+                      <div class="ml-auto">
+                        <button (click) ="calcularNovedad()" type="button" class="btn btn-success btn-rounded" data-target="#add-contact" style="margin:-10px;padding:-10px"><i class="fa fa-calculator" style="margin-right:10px"></i>Calcular</button>
+                      </div>
+                </div>
+                  <div class="table-responsive" >
+              <table id="demo-foo-addrow" class="table m-t-30 table-hover no-wrap contact-list table-striped" data-page-size="10">
+                  <thead >
+                      <tr>
+                          <th *ngFor="let uf of unidadFuncionales">{{uf.codigo}}</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of matriz;let i = index">
+                          <td *ngFor="let item of matriz[i];">{{item * costos[i] | number:'1.0-2'}}</td>
+                      </tr>
+
+                  </tbody>
+                  <tfoot>
+                      <tr>
+
+                      </tr>
+                  </tfoot>
+              </table>
+                  </div>
+            </div>
         </div>
     </div>
 </div>

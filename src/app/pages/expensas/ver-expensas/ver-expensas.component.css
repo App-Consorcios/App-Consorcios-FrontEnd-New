@@ -1,0 +1,54 @@
+h1, h2, h3, h4, h5, h6 {
+    color: #455a64;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+}
+.scroll-aside{
+  width: auto;
+  height: 600px;
+  overflow: auto;
+}
+.sorting{
+  
+}
+.label {
+    padding: 3px 10px;
+    line-height: 13px;
+    color: #ffffff;
+    font-weight: 400;
+    border-radius: 4px;
+    font-size: 75%;
+}
+.left-aside{
+  height: 600px;
+}
+.label-danger {
+    background-color: #ef5350;
+}
+.label-warning {
+    background-color: #ffb22b;
+}
+.label-success {
+    background-color: #06d79c;
+}
+.label-info {
+    background-color: #398bf7;
+}
+
+.bg-light-part{
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+element.style {
+}
+[class^="ti-"], [class*=" ti-"] {
+    font-family: 'themify';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

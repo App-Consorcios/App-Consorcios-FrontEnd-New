@@ -42,6 +42,7 @@ export class CrearExpensasComponent implements OnInit {
     this.tiposSubscription = this._exp.getTipos()
                   .subscribe(tipos =>{
                     this.tipos = tipos;});
+    console.log("TIPOS SUB - ", this.tiposSubscription);
   }
   guardarTipoConcepto(forma:NgForm){
     if(forma.value.nombre != ""){

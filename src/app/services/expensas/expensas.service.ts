@@ -528,4 +528,12 @@ export class ExpensasService {
   }
 
 
+  getExpensas():Observable<any>{
+    console.log("SERVICE GET EXPENSAS");
+    
+    return new Observable(expensas => {
+      expensas.next(this.expensas);
+     });
+   }
+
 }

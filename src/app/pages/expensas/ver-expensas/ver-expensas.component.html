@@ -5,7 +5,7 @@
             <h6 class="card-subtitle">Totales</h6>
             <div class="table-responsive m-t-40">
                 <table id="example23" class="display nowrap table table-hover table-striped table-bordered" [class.sorting]="false" cellspacing="0" width="100%">
-                    <thead>
+                    <!--<thead>
                         <tr>
                             <th>Concepto</th>
                             <th>Monto</th>
@@ -27,6 +27,20 @@
                           <th></th>
                           <th></th>
                           <th></th>
+                        </tr>
+                    </tbody>-->
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Periodo</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of expensas">
+                                <td>{{item.id}}</td>
+                                <td>{{item.periodo}}</td>
+                                <td>{{item.total}}</td>
                         </tr>
                     </tbody>
                 </table>

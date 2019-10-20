@@ -16,9 +16,7 @@ export class NavbarComponent implements OnInit {
 
 
   }
-  probar(value){
-    console.log(value)
-  }
+
   isActive(url): boolean {
       return this._router.url.includes(url);
   }

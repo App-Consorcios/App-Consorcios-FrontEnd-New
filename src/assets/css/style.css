@@ -10802,7 +10802,7 @@ code {
   background: #fff;
   /* padding: 5px 5px; */
   border-radius: 3px; }
-  .purchase-popup .btn {
+  /* .purchase-popup .btn {
     margin-right: 20px;
     font-weight: 500;
     color: #ffffff;
@@ -10812,8 +10812,8 @@ code {
     .purchase-popup .btn.download-button {
       background: rgba(249, 249, 249, 0.7);
       color: #969292;
-      border: 1px solid #d7d7d7; }
-    .purchase-popup .btn.purchase-button {
+      border: 1px solid #d7d7d7; } */
+    /* .purchase-popup .btn.purchase-button {
       background-color: rgba(172, 50, 228, 0.9);
       background-image: -owg-linear-gradient(to right, #da8cff, #9a55ff);
       background-image: -webkit-gradient(linear, left top, right top, from(#da8cff), to(#9a55ff));
@@ -10821,19 +10821,19 @@ code {
       color: #ffffff;
       border: none;
       line-height: 1;
-      vertical-align: middle; }
-  .purchase-popup p {
+      vertical-align: middle; } */
+  /* .purchase-popup p {
     margin-bottom: auto;
     margin-top: auto;
     color: #7e7e7e;
     font-weight: 400;
     vertical-align: middle;
-    line-height: 1; }
-  .purchase-popup i {
+    line-height: 1; } */
+  /* .purchase-popup i {
     vertical-align: middle;
     line-height: 1;
     margin: auto 0;
-    color: #b1b1b1; }
+    color: #b1b1b1; } */
 
 /*-------------------------------------------------------------------*/
 /* === Components === */

@@ -34,6 +34,22 @@ export class ExpensasService {
       },
     },
     {
+      nombre: "Limpieza y servicios",
+      tipo: {
+        nombre: "Generales",
+        color: "Rojo",
+        sigla: "G"
+      }
+    },
+    {
+      nombre: "Fumigación",
+      tipo: {
+        nombre: "Generales",
+        color: "Rojo",
+        sigla: "G"
+      }
+    },
+    {
       nombre: "Papeluchos",
       tipo: {
         nombre: "Gastos Varios",
@@ -43,14 +59,6 @@ export class ExpensasService {
     },
     {
       nombre: "Abonos Servicios",
-      tipo: {
-        nombre: "Generales",
-        color: "Rojo",
-        sigla: "G"
-      }
-    },
-    {
-      nombre: "Reparaciones de Edificio",
       tipo: {
         nombre: "Generales",
         color: "Rojo",
@@ -305,6 +313,7 @@ export class ExpensasService {
   unidadFuncionales:UnidadFuncional[]=[];
   saldos:Saldo[] = [
     {
+      periodo:'01-09-2019',
       concepto:{
         nombre: "Cargas Sociales",
         tipo: {
@@ -313,9 +322,11 @@ export class ExpensasService {
           sigla: "G"
         },
       },
+      descripcion:"Portería",
       monto: 14000
     },
     {
+     periodo:'01-09-2019',
      concepto:{
        nombre: "Papeluchos",
        tipo: {
@@ -324,9 +335,11 @@ export class ExpensasService {
          sigla: "V"
        }
      },
+     descripcion:"Imprenta Don Jose: Actas e impresiones",
      monto: 600
     },
     {
+      periodo:'01-09-2019',
       concepto:{
         nombre: "Abonos Servicios",
         tipo: {
@@ -335,42 +348,63 @@ export class ExpensasService {
           sigla: "G"
         }
       },
+      descripcion:"ABL",
       monto: 20000
     },
     {
-    concepto:{
-     nombre: "Reparaciones de Edificio",
-     tipo: {
-       nombre: "Generales",
-       color: "Rojo",
-       sigla: "G"
-     }
-    },
-    monto: 50000
-    },
-    {
-    concepto:{
-      nombre: "Servicios Publicos",
-      tipo: {
-        nombre: "Generales",
-        color: "Rojo",
-        sigla: "G"
-      }
-},
-    monto: 16000
+      periodo:'01-09-2019',
+      concepto:{
+        nombre: "Fumigación",
+        tipo: {
+          nombre: "Generales",
+          color: "Rojo",
+          sigla: "G"
+        }
+      },
+      descripcion:"Masacre de roedores",
+      monto: 20000
     },
     {
-     concepto:{
-         nombre: "Gastos Administrativos",
-         tipo: {
-           nombre: "Generales",
-           color: "Rojo",
-           sigla: "G"
-         }
-     },
-     monto: 17000
+      periodo:'01-09-2019',
+      concepto:{
+        nombre: "Limpieza y servicios",
+        tipo: {
+          nombre: "Generales",
+          color: "Rojo",
+          sigla: "G"
+        }
+      },
+      descripcion:"Barrido de pasillo y limpieza de ventanas",
+      monto: 20000
     },
     {
+      periodo:'01-09-2019',
+      concepto:{
+        nombre: "Servicios Publicos",
+        tipo: {
+          nombre: "Generales",
+          color: "Rojo",
+          sigla: "G"
+          }
+      },
+      descripcion:"Entongado: Acomodo de inspector municipal",
+      monto: 16000
+    },
+    {
+      periodo:'01-09-2019',
+      concepto:{
+           nombre: "Gastos Administrativos",
+           tipo: {
+             nombre: "Generales",
+             color: "Rojo",
+             sigla: "G"
+             }
+         },
+         descripcion:"Viaticos y sellos",
+         monto: 17000
+    },
+    {
+      periodo:'01-09-2019',
       concepto:{
         nombre: "Gastos Mantenimiento",
         tipo: {
@@ -379,6 +413,7 @@ export class ExpensasService {
           sigla: "G"
         }
       },
+      descripcion:"Mantenimiento de luminarias",
       monto: 6000
     }
 ]
@@ -461,7 +496,9 @@ export class ExpensasService {
   postSaldos(concepto):Observable<any>{
     return new Observable((payload) =>{
     let saldo = {
+        periodo :'',
         concepto: concepto,
+        descripcion: "",
         monto: 0
       }
       this.saldos.push(saldo);

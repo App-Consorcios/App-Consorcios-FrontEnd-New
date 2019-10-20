@@ -1,0 +1,135 @@
+h1, h2, h3, h4, h5, h6 {
+    color: #455a64;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+}
+.scroll-aside{
+  width: auto;
+  height: 600px;
+  overflow: auto;
+}
+.title-month{
+  position:relative;
+  top:-10px;
+}
+.title-expensa{
+  position:relative;
+  top:15px;
+}
+.centrado{
+  text-align: center;
+  border-left: 1px solid #acacac;
+  border-right: 1px solid #acacac;
+  border-bottom: 1px solid #acacac;
+  border-collapse: collapse;
+    background-color: #fff;
+    padding: 15px 15px;
+}
+#td2{
+  width: 100%;
+}
+#td3 input{
+  text-align: right;
+}
+
+.centrado-color{
+  background-color: #f5f4f4;
+}
+.contact-list td {
+  vertical-align: middle;
+  padding: 15px 15px;
+}
+.border-table{
+  border:1px solid #acacac;
+}
+input{
+  border:0;
+  width: 100%;
+}
+.example-viewport {
+  height: 400px;
+  width: 220px;
+  border: 1px solid #acacac;
+}
+.example-list {
+  border: solid 1px #ccc;
+  min-height: 400px;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+}
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-item {
+  height: 50px;
+}
+.label {
+    padding: 3px 10px;
+    line-height: 13px;
+    color: #ffffff;
+    font-weight: 400;
+    border-radius: 4px;
+    font-size: 75%;
+}
+.left-aside{
+  height: 600px;
+}
+.label-danger {
+    background-color: #ef5350;
+}
+.label-warning {
+    background-color: #ffb22b;
+}
+.label-success {
+    background-color: #06d79c;
+}
+.label-info {
+    background-color: #398bf7;
+}
+
+.bg-light-part{
+  background-color: rgba(0, 0, 0, 0.02);
+}
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.table-inverse.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+element.style {
+}
+[class^="ti-"], [class*=" ti-"] {
+    font-family: 'themify';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

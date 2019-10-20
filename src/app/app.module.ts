@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule} from "@angular/common/http";
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 //Module personalizados
 import { PagesModule } from './pages/pages.module';
@@ -17,6 +18,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { AppComponent } from './app.component';
 //Routes
 import { AppRoutingModule } from './app-routing.module';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -35,7 +38,10 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
     GuardsModule,
     SharedModule,
-    DashboardModule
+    DashboardModule,
+    ScrollingModule,
+    DragDropModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

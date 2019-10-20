@@ -21,6 +21,7 @@ import { CrearEstadisticaComponent } from './estadisticas/crear-estadistica/crea
 import { VerEstadisticaComponent } from './estadisticas/ver-estadistica/ver-estadistica.component';
 import { VerUsuariosComponent } from './usuarios/ver-usuarios/ver-usuarios.component';
 import { EliminarUsuariosComponent } from './usuarios/eliminar-usuarios/eliminar-usuarios.component';
+import { DetalleExpensasComponent } from './expensas/detalle-expensas/detalle-expensas.component';
 
 const pagesRoutes: Routes =[
   { path: 'perfil',
@@ -38,6 +39,7 @@ const pagesRoutes: Routes =[
    component: ExpensasComponent,
    children:[
      { path: 'crear-expensas', component: CrearExpensasComponent },
+     { path: 'detalle-expensas', component: DetalleExpensasComponent },
      { path: 'ver-expensas', component: VerExpensasComponent },
      { path: 'calcular-expensas', component: CalcularExpensasComponent },
      { path: '**',pathMatch: 'full', redirectTo: 'crear-expensas' }]

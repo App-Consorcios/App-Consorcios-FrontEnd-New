@@ -29,6 +29,9 @@ import { VerUsuariosComponent } from './usuarios/ver-usuarios/ver-usuarios.compo
 import { EliminarUsuariosComponent } from './usuarios/eliminar-usuarios/eliminar-usuarios.component';
 import { CrearConsorcioComponent } from './consorcios/crear-consorcio/crear-consorcio.component';
 import { VerConsorcioComponent } from './consorcios/ver-consorcio/ver-consorcio.component';
+import { DetalleExpensasComponent } from './expensas/detalle-expensas/detalle-expensas.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,8 @@ import { VerConsorcioComponent } from './consorcios/ver-consorcio/ver-consorcio.
     VerUsuariosComponent,
     EliminarUsuariosComponent,
     CrearConsorcioComponent,
-    VerConsorcioComponent
+    VerConsorcioComponent,
+    DetalleExpensasComponent
   ],
   imports: [
     CommonModule,
@@ -66,6 +70,8 @@ import { VerConsorcioComponent } from './consorcios/ver-consorcio/ver-consorcio.
     PagesRoutingModule,
     SharedModule,
     PipesModule,
+    ScrollingModule,
+    DragDropModule
   ],
   exports:[
     PerfilComponent,

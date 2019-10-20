@@ -5,14 +5,14 @@
             <!-- .left-aside-column-->
             <div class="left-aside bg-light-part">
                 <ul class="list-style-none">
-                    <li class="box-label"><a href="javascript:void(0)">Tipos de conceptos<span></span></a></li>
+                    <li class="box-label"><a href="javascript:void(0)">Tipos de categorias<span></span></a></li>
                     <li class="divider"></li>
                     <li *ngFor="let item of tipos">
                       <a href="javascript:void(0)"><i (click)="eliminarTipoConcepto(item)" class="fa fa-close" style="padding:10px"></i>{{item.nombre | truncate: 10}}
                         <span class="label" [ngClass]="{'label-danger': item.color == 'Rojo',
                                                         'label-info': item.color == 'Celeste',
                                                         'label-warning': item.color == 'Amarillo',
-                                                        'label-success': item.color == 'Verde'  }">{{item.sigla}}</span>
+                                                        'label-success': item.color == 'Verde'}">{{item.sigla}}</span>
                       </a></li>
                     <li class="box-label"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" class="btn btn-info text-white">+ Crear tipo de concepto</a></li>
                     <div id="myModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -25,7 +25,7 @@
                                 <div class="modal-body">
                                   <form (ngSubmit)="guardarTipoConcepto(forma1)"  #forma1="ngForm" novalidate="" >
                                       <div class="form-group">
-                                        <label for="exampleFormControlInput1">Tipo de conceptos</label>
+                                        <label for="exampleFormControlInput1">Tipo de categorias</label>
                                         <input class="form-control"
                                                name="nombre"
                                                placeholder="Escriba un concepto..."
@@ -76,7 +76,7 @@
                 <div class="right-page-header">
                     <div class="d-flex">
                         <div class="align-self-center">
-                            <h4 class="card-title m-t-10">Lista de conceptos</h4></div>
+                            <h4 class="card-title m-t-10">Lista de categorias</h4></div>
                         <div class="ml-auto">
                             <!-- <input type="text" id="demo-input-search2" placeholder="search contacts" class="form-control"> </div> -->
                     </div>
@@ -93,9 +93,9 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let item of conceptos;let i = index">
-                                <td>{{i}}</td>
+                                <td>{{i+1}}</td>
                                 <td> {{item.nombre}} </td>
-                            <td><span class="label" [ngClass]="{'label-danger': item.tipo.color == 'Rojo',
+                                <td><span class="label" [ngClass]="{'label-danger': item.tipo.color == 'Rojo',
                                                                 'label-info': item.tipo.color == 'Celeste',
                                                                 'label-warning': item.tipo.color == 'Amarillo',
                                                                 'label-success': item.tipo.color == 'Verde'  }">{{item.tipo.sigla}}</span>

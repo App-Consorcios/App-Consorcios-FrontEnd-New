@@ -6,6 +6,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { RouterModule } from '@angular/router';
+import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ComponentsModule
   ],
   exports: [
     NavbarComponent,

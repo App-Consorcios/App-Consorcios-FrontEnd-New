@@ -43,21 +43,26 @@ export class SidebarService {
           icono:'fa fa-2x fa-chart-line menu-icon',
           action:[
             {
-              titulo: 'Crear Expensas',
+              titulo: 'Crear categorias',
               icono: 'fa fa-2x fa-edit icon-navbar text-success',
               url:'/expensas/crear-expensas',
+            },
+            {
+              titulo: 'Crear detalle',
+              icono: 'fa fa-2x fa-file-alt icon-navbar text-warning',
+              url:'/expensas/detalle-expensas',
+            },
+            {
+              titulo: 'Calcular Expensas',
+              icono: 'fa fa-2x fa-calculator icon-navbar text-danger',
+              url:'/expensas/calcular-expensas',
             },
             {
               titulo: 'Ver Expensas',
               icono: 'fa fa-2x fa-eye icon-navbar text-info',
               url:'/expensas/ver-expensas',
             }
-            ,
-            {
-              titulo: 'Calcular Expensas',
-              icono: 'fa fa-2x fa-calculator icon-navbar text-warning',
-              url:'/expensas/calcular-expensas',
-            }
+
           ]
         },
         {

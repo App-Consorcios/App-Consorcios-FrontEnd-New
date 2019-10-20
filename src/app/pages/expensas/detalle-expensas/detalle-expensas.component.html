@@ -1,0 +1,102 @@
+<div class="col-12">
+  <div class="card">
+      <div class="contact-page-aside">
+          <!-- .left-aside-column-->
+          <div class="left-aside bg-light-part">
+              <ul class="list-style-none">
+                  <li class="box-label"><h4>Categorias</h4></li>
+                  <li class="divider"></li>
+                  <li>
+                    <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport list-group">
+                        <div cdkDropList *cdkVirtualFor="let item of categorias; let i = index"
+                             class="list-group-item"
+                             #categorias="cdkDropList"
+                             [cdkDropListData]="categorias"
+                             (cdkDropListDropped)="drop($event)"
+                             cdkDrag>
+                            <span class="label" [ngClass]="{'label-danger': item.tipo.color == 'Rojo',
+                                                            'label-info': item.tipo.color == 'Celeste',
+                                                            'label-warning': item.tipo.color == 'Amarillo',
+                                                            'label-success': item.tipo.color == 'Verde'}">{{item.tipo.sigla}}</span>
+                            {{item.nombre}}
+                        </div>
+                      <!-- </div> -->
+                    </cdk-virtual-scroll-viewport>
+                  </li>
+                  <li class="divider"></li>
+                  <li><span><h6>(Arrastre y suelte en la tabla de la izquierda)</h6></span></li>
+              </ul>
+          </div>
+          <div class="right-aside scroll-aside">
+              <div class="right-page-header">
+                  <div class="d-flex" style="margin-bottom:-15px;">
+                      <div class="align-self-center">
+                        <div class="row">
+                          <div class="col-md-6 title-expensa">
+                            <h4 class="card-title m-t-8">Detalle de la expensa</h4>
+                          </div>
+                          <div class="col-md-6 title-month">
+                            <app-date-picker (periodo)="periodo = $event"></app-date-picker>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="ml-auto">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <button (click) ="recuperarUltimoMes()" type="button" class="btn btn-danger btn-rounded" data-target="#add-contact" style="margin:-10px;padding:-10px"><i class="fa fa-calendar" style="margin-right:10px"></i>Recuperar</button>
+                          </div>
+                          <div class="col-md-6">
+                            <button (click) ="guardarMesActual()" type="button" class="btn btn-info btn-rounded" data-target="#add-contact" style="margin:-10px;padding:-10px"><i class="fa fa-save" style="margin-right:10px"></i>Guardar</button>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+              <hr>
+              <br>
+                  <div class="table-responsive" style="margin-top:10px;">
+                      <table id="demo-foo-addrow" class="table table-hover no-wrap contact-list" data-page-size="10">
+                          <thead class="border-table">
+                              <tr >
+                                  <th>Tipo</th>
+                                  <th>Categoría</th>
+                                  <th>Descripción</th>
+                                  <th>Monto</th>
+                                  <th>Acción</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr *ngIf="detalles.length==0" class="centrado centrado-color">
+                                <td></td>
+                                <td></td>
+                                <td>No hay elementos cargados</td>
+                                <td></td>
+                                <td></td>
+
+                              </tr>
+                              <tr *ngIf="detalles.length==0" class="centrado" >
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                              </tr>
+                              <tr *ngFor="let item of detalles" class="border-table">
+                                  <td><span class="label" [ngClass]="{'label-danger': item.concepto.tipo.color == 'Rojo',
+                                                                  'label-info': item.concepto.tipo.color == 'Celeste',
+                                                                  'label-warning': item.concepto.tipo.color == 'Amarillo',
+                                                                  'label-success': item.concepto.tipo.color == 'Verde'}">{{item.concepto.tipo.sigla}}</span></td>
+                                  <td id="td1">{{item.concepto.nombre}}</td>
+                                  <td id="td2"><input type="text" name="" [value]="item.descripcion" placeholder="Ingrese una descripción.."> </td>
+                                  <td id="td3"><input type="text" name="" [value]="item.monto | number:'1.0-2'" ></td>
+                                  <td><i (click)="eliminarDetalle(item)" class="fa fa-trash text-danger" style="margin:10px;text-align:center"></i></td>
+                              </tr>
+
+                          </tbody>
+                      </table>
+
+              </div>
+          </div>
+      </div>
+    </div>
+</div>

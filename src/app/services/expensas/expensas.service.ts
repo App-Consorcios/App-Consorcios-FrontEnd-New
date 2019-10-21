@@ -95,6 +95,7 @@ export class ExpensasService {
       id: '001',
       periodo:'01-10-2019',
       unidad:{
+        nro: 0,
         codigo: 'PB-01',
         ubicacion:'FI-2',
         tamanio: 42,
@@ -204,6 +205,7 @@ export class ExpensasService {
       id: '002',
       periodo:'01-10-2019',
       unidad:{
+        nro: 1,
         codigo: 'PB-02',
         ubicacion:'FD-1',
         tamanio: 60,
@@ -530,7 +532,7 @@ export class ExpensasService {
 
   getExpensas():Observable<any>{
     console.log("SERVICE GET EXPENSAS");
-    
+
     return new Observable(expensas => {
       expensas.next(this.expensas);
      });

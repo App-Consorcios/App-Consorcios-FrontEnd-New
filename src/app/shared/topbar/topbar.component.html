@@ -16,7 +16,7 @@
           <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
         </div>
       </form>
-    </div>--> 
+    </div>-->
     <ul class="navbar-dark navbar-nav navbar-nav-right">
       <li class="nav-item nav-profile dropdown">
         <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
@@ -36,7 +36,7 @@
           <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
         </a>
       </li>
-    
+
 
 
       <li *ngIf="!panel" class="nav-item dropdown">
@@ -126,13 +126,13 @@
           <div class="dropdown-divider"></div>
           <h6 class="p-3 mb-0 text-center">See all notifications</h6>
         </div>
-      </li>
+      </li>--> 
       <li *ngIf="!panel" (click) ="auth.logout()"class="nav-item nav-logout d-none d-lg-block">
         <a class="nav-link puntero">
           <i class="mdi mdi-power"></i>
         </a>
       </li>
-      --> 
+
     </ul>
     <button *ngIf="panel" class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
       <span class="mdi mdi-menu"></span>

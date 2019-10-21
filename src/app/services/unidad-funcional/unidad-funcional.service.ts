@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class UnidadFuncionalService {
   unidadFuncionales:UnidadFuncional[] = [
     {
+      nro: 0,
       codigo: 'PB-01',
       ubicacion:'FI-2',
       tamanio: 42,
@@ -19,6 +20,7 @@ export class UnidadFuncionalService {
       }
     },
     {
+        nro: 1,
         codigo: 'PB-02',
         ubicacion:'FD-1',
         tamanio: 60,

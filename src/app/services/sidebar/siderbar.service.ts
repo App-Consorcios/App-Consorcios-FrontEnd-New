@@ -25,15 +25,14 @@ export class SidebarService {
               url:'/unidad-funcional/crear-unidad',
             },
             {
-              titulo: 'Ver Unidades',
-              icono: 'fa fa-2x fa-eye  icon-navbar text-info',
-              url:'/unidad-funcional/ver-unidades',
-            }
-            ,
-            {
               titulo: 'Asignar Unidades',
               icono: 'fa fa-2x fa-check  icon-navbar text-warning',
               url:'/unidad-funcional/asignar-unidad',
+            },
+            {
+              titulo: 'Ver Unidades',
+              icono: 'fa fa-2x fa-eye  icon-navbar text-info',
+              url:'/unidad-funcional/ver-unidades',
             }
           ]
         },

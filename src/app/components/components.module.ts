@@ -35,11 +35,13 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { CarrouselMultipleComponent } from './carrousel-multiple/carrousel-multiple.component';
 
 @NgModule({
   declarations: [
   MenuAccionesComponent,
-  DatePickerComponent
+  DatePickerComponent,
+  CarrouselMultipleComponent
 ],
   imports: [
     CommonModule,
@@ -81,7 +83,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
   ],
   exports:[
     MenuAccionesComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    CarrouselMultipleComponent
+
   ]
 })
 export class ComponentsModule { }

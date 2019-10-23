@@ -1,9 +1,12 @@
 .control-label{
-  padding-top: 20px;
+  padding-top: 15px;
   margin-left: -40px;
 
 }
 .form-control-margin{
   padding-top: 20px;
   margin-left: -20px;
+}
+.form-group .row{
+  text-align: left;
 }

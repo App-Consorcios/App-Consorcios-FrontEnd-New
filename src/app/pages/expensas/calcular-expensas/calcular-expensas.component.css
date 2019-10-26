@@ -5,6 +5,7 @@
 }
 .left-aside{
   height: 600px;
+  width: 350px;
 }
 .label-danger {
     background-color: #ef5350;
@@ -21,4 +22,8 @@
 
 .bg-light-part{
   background-color: rgba(0, 0, 0, 0.02);
+}
+
+.footer{
+  text-align: right;
 }

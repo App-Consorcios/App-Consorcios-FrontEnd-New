@@ -6,3 +6,14 @@
 .puntero {
   cursor: pointer;
 }
+
+.nav-consorcio-text{
+  display: flex;
+  margin-left: 1.25rem;
+  margin-right: 10px;
+}
+
+p{
+  margin: 0 5px;
+
+}

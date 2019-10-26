@@ -47,16 +47,20 @@ export class AuthService {
       this.menu = [];
     }
   }
-  login( usuario:Usuario, recordar:boolean = false){
-    let url = URL_SERVICIOS + '/login';
+  login(email:string, password:string, recordar:boolean = false){
+    let url = URL_SERVICIOS
     if(recordar){
-      localStorage.setItem('email',usuario.email);
+      localStorage.setItem('email',email);
+      localStorage.setItem('recordar',"true");
     }else{
       localStorage.removeItem('email');
+      localStorage.removeItem('recordar');
     }
-    return this.http.post(url,usuario)
+    url = `${url}/login?mail=${email}&password=${password}`
+    return this.http.get(url)
     .pipe(map((resp:any)=>{
-        this.guardarStorage(resp.id, resp.usuario,resp.menu);
+      console.log(resp)
+        // this.guardarStorage(resp.id, resp.usuario,resp.menu);
       return true;
     }),catchError( err => {
         return throwError(err);

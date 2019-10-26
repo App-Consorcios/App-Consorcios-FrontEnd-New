@@ -1,26 +1,26 @@
-<div class="container-scroller">
+<div Style="background:url('assets/images/fondo10.jpg') no-repeat center center fixed;background-size: cover;" class="align-items-center d-flex login-box auth container-scroller img-fluid">
   <div class="container-fluid page-body-wrapper full-page-wrapper">
-    <div class="content-wrapper d-flex align-items-center auth">
+    <!-- <div class="content-wrapper d-flex align-items-center auth"> -->
       <div class="row flex-grow">
         <div class="col-lg-4 mx-auto">
-          <div class="auth-form-light text-left p-5">
-            <div class="brand-logo">
-              <!-- <img src="../../assets/images/logo.svg"> -->
+          <div class="auth-form-light text-left  bg-dark p-5">
+            <div class="log-size">
+              <img src="assets/images/logoConsorcios.png" class="log-size img-fluid" alt="logo">
             </div>
-            <h4>¿Necesitas ayuda?</h4>
-            <h6 class="font-weight-light">Registrarte en solo unos pocos pasos</h6>
+            <h4 class="text-white">¿Necesitas ayuda?</h4>
+            <h6 class="font-weight-light text-white">Registrarte en solo unos pocos pasos</h6>
             <form class="pt-3" ngNativeValidate [formGroup]="forma" (ngSubmit)="registrarUsuario()">
               <div class="form-group">
-                <input  formControlName="nombre" name="nombre" class="form-control form-control-lg"  type="text" id="exampleInputEmail1" required placeholder="Nombre">
+                <input  formControlName="nombre" name="nombre" class="form-control form-control-lg text-white"  type="text" id="exampleInputEmail1" required placeholder="Nombre">
               </div>
               <div class="form-group">
-                <input formControlName="email" name="email" type="email" class="form-control form-control-lg" id="exampleInputEmail1" required placeholder="Correo del usuario">
+                <input formControlName="email" name="email" type="email" class="form-control form-control-lg text-white" id="exampleInputEmail1" required placeholder="Correo del usuario">
               </div>
               <div class="form-group">
-                <input formControlName="password" name="password" type="password" class="form-control form-control-lg" id="exampleInputPassword1" required placeholder="Contraseña">
+                <input formControlName="password" name="password" type="password" class="form-control form-control-lg text-white" id="exampleInputPassword1" required placeholder="Contraseña">
               </div>
               <div class="form-group">
-                <input formControlName="password2" name="password2" type="password" class="form-control form-control-lg" id="exampleInputPassword1" required placeholder="Confirmar contraseña">
+                <input formControlName="password2" name="password2" type="password" class="form-control form-control-lg text-white" id="exampleInputPassword1" required placeholder="Confirmar contraseña">
               </div>
               <div class="form-group" *ngIf="forma.errors?.sonIguales && !forma.pristine">
                 <p class="text-danger">
@@ -37,7 +37,7 @@
               <div class="mt-3">
                 <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn"  type="submit">Crear cuenta</button>
               </div>
-              <div class="text-center mt-4 font-weight-light"> ¿Ya tienes una cuenta? <a (click) = "navegar()" class="text-primary puntero">Ingresar</a>
+              <div class="text-center mt-4 font-weight-light text-white"> ¿Ya tienes una cuenta? <a (click) = "navegar()" class="text-primary puntero">Ingresar</a>
               </div>
             </form>
           </div>
@@ -47,4 +47,4 @@
     <!-- content-wrapper ends -->
   </div>
   <!-- page-body-wrapper ends -->
-</div>
+<!-- </div> -->

@@ -1,1 +1,1 @@
-export const URL_SERVICIOS = "https://backend-server-angular.herokuapp.com";
+export const URL_SERVICIOS = "https://app-consorcios-backend.herokuapp.com";

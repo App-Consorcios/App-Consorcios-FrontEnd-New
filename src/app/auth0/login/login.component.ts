@@ -23,11 +23,14 @@ export class LoginComponent implements OnInit {
     init_plugin();
   }
   ingresar(forma:NgForm){
+    console.log(forma.control.value)
 
     if(forma.invalid) return;
-    let usuario = new Usuario(null,forma.value.email,forma.value.password);
-    this._auth.login(usuario,forma.value.recuerdame)
-    .subscribe( resp => this._router.navigate(['/unidad-funcional']));
+    this._auth.login(forma.control.value.email, forma.control.value.password,forma.value.recuerdame)
+    .subscribe( resp => {
+      console.log(resp)
+      // this._router.navigate(['/unidad-funcional']);
+    });
   }
   navegar(){
     this._router.navigate(['/register'])

@@ -1,3 +1,9 @@
+.elemento {
+  box-shadow: 2px 2px 5px #999;
+  -moz-box-shadow: 0px 0px 30px #ffffff;
+-webkit-box-shadow: 0px 0px 30px #ffffff;
+box-shadow: 0px 0px 30px #ffffff;
+}
 .login-register {
   background-size: cover;
   background-repeat: no-repeat;
@@ -9,10 +15,20 @@
   .puntero{
     cursor: pointer;
   }
-
+  .log-size{
+    width: 85%;
+    height: auto;
+    margin-left: 8%;
+    margin-bottom: 4%;
+  }
 .login-box {
   width: 400px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  padding: 2.75rem 2.25rem;
+  width: 100%;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1; }
   .login-box .footer {
     width: 100%;
     left: 0px;

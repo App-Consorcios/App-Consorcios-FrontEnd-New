@@ -3,7 +3,9 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario.model';
+import { Roles } from 'src/app/models/roles.model';
 declare function init_plugin();
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,26 +13,34 @@ declare function init_plugin();
 })
 export class RegisterComponent implements OnInit {
   forma:FormGroup;
+  roles:Roles[] = [];
 
   constructor(public _auth:AuthService,
               public _router:Router) { }
 
   ngOnInit() {
     init_plugin();
+    this._auth.buscarRoles()
+        .subscribe( (resp:any) =>{
+          this.roles = resp;
+        });
+        console.log(this.roles);
     this.forma = new FormGroup({
       nombre: new FormControl(null, Validators.required),
+      apellido: new FormControl(null, Validators.required),
       email: new FormControl(null, [Validators.email,Validators.required]),
       password: new FormControl(null, Validators.required),
       password2: new FormControl(null, Validators.required),
       condiciones: new FormControl(false)
     },{ validators: this.sonIguales('password','password2') });
-    this.forma.setValue({
-      nombre: "test 1",
-      email: "test1@test.com",
-      password: "123456",
-      password2: "123456",
-      condiciones: true
-    });
+    // this.forma.setValue({
+    //   nombre: "test 1",
+    //   apellido: "test2",
+    //   email: "test1@test.com",
+    //   password: "123456",
+    //   password2: "123456",
+    //   condiciones: true
+    // });
   }
   sonIguales(campo1:string,campo2:string){
     return (group:FormGroup) =>{
@@ -51,17 +61,41 @@ export class RegisterComponent implements OnInit {
     if(!this.forma.value.condiciones){
       // swal('Importante', 'Debe aceptar las condiciones', 'warning');
     }
+    this.cargarRoles()
 
     const usuario = new Usuario(
       this.forma.value.nombre,
+      this.forma.value.apellido,
+      this.forma.value.password,
       this.forma.value.email,
-      this.forma.value.password
+      this.roles.filter(data=>{return data.nombre == "usuario"})
     );
     this._auth.crearUsuario(usuario)
-    .subscribe( resp => this._router.navigate(['/login']));
+    .subscribe( resp => {
+        console.log(resp)
+      // this._router.navigate(['/login'])
+    });
   }
   navegar(){
     this._router.navigate(['/login'])
+  }
+  cargarRoles(){
+    if(this.roles.length == 0){
+      let roles = [
+        {
+          "nombre":"admin"
+        },
+        {
+          "nombre":"propietario"
+        },
+        {
+          "nombre":"inquilino"
+        },
+        {
+          "nombre":"usuario"
+        }]
+      this._auth.crearRoles(this.roles)
+    }
   }
   // this.forma.value.pais
 

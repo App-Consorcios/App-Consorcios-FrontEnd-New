@@ -1,9 +1,12 @@
+import { Roles } from './roles.model';
+
 export class Usuario {
   constructor(public nombre:string,
-              public email:string,
+              public apellido:string,
               public password:string,
-              public img?:string,
-              public role?:string,
-              public google?:boolean,
-              public _id?:string){ }
+              public mail:string,
+              public roles:Roles[],
+              public id?:string,
+              public imagen?:string,
+              public google?:boolean){ }
 }

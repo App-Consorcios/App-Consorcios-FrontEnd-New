@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     console.log(forma.control.value)
 
     if(forma.invalid) return;
-    this._auth.login(forma.control.value.email, forma.control.value.password,forma.value.recuerdame)
+    this._auth.login(forma.control.value.email, forma.control.value.password,forma.value.recuerdarme)
     .subscribe( resp => {
       console.log(resp)
       // this._router.navigate(['/unidad-funcional']);

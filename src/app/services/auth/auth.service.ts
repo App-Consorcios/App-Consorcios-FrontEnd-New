@@ -5,12 +5,13 @@ import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from 'src/app/config/config';
+import { Roles } from 'src/app/models/roles.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  usuario:Usuario;
+  usuario:Usuario = null;
   menu:any[]=[];
 
   constructor(public http:HttpClient,
@@ -18,24 +19,20 @@ export class AuthService {
    this.cargarStorage();
  }
 
-  guardarStorage(id:string, usuario:Usuario,menu:any){
+  guardarStorage(id:string, usuario:Usuario){
     localStorage.setItem('id',id);
     localStorage.setItem('usuario',JSON.stringify(usuario));
-    localStorage.setItem('menu',JSON.stringify(menu));
-
     this.usuario = usuario;
-    this.menu = menu;
   }
   logout(){
     this.usuario = null;
     this.menu = [];
 
     localStorage.removeItem('usuario');
-    localStorage.removeItem('menu');
     this._router.navigate(['/login']);
   }
   estaLogueado(){
-    return this.usuario;
+    return this.usuario != null;
   }
   cargarStorage(){
     let usuario = JSON.parse(localStorage.getItem('usuario'));
@@ -47,8 +44,9 @@ export class AuthService {
       this.menu = [];
     }
   }
-  login(email:string, password:string, recordar:boolean = false){
+  login(email:string, password:string, recordar:boolean){
     let url = URL_SERVICIOS
+
     if(recordar){
       localStorage.setItem('email',email);
       localStorage.setItem('recordar',"true");
@@ -59,22 +57,33 @@ export class AuthService {
     url = `${url}/login?mail=${email}&password=${password}`
     return this.http.get(url)
     .pipe(map((resp:any)=>{
-      console.log(resp)
-        // this.guardarStorage(resp.id, resp.usuario,resp.menu);
+       this.usuario.apellido = resp.apellido
+       console.log(resp)
+        // this.guardarStorage(resp.id, this.usuario);
       return true;
     }),catchError( err => {
         return throwError(err);
      }));
   }
+  buscarRoles(){
+    let url = URL_SERVICIOS
+    return this.http.get(url);
+  }
+  crearRoles(roles:Roles[]){
+    let url = URL_SERVICIOS
+    for(let rol in roles){
+      this.http.post(url,rol);
+    }
+  }
 
   crearUsuario(usuario:Usuario){
     let url = URL_SERVICIOS +'/usuario';
-    return this.http.post(url,usuario)
-    .pipe(map((res:any) => {
-      return res.usuario;
-    }),catchError( err => {
-        return throwError(err);
-     }));
+     return this.http.post(url,usuario)
+    // .pipe(map((res:any) => {
+    //   return res.usuario;
+    // }),catchError( err => {
+    //     return throwError(err);
+    //  }));
   }
   actualizarUsuario(usuario:any){
     let url = URL_SERVICIOS +'/usuario/'+usuario._id;

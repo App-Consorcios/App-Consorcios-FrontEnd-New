@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { SidebarService } from 'src/app/services/sidebar/siderbar.service';
 import { NavbarService } from 'src/app/services/navbar/navbar.service';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/app/models';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { Roles } from 'src/app/models/roles.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,16 +14,22 @@ import { Router } from '@angular/router';
 export class SidebarComponent implements OnInit {
   item:any = '/unidad-funcional';
   position:any[]=[];
-  usuario
-
+  usuario:Usuario;
+  roles:Roles[];
   constructor(public _sidebar:SidebarService,
               public _navabar:NavbarService,
-              private _router:Router) {
-      this.usuario = JSON.parse(localStorage.getItem("usuario"));
+              private _router:Router,public _auth:AuthService) {
+
    }
 
   ngOnInit() {
-
+    this.usuario = JSON.parse(localStorage.getItem("usuario"));
+    console.log(this.usuario);
+    this._auth.buscarRoles()
+        .subscribe( (resp:any) =>{
+          this.roles = resp;
+          console.log(this.roles.filter(data=>{return data.nombre == 'usuario'}))
+        });
   }
   crearSubmenu(submenu:number,menu:number){
     this._navabar.menu = menu;

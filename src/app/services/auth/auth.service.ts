@@ -55,10 +55,12 @@ export class AuthService {
       localStorage.removeItem('recordar');
     }
     url = `${url}/login?mail=${email}&password=${password}`
+    console.log(url)
     return this.http.get(url)
     .pipe(map((resp:any)=>{
-      console.log(resp.usuario)
-      this.guardarStorage(resp.usuario.id.toString(), resp.usuario);
+      if(resp.valido){
+        this.guardarStorage(resp.usuario.id.toString(), resp.usuario);
+      }
       return resp;
     }),catchError( err => {
         return throwError(err);

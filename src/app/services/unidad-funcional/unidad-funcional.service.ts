@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UnidadFuncionalService {
-  unidadFuncionales:UnidadFuncional[] = [
+  unidadFuncionales:any[] = [
     {
       nro: 0,
       codigo: 'PB-01',

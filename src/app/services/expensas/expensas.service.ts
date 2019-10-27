@@ -90,228 +90,228 @@ export class ExpensasService {
       }
     }
   ]
-  // expensas:Expensa[] = [
-  //   {
-  //     id: '001',
-  //     periodo:'01-10-2019',
-  //     unidad:{
-  //       nro: 0,
-  //       codigo: 'PB-01',
-  //       ubicacion:'FI-2',
-  //       tamanio: 42,
-  //       prorrateo: 0.07,
-  //       propietario:{
-  //         nombre:'Juan Gomez',
-  //         mail: 'jgomez@gmail.com',
-  //         password: '**********'
-  //       }
-  //     },
-  //     total: 6000,
-  //     item:[
-  //       {
-  //         id:'001',
-  //         numero: 1,
-  //         concepto:{
-  //           nombre: "Cargas Sociales",
-  //           tipo: {
-  //             nombre: "Generales",
-  //             color: "Rojo",
-  //             sigla: "G"
-  //           }
-  //         },
-  //         monto:300
-  //       },
-  //       {
-  //         id:'001',
-  //         numero: 2,
-  //         concepto:{
-  //           nombre: "Papeluchos",
-  //           tipo:{
-  //             nombre: "Gastos Varios",
-  //             color: "Verde",
-  //             sigla: "V"
-  //           }
-  //         },
-  //         monto:300
-  //       },
-  //       {
-  //         id:'001',
-  //         numero: 3,
-  //         concepto:{
-  //           nombre: "Abonos Servicios",
-  //           tipo: {
-  //             nombre: "Generales",
-  //             color: "Rojo",
-  //             sigla: "G"
-  //           }
-  //         },
-  //         monto:300
-  //       },
-  //       {
-  //         id:'001',
-  //         numero: 4,
-  //         concepto:{
-  //           nombre: "Reparaciones de Edificio",
-  //           tipo: {
-  //             nombre: "Generales",
-  //             color: "Rojo",
-  //             sigla: "G"
-  //           }
-  //         },
-  //         monto:300
-  //       },
-  //       {
-  //         id:'001',
-  //         numero: 5,
-  //         concepto:{
-  //           nombre: "Servicios Publicos",
-  //           tipo: {
-  //             nombre: "Generales",
-  //             color: "Rojo",
-  //             sigla: "G"
-  //           }
-  //         },
-  //         monto:300
-  //       },
-  //       {
-  //         id:'001',
-  //         numero: 5,
-  //         concepto:{
-  //           nombre: "Gastos Administrativos",
-  //           tipo: {
-  //             nombre: "Generales",
-  //             color: "Rojo",
-  //             sigla: "G"
-  //           }
-  //         },
-  //         monto:300
-  //       },
-  //       {
-  //         id:'001',
-  //         numero: 5,
-  //         concepto:{
-  //           nombre: "Gastos Mantenimiento",
-  //           tipo: {
-  //             nombre: "Generales",
-  //             color: "Rojo",
-  //             sigla: "G"
-  //           }
-  //         },
-  //         monto:300
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     id: '002',
-  //     periodo:'01-10-2019',
-  //     unidad:{
-  //       nro: 1,
-  //       codigo: 'PB-02',
-  //       ubicacion:'FD-1',
-  //       tamanio: 60,
-  //       prorrateo: 0.10,
-  //       propietario:{
-  //         nombre:'Javier Lopez',
-  //         mail: 'jlopez@gmail.com',
-  //         password: '**********'
-  //       }
-  //     },
-  //     total: 6000,
-  //     item:[
-  //       {
-  //         id:'002',
-  //         numero: 1,
-  //         concepto:{
-  //           nombre: "Cargas Sociales",
-  //           tipo: {
-  //             nombre: "Generales",
-  //             color: "Rojo",
-  //             sigla: "G"
-  //           }
-  //         },
-  //         monto:300
-  //       },
-  //       {
-  //         id:'002',
-  //         numero: 2,
-  //         concepto:{
-  //           nombre: "Papeluchos",
-  //           tipo:{
-  //             nombre: "Gastos Varios",
-  //             color: "Verde",
-  //             sigla: "V"
-  //           }
-  //         },
-  //         monto:300
-  //       },
-  //       {
-  //         id:'002',
-  //         numero: 3,
-  //         concepto:{
-  //           nombre: "Abonos Servicios",
-  //           tipo: {
-  //             nombre: "Generales",
-  //             color: "Rojo",
-  //             sigla: "G"
-  //           }
-  //         },
-  //         monto:300
-  //       },
-  //       {
-  //         id:'002',
-  //         numero: 4,
-  //         concepto:{
-  //           nombre: "Reparaciones de Edificio",
-  //           tipo: {
-  //             nombre: "Generales",
-  //             color: "Rojo",
-  //             sigla: "G"
-  //           }
-  //         },
-  //         monto:300
-  //       },
-  //       {
-  //         id:'002',
-  //         numero: 5,
-  //         concepto:{
-  //           nombre: "Servicios Publicos",
-  //           tipo: {
-  //             nombre: "Generales",
-  //             color: "Rojo",
-  //             sigla: "G"
-  //           }
-  //         },
-  //         monto:300
-  //       },
-  //       {
-  //         id:'002',
-  //         numero: 5,
-  //         concepto:{
-  //           nombre: "Gastos Administrativos",
-  //           tipo: {
-  //             nombre: "Generales",
-  //             color: "Rojo",
-  //             sigla: "G"
-  //           }
-  //         },
-  //         monto:300
-  //       },
-  //       {
-  //         id:'002',
-  //         numero: 5,
-  //         concepto:{
-  //           nombre: "Gastos Mantenimiento",
-  //           tipo: {
-  //             nombre: "Generales",
-  //             color: "Rojo",
-  //             sigla: "G"
-  //           }
-  //         },
-  //         monto:300
-  //       }
-  //     ]
-  //   }
-  // ];
+  expensas:any[] = [
+    {
+      id: '001',
+      periodo:'01-10-2019',
+      unidad:{
+        nro: 0,
+        codigo: 'PB-01',
+        ubicacion:'FI-2',
+        tamanio: 42,
+        prorrateo: 0.07,
+        propietario:{
+          nombre:'Juan Gomez',
+          mail: 'jgomez@gmail.com',
+          password: '**********'
+        }
+      },
+      total: 6000,
+      item:[
+        {
+          id:'001',
+          numero: 1,
+          concepto:{
+            nombre: "Cargas Sociales",
+            tipo: {
+              nombre: "Generales",
+              color: "Rojo",
+              sigla: "G"
+            }
+          },
+          monto:300
+        },
+        {
+          id:'001',
+          numero: 2,
+          concepto:{
+            nombre: "Papeluchos",
+            tipo:{
+              nombre: "Gastos Varios",
+              color: "Verde",
+              sigla: "V"
+            }
+          },
+          monto:300
+        },
+        {
+          id:'001',
+          numero: 3,
+          concepto:{
+            nombre: "Abonos Servicios",
+            tipo: {
+              nombre: "Generales",
+              color: "Rojo",
+              sigla: "G"
+            }
+          },
+          monto:300
+        },
+        {
+          id:'001',
+          numero: 4,
+          concepto:{
+            nombre: "Reparaciones de Edificio",
+            tipo: {
+              nombre: "Generales",
+              color: "Rojo",
+              sigla: "G"
+            }
+          },
+          monto:300
+        },
+        {
+          id:'001',
+          numero: 5,
+          concepto:{
+            nombre: "Servicios Publicos",
+            tipo: {
+              nombre: "Generales",
+              color: "Rojo",
+              sigla: "G"
+            }
+          },
+          monto:300
+        },
+        {
+          id:'001',
+          numero: 5,
+          concepto:{
+            nombre: "Gastos Administrativos",
+            tipo: {
+              nombre: "Generales",
+              color: "Rojo",
+              sigla: "G"
+            }
+          },
+          monto:300
+        },
+        {
+          id:'001',
+          numero: 5,
+          concepto:{
+            nombre: "Gastos Mantenimiento",
+            tipo: {
+              nombre: "Generales",
+              color: "Rojo",
+              sigla: "G"
+            }
+          },
+          monto:300
+        }
+      ]
+    },
+    {
+      id: '002',
+      periodo:'01-10-2019',
+      unidad:{
+        nro: 1,
+        codigo: 'PB-02',
+        ubicacion:'FD-1',
+        tamanio: 60,
+        prorrateo: 0.10,
+        propietario:{
+          nombre:'Javier Lopez',
+          mail: 'jlopez@gmail.com',
+          password: '**********'
+        }
+      },
+      total: 6000,
+      item:[
+        {
+          id:'002',
+          numero: 1,
+          concepto:{
+            nombre: "Cargas Sociales",
+            tipo: {
+              nombre: "Generales",
+              color: "Rojo",
+              sigla: "G"
+            }
+          },
+          monto:300
+        },
+        {
+          id:'002',
+          numero: 2,
+          concepto:{
+            nombre: "Papeluchos",
+            tipo:{
+              nombre: "Gastos Varios",
+              color: "Verde",
+              sigla: "V"
+            }
+          },
+          monto:300
+        },
+        {
+          id:'002',
+          numero: 3,
+          concepto:{
+            nombre: "Abonos Servicios",
+            tipo: {
+              nombre: "Generales",
+              color: "Rojo",
+              sigla: "G"
+            }
+          },
+          monto:300
+        },
+        {
+          id:'002',
+          numero: 4,
+          concepto:{
+            nombre: "Reparaciones de Edificio",
+            tipo: {
+              nombre: "Generales",
+              color: "Rojo",
+              sigla: "G"
+            }
+          },
+          monto:300
+        },
+        {
+          id:'002',
+          numero: 5,
+          concepto:{
+            nombre: "Servicios Publicos",
+            tipo: {
+              nombre: "Generales",
+              color: "Rojo",
+              sigla: "G"
+            }
+          },
+          monto:300
+        },
+        {
+          id:'002',
+          numero: 5,
+          concepto:{
+            nombre: "Gastos Administrativos",
+            tipo: {
+              nombre: "Generales",
+              color: "Rojo",
+              sigla: "G"
+            }
+          },
+          monto:300
+        },
+        {
+          id:'002',
+          numero: 5,
+          concepto:{
+            nombre: "Gastos Mantenimiento",
+            tipo: {
+              nombre: "Generales",
+              color: "Rojo",
+              sigla: "G"
+            }
+          },
+          monto:300
+        }
+      ]
+    }
+  ];
   unidadFuncionales:UnidadFuncional[]=[];
   saldos:Saldo[] = [
     {
@@ -530,12 +530,12 @@ export class ExpensasService {
   }
 
 
-  // getExpensas():Observable<any>{
-  //   console.log("SERVICE GET EXPENSAS");
-  //
-  //   return new Observable(expensas => {
-  //     expensas.next(this.expensas);
-  //    });
-  //  }
+  getExpensas():Observable<any>{
+    console.log("SERVICE GET EXPENSAS");
+
+    return new Observable(expensas => {
+      expensas.next(this.expensas);
+     });
+   }
 
 }

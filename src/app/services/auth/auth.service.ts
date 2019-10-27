@@ -57,7 +57,7 @@ export class AuthService {
     url = `${url}/login?mail=${email}&password=${password}`
     return this.http.get(url)
     .pipe(map((resp:any)=>{
-      console.log(resp.usuario.id.toString())
+      console.log(resp.usuario)
       this.guardarStorage(resp.usuario.id.toString(), resp.usuario);
       return resp;
     }),catchError( err => {

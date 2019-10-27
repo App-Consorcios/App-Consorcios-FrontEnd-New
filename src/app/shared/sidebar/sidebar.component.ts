@@ -11,10 +11,13 @@ import { Router } from '@angular/router';
 export class SidebarComponent implements OnInit {
   item:any = '/unidad-funcional';
   position:any[]=[];
+  usuario
 
   constructor(public _sidebar:SidebarService,
               public _navabar:NavbarService,
-              private _router:Router) { }
+              private _router:Router) {
+      this.usuario = JSON.parse(localStorage.getItem("usuario"));
+   }
 
   ngOnInit() {
 

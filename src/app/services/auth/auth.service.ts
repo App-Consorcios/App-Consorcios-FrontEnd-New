@@ -3,7 +3,7 @@ import { Observable, combineLatest, throwError } from 'rxjs';
 import { catchError,  map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { URL_SERVICIOS } from 'src/app/config/config';
 import { Roles } from 'src/app/models/roles.model';
 
@@ -57,45 +57,42 @@ export class AuthService {
     url = `${url}/login?mail=${email}&password=${password}`
     return this.http.get(url)
     .pipe(map((resp:any)=>{
-       this.usuario.apellido = resp.apellido
-       console.log(resp)
-        // this.guardarStorage(resp.id, this.usuario);
-      return true;
+      this.guardarStorage(resp.usuario.id, resp.usuario);
+      return resp;      
     }),catchError( err => {
         return throwError(err);
      }));
   }
   buscarRoles(){
-    let url = URL_SERVICIOS
+    let url = URL_SERVICIOS+'/roles'
     return this.http.get(url);
   }
-  crearRoles(roles:Roles[]){
-    let url = URL_SERVICIOS
-    for(let rol in roles){
-      this.http.post(url,rol);
-    }
+  crearRoles(rol:Roles){
+    let url = URL_SERVICIOS+'/rol'
+    var headers = new HttpHeaders({
+      "Content-Type": "application/json"
+    });
+   return this.http.post<Roles>(url,JSON.stringify(rol),{headers: headers})
   }
 
   crearUsuario(usuario:Usuario){
     let url = URL_SERVICIOS +'/usuario';
-     return this.http.post(url,usuario)
-    // .pipe(map((res:any) => {
-    //   return res.usuario;
-    // }),catchError( err => {
-    //     return throwError(err);
-    //  }));
+    var headers = new HttpHeaders({
+      "Content-Type": "application/json"
+    });
+     return this.http.post<Usuario>(url,JSON.stringify(usuario),{headers: headers});
   }
-  actualizarUsuario(usuario:any){
-    let url = URL_SERVICIOS +'/usuario/'+usuario._id;
-    return this.http.put(url, usuario)
-      .pipe(map((resp:any)=>{
-        if(usuario._id === this.usuario._id){
-          let usuarioDB:Usuario = resp.usuario;
-          this.guardarStorage(usuarioDB._id,usuarioDB,resp.menu);
-        }
-        return true;
-      }));
-  }
+  // actualizarUsuario(usuario:any){
+  //   let url = URL_SERVICIOS +'/usuario/'+usuario._id;
+  //   return this.http.put(url, usuario)
+  //     .pipe(map((resp:any)=>{
+  //       if(usuario._id === this.usuario._id){
+  //         let usuarioDB:Usuario = resp.usuario;
+  //         this.guardarStorage(usuarioDB._id,usuarioDB,resp.menu);
+  //       }
+  //       return true;
+  //     }));
+  // }
   cargarUsuarios(desde:number = 0){
     let url = URL_SERVICIOS+'/usuario?desde='+desde;
     return this.http.get(url);

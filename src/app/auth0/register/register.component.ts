@@ -12,8 +12,9 @@ declare function init_plugin();
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  forma:FormGroup;
   roles:Roles[] = [];
+  usuario:Usuario;
+  forma:FormGroup
 
   constructor(public _auth:AuthService,
               public _router:Router) { }
@@ -23,8 +24,9 @@ export class RegisterComponent implements OnInit {
     this._auth.buscarRoles()
         .subscribe( (resp:any) =>{
           this.roles = resp;
+          this.cargarRoles();
         });
-        console.log(this.roles);
+
     this.forma = new FormGroup({
       nombre: new FormControl(null, Validators.required),
       apellido: new FormControl(null, Validators.required),
@@ -33,14 +35,6 @@ export class RegisterComponent implements OnInit {
       password2: new FormControl(null, Validators.required),
       condiciones: new FormControl(false)
     },{ validators: this.sonIguales('password','password2') });
-    // this.forma.setValue({
-    //   nombre: "test 1",
-    //   apellido: "test2",
-    //   email: "test1@test.com",
-    //   password: "123456",
-    //   password2: "123456",
-    //   condiciones: true
-    // });
   }
   sonIguales(campo1:string,campo2:string){
     return (group:FormGroup) =>{
@@ -61,8 +55,6 @@ export class RegisterComponent implements OnInit {
     if(!this.forma.value.condiciones){
       // swal('Importante', 'Debe aceptar las condiciones', 'warning');
     }
-    this.cargarRoles()
-
     const usuario = new Usuario(
       this.forma.value.nombre,
       this.forma.value.apellido,
@@ -72,30 +64,37 @@ export class RegisterComponent implements OnInit {
     );
     this._auth.crearUsuario(usuario)
     .subscribe( resp => {
-        console.log(resp)
-      // this._router.navigate(['/login'])
+        this.usuario = resp;
+        this._router.navigate(['/login']);
     });
   }
   navegar(){
     this._router.navigate(['/login'])
   }
   cargarRoles(){
-    if(this.roles.length == 0){
-      let roles = [
-        {
-          "nombre":"admin"
-        },
-        {
-          "nombre":"propietario"
-        },
-        {
-          "nombre":"inquilino"
-        },
-        {
-          "nombre":"usuario"
-        }]
-      this._auth.crearRoles(this.roles)
+    console.log(this.roles)
+    let roles = [
+      {
+        nombre:"admin"
+      },
+      {
+       nombre:"propietario"
+      },
+      {
+        nombre:"inquilino"
+      },
+      {
+        nombre:"usuario"
+      }]
+    for(let rol of this.roles){
+      roles = roles.filter(data=> data.nombre != rol.nombre);
     }
+    if(roles.length > 0){
+      for(let rol of roles){
+        this._auth.crearRoles(rol).subscribe( resp=>{console.log(resp)})
+      }
+    }
+
   }
   // this.forma.value.pais
 

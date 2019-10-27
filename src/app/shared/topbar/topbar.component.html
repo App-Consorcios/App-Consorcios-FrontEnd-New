@@ -29,7 +29,7 @@
             <span class="availability-status online"></span>
           </div>
           <div class="nav-profile-text">
-            <p class="mb-1 text-black">Cosme Fulanito</p>
+            <p class="mb-1 text-black">{{usuario.nombre}} {{usuario.apellido}}</p>
           </div>
         </a>
       </li>
@@ -130,7 +130,7 @@
           <div class="dropdown-divider"></div>
           <h6 class="p-3 mb-0 text-center">See all notifications</h6>
         </div>
-      </li>--> 
+      </li>-->
       <li *ngIf="!panel" (click) ="auth.logout()"class="nav-item nav-logout d-none d-lg-block">
         <a class="nav-link puntero">
           <i class="mdi mdi-power"></i>

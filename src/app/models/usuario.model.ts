@@ -6,7 +6,7 @@ export class Usuario {
               public password:string,
               public mail:string,
               public roles:Roles[],
-              public id?:string,
+              public id?:number,
               public imagen?:string,
               public google?:boolean){ }
 }

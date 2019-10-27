@@ -13,23 +13,31 @@ declare const gapi:any;
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  email:string;
+  email:string="";
   recuerdarme:boolean = false;
+  usuario:Usuario;
 
   constructor(private _router:Router,
               public _auth:AuthService) { }
 
   ngOnInit() {
     init_plugin();
+    let email = localStorage.getItem('email');
+    let recordar  = localStorage.getItem('recordar')
+    if(email) this.email = email;
+    if(recordar = "true") this.recuerdarme = true;
   }
   ingresar(forma:NgForm){
-    console.log(forma.control.value)
 
     if(forma.invalid) return;
     this._auth.login(forma.control.value.email, forma.control.value.password,forma.value.recuerdarme)
-    .subscribe( resp => {
+    .subscribe( (resp:any) => {
       console.log(resp)
-      // this._router.navigate(['/unidad-funcional']);
+      this.usuario = resp.usuario;
+      console.log(this.usuario)
+      this.usuario.password = '*******';
+      this._auth.guardarStorage(this.usuario.id.toString(), this.usuario);
+       this._router.navigate(['/unidad-funcional']);
     });
   }
   navegar(){

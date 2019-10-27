@@ -55,12 +55,13 @@ export class RegisterComponent implements OnInit {
     if(!this.forma.value.condiciones){
       // swal('Importante', 'Debe aceptar las condiciones', 'warning');
     }
+
     const usuario = new Usuario(
       this.forma.value.nombre,
       this.forma.value.apellido,
       this.forma.value.password,
       this.forma.value.email,
-      this.roles.filter(data=>{return data.nombre == "usuario"})
+      this.roles.filter(data => {return data.nombre == "usuario"})
     );
     this._auth.crearUsuario(usuario)
     .subscribe( resp => {

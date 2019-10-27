@@ -90,7 +90,7 @@ export class ExpensasService {
       }
     }
   ]
-  expensas:Expensa[] = [
+  expensas:any[] = [
     {
       id: '001',
       periodo:'01-10-2019',

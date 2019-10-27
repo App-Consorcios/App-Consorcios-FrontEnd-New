@@ -44,17 +44,17 @@ export class AuthService {
       this.menu = [];
     }
   }
-  login(email:string, password:string, recordar:boolean){
+  login(mail:string, password:string, recordar:boolean){
     let url = URL_SERVICIOS
 
     if(recordar){
-      localStorage.setItem('email',email);
+      localStorage.setItem('mail',mail);
       localStorage.setItem('recordar',"true");
     }else{
-      localStorage.removeItem('email');
+      localStorage.removeItem('mail');
       localStorage.removeItem('recordar');
     }
-    url = `${url}/login?mail=${email}&password=${password}`
+    url = `${url}/login?mail=${mail}&password=${password}`
     return this.http.get(url)
     .pipe(map((resp:any)=>{
       this.guardarStorage(resp.usuario.id, resp.usuario);

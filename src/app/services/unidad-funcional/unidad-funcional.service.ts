@@ -15,7 +15,7 @@ export class UnidadFuncionalService {
       prorrateo: 0.07,
       propietario:{
         nombre:'Juan Gomez',
-        email: 'jgomez@gmail.com',
+        mail: 'jgomez@gmail.com',
         password: '**********'
       }
     },
@@ -27,7 +27,7 @@ export class UnidadFuncionalService {
         prorrateo: 0.10,
         propietario:{
           nombre:'Javier Lopez',
-          email: 'jlopez@gmail.com',
+          mail: 'jlopez@gmail.com',
           password: '**********'
         }
       }

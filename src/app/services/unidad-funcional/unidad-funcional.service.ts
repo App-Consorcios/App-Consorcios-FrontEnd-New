@@ -46,6 +46,7 @@ export class UnidadFuncionalService {
         descripcion:'Frente derecho, planta baja',
         tamanio: 60,
         prorrateo: 0.10,
+<<<<<<< HEAD
         propietario:null,
         inquilino:null
       },
@@ -99,6 +100,12 @@ export class UnidadFuncionalService {
                     nombre: "inquilino"
                 }
             ]
+=======
+        propietario:{
+          nombre:'Javier Lopez',
+          mail: 'jlopez@gmail.com',
+          password: '**********'
+>>>>>>> 2c3f36dc98592642e7b404e9079114ae3b88746c
         }
       }
     ]

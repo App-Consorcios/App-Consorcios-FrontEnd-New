@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario.model';
+import Swal from 'sweetalert2';
 
 declare function init_plugin();
 declare const gapi:any;
@@ -32,12 +33,20 @@ export class LoginComponent implements OnInit {
     if(forma.invalid) return;
     this._auth.login(forma.control.value.email, forma.control.value.password,forma.value.recuerdarme)
     .subscribe( (resp:any) => {
-      console.log(resp)
-      this.usuario = resp.usuario;
-      console.log(this.usuario)
-      this.usuario.password = '*******';
-      this._auth.guardarStorage(this.usuario.id.toString(), this.usuario);
-       this._router.navigate(['/unidad-funcional']);
+      if(resp.valido){
+        console.log(resp)
+        this.usuario = resp.usuario;
+        this.usuario.password = '*******';
+        this._auth.guardarStorage(this.usuario.id.toString(), this.usuario);
+        this._router.navigate(['/panel']);
+      }else{
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: 'El usuario no existe!'
+        })
+      }
+
     });
   }
   navegar(){

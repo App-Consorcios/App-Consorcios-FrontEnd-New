@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Usuario } from '../models';
 
 @Component({
   selector: 'app-panel',
@@ -7,10 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./panel.component.css']
 })
 export class PanelComponent implements OnInit {
-
-  constructor(public _router:Router) { }
+  usuario:Usuario;
+  constructor(public _router:Router) {
+  }
 
   ngOnInit() {
+    this.usuario = JSON.parse(localStorage.getItem("usuario"));
   }
   navegar(){
     return this._router.navigate(['/unidad-funcional']);

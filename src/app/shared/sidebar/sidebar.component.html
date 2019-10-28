@@ -1,32 +1,32 @@
 <!-- partial:partials/_sidebar.html -->
-<div class="main-container">
-  <nav class="sidebar sidebar-offcanvas" id="sidebar">
-    <ul class="nav">
-      <li class="nav-item nav-profile" >
-        <a  class="nav-link">
+<div class="main-container nav-color">
+  <nav class="sidebar sidebar-offcanvas nav-color" id="sidebar">
+    <ul class="nav text-icon">
+      <li class="nav-item nav-profile text-icon" >
+        <a  class="nav-link text-icon">
           <div class="nav-profile-image">
             <img src="../assets/images/avatar1.png" alt="profile">
             <span class="login-status online"></span>
             <!--change to offline or busy as needed-->
           </div>
-          <div class="nav-profile-text d-flex flex-column">
-            <span class="font-weight-bold mb-2 profile">{{usuario.nombre}} {{usuario.apellido}}</span>
+          <div class="nav-profile-text d-flex flex-column text-icon">
+            <span class="mb-2 profile">{{usuario.nombre}} {{usuario.apellido}}</span>
             <span class="text-secondary text-small role">{{usuario.roles[0].nombre}}</span>
           </div>
           <!-- <i class="fa fa-user menu-icon nav-profile-badge"></i> -->
         </a>
       </li>
-      <li class="nav-item sidebar-actions">
+      <li class="nav-item sidebar-actions text-icon">
         <span class="nav-link ">
-          <div class="border-bottom  text-info">
-            <span class="title-h6">Personal</span>
+          <div class="border-bottom text-icon">
+            <span class="title-h6 text-icon">Personal</span>
           </div>
         </span>
       </li>
-      <li  *ngFor="let menu of _sidebar.menu[1].submenu, let i = index;" class="nav-item " >
+      <li  *ngFor="let menu of _sidebar.menu[1].submenu, let i = index;" class="nav-item text-icon" >
         <a  [routerLink]="[menu.url]" class="nav-link" (click) = "crearSubmenu(1,i)" >
-            <span [class.text-success]="isActive(menu.url)" class="menu-title">{{menu.titulo}}</span>
-            <i [ngClass]="{'text-success': isActive(menu.url)}" [class]="menu.icono"></i>
+            <span [class.text-primary]="isActive(menu.url)" class="menu-title">{{menu.titulo}}</span>
+            <i style ="color:#37474F" [ngClass]="{'text-primary': isActive(menu.url)}" [class]="menu.icono"></i>
         </a>
       </li>
       <li class="nav-item sidebar-actions">
@@ -39,7 +39,7 @@
       <li *ngFor="let menu of _sidebar.menu[2].submenu, let i = index;" class="nav-item">
         <a  [routerLinkActive]="['active']" [routerLink]="[menu.url]" class="nav-link" (click) = "crearSubmenu(2,i)">
           <span  [class.text-success]="isActive(menu.url)" class="menu-title">{{menu.titulo}}</span>
-          <i [ngClass]="{'text-success': isActive(menu.url)}" [class]="menu.icono"></i>
+          <i style ="color:#37474F" [ngClass]="{'text-success': isActive(menu.url)}" [class]="menu.icono"></i>
         </a>
       </li>
     </ul>

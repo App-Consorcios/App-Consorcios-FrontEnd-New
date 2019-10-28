@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit {
       this.forma.value.apellido,
       this.forma.value.password,
       this.forma.value.email,
-      this.roles.filter(data => {return data.nombre == "usuario"})
+      [{nombre:"usuario"}]
     );
     this._auth.crearUsuario(usuario)
     .subscribe( resp => {
@@ -73,7 +73,6 @@ export class RegisterComponent implements OnInit {
     this._router.navigate(['/login'])
   }
   cargarRoles(){
-    console.log(this.roles)
     let roles = [
       {
         nombre:"admin"

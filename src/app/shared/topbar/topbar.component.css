@@ -15,5 +15,14 @@
 
 p{
   margin: 0 5px;
-
+}
+.dot {
+  height: 32px;
+  width: 32px;
+  padding-top: 5px;
+  text-align: center;
+  vertical-align: center;
+  background-color: #fff;
+  border-radius: 70%;
+  display: inline-block;
 }

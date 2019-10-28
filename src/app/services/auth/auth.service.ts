@@ -55,7 +55,6 @@ export class AuthService {
       localStorage.removeItem('recordar');
     }
     url = `${url}/login?mail=${email}&password=${password}`
-    console.log(url)
     return this.http.get(url)
     .pipe(map((resp:any)=>{
       if(resp.valido){

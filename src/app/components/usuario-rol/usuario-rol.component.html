@@ -1,0 +1,13 @@
+<mat-selection-list #users (selectionChange)="onSelection(users.selectedOptions)">
+  <mat-list-option *ngFor="let user of usuarios;let i=index;" (click)="getValue(user)">
+    {{user.nombre}} {{user.apellido}} <span [ngClass]="{'text-primary': user.roles[0].nombre == 'propietario',
+                                                        'text-info': user.roles[0].nombre == 'inquilino'}">{{user.roles[0].nombre}}</span>
+  </mat-list-option>
+</mat-selection-list>
+<hr>
+<p style="margin-top:10px">
+  Opciones elegidas: {{users.selectedOptions.selected.length}}
+</p>
+<div class="text-right" style="margin-top:10px;">
+  <button (click)="guardar()" class="btn btn-danger text-white" type="submit"><i class="fa fa-save" style="margin-right:10px;"></i>  <b>Eliminar rol</b></button>
+</div>

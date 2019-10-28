@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-ver-usuarios',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ver-usuarios.component.css']
 })
 export class VerUsuariosComponent implements OnInit {
+  forma:FormGroup;
 
-  constructor() { }
+  constructor() {
+
+   }
 
   ngOnInit() {
   }
+  asignarRol(){
 
+  }
 }

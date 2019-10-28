@@ -72,7 +72,7 @@ export class SidebarService {
             {
               titulo: 'Crear Reuniones',
               icono: 'fa fa-2x fa-edit icon-navbar text-success',
-              url:'/reuniones/crear-expensas',
+              url:'/reuniones/crear-reuniones',
             },
             {
               titulo: 'Ver Reuniones',
@@ -83,7 +83,7 @@ export class SidebarService {
             {
               titulo: 'Agendar Reuniones',
               icono: 'fa fa-2x fa-calendar icon-navbar text-warning',
-              url:'/reuniones/agendar-expensas',
+              url:'/reuniones/agendar-reuniones',
             }
           ]
         },
@@ -133,15 +133,16 @@ export class SidebarService {
           url:'/usuarios',
           action:[
             {
-              titulo: 'Ver Usuarios',
+              titulo: 'Asignar roles',
               icono: 'fa fa-2x fa-edit icon-navbar text-info',
               url:'/usuarios/ver-usuarios',
-            },
-            {
-              titulo: 'Eliminar Usuario',
-              icono: 'fa fa-2x fa-eraser icon-navbar text-danger',
-              url:'/usuarios/eliminar-usuario',
             }
+            // ,
+            // {
+            //   titulo: 'Ver roles',
+            //   icono: 'fa fa-2x fa-eraser icon-navbar text-danger',
+            //   url:'/usuarios/eliminar-usuario',
+            // }
           ]
         }
       ]

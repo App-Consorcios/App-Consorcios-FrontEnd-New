@@ -1,0 +1,30 @@
+<form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate="">
+  <div class="example-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Nombre Column -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+        <td mat-cell *matCellDef="let element;let i = index;"><input type="hidden" [(ngModel)]="element.nombre" name="nombre">{{element.nombre}}</td>
+      </ng-container>
+      <!-- Rol Column -->
+      <ng-container matColumnDef="roles">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Rol </th>
+        <td mat-cell *matCellDef="let element;let i = index;">
+          <mat-select [(ngModel)]="element.rol" name="roles">
+            <mat-option [value]="rol.nombre" *ngFor="let rol of roles">
+              {{ rol.nombre }}
+            </mat-option>
+          </mat-select>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div class="text-right" style="margin-top:10px;">
+    <button class="btn btn-info text-white" type="submit"><i class="fa fa-save" style="margin-right:10px;"></i>  <b>Guardar</b></button>
+  </div>
+</form>

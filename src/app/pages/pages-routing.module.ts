@@ -22,6 +22,8 @@ import { VerEstadisticaComponent } from './estadisticas/ver-estadistica/ver-esta
 import { VerUsuariosComponent } from './usuarios/ver-usuarios/ver-usuarios.component';
 import { EliminarUsuariosComponent } from './usuarios/eliminar-usuarios/eliminar-usuarios.component';
 import { DetalleExpensasComponent } from './expensas/detalle-expensas/detalle-expensas.component';
+import { CrearConsorcioComponent } from './consorcios/crear-consorcio/crear-consorcio.component';
+import { VerConsorcioComponent } from './consorcios/ver-consorcio/ver-consorcio.component';
 
 const pagesRoutes: Routes =[
   { path: 'perfil',
@@ -70,8 +72,8 @@ const pagesRoutes: Routes =[
   { path: 'consorcios',
    component: ConsorciosComponent,
    children:[
-     { path: 'crear-consorcio', component: CrearUnidadComponent },
-     { path: 'ver-consorcios', component: VerUnidadComponent },
+     { path: 'crear-consorcio', component: CrearConsorcioComponent },
+     { path: 'ver-consorcios', component: VerConsorcioComponent },
      { path: '**',pathMatch: 'full', redirectTo: 'crear-consorcio' }]
   },
   {

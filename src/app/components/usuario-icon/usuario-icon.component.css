@@ -1,0 +1,65 @@
+.dot {
+  height: 94px;
+  width: 94px;
+  padding-top: 7px;
+  text-align: center;
+  vertical-align: center;
+  background-color: #198ae3;
+  /* background-color: #343a40; */
+  border-radius: 70%;
+  display: inline-block;
+}
+.nav-profile-image-prop img {
+    width: 94px;
+    height: 94px;
+    background-color: #06d79c;
+    border-radius: 100%;
+    /* border: 5px solid #06d79c; */
+}
+.nav-profile-image-inq img {
+    width: 94px;
+    height: 94px;
+    background-color: #ffb22b;
+    border-radius: 100%;
+    /* border: 5px solid #ffb22b; */
+}
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+.label-danger {
+    background-color: #ef5350;
+}
+.label-warning {
+    background-color: #ffb22b;
+}
+.label-success {
+    background-color: #06d79c;
+}
+.label-info {
+    background-color: #398bf7;
+}
+.juntos{
+  position:relative;
+}
+.home{
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  /* z-index: 300; */
+  cursor: pointer;
+}
+.propietario{
+  position:absolute;
+  top: 0px;
+  left: 90px;
+  /* z-index: 200; */
+  cursor: pointer;
+}
+.inquilino{
+  position:absolute;
+  top: 0px;
+  left: 45px;
+  /* z-index: 100; */
+  cursor: pointer;
+}

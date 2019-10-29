@@ -1,0 +1,45 @@
+<app-topbar  [panel] = true  ></app-topbar>
+<div style=" margin-top:5%;">
+  <div class="jumbotron jumbotron-fluid" >
+    <div class="container-fluid " >
+      <h1 class="display-4 text-center">Bienvenido a Consorcio Limpio !!</h1>
+      <p class="lead text-center">Elija el una opción..</p>
+    </div>
+  </div>
+  <div class="container">
+
+
+    <div class="alert alert-dismissible box effect2">
+      <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-9">
+          <h3 class="text-info"> <i class="fa fa-2x fa-home dot text-white"></i>
+            <img *ngIf="false" src="assets/images/avatar2.png"
+                 style="width:30px; height:auto;"
+                 alt="homepage"
+                 class="dark-logo profile-pic img-circle"/> Descripcion</h3>
+        </div>
+      </div>
+
+<hr>
+
+       <div class="row">
+         <div class="col-md-1">
+
+         </div>
+         <div class="col-md-11">
+           <span class="card-subtitle"><span class ="font-strong">Nombre:</span> {{usuario.nombre}} {{usuario.apellido}}</span>
+           <p><span class ="font-strong">Rol:</span> {{usuario.roles[0].nombre}}</p>
+         </div>
+       </div>
+
+
+
+        <div style="text-align:right;">
+          <button (click) = "navegar()" class="btn btn-info" >Ir a unidad funcional  <i class="fa fa-angle-double-right"></i></button>
+        </div>
+    </div>
+
+</div>

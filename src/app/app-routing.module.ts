@@ -6,14 +6,13 @@ import {Routes, RouterModule} from '@angular/router';
 //component
 import { LoginComponent , RegisterComponent } from './auth0';
 import { PagesComponent } from './pages';
-import { PanelComponent } from './dashboard/panel/panel.component';
+import { PanelComponent } from './dashboard/panel.component';
 // import { AuthGuard } from './guards/auth.guard';
 
 
 const appRoutes: Routes = [
   {
     path: 'panel', component: PanelComponent,
-    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardModule)
   },
   {
     path: '', component: PagesComponent,

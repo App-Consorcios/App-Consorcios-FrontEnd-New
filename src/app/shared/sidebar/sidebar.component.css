@@ -1,10 +1,19 @@
 .bg-dark{
   background: #303a40;
+  color: #37474F;
 }
 .navbar .navbar-brand-wrapper .navbar-brand img{
   width: 300px;
   height: auto;
   margin:-20px;
+  color: #37474F;
+}
+.nav-color{
+  background: #fff;
+  color: #37474F;
+}
+.text-icon{
+  color: #37474F;
 }
 .main-container{
   padding-top:90px;
@@ -13,19 +22,20 @@
 .menu-title-right{
    padding-left: 100px;
    font-size: 1.005rem;
+   color: #37474F;
 }
 .profile{
   /* font-weight: bold; */
   font-size: 16px;
-  color: #455a64;
+  color: #37474F;
   font-family: "Montserrat", sans-serif;
-  font-weight: 400;
+  font-weight: 550;
   /* padding-right: 57%; */
 }
 .role{
   /* font-weight: bold; */
   font-size: 14px;
-  color: #455a64;
+  color: #37474F;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   /* padding-right: 57%; */
@@ -33,14 +43,14 @@
 .title-h6{
   /* font-weight: bold; */
   font-size: 18px;
-  color: #455a64;
+  color: #37474F;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   /* padding-right: 57%; */
 }
 .title-h5{
   font-size: 18px;
-  color: #455a64;
+  color: #37474F;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   /* padding-right: 32%; */

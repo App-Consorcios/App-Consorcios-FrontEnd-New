@@ -13,13 +13,13 @@ import { AuthModule } from './auth0/auth.module';
 import { DirectivesModule } from './directives/directives.module';
 import { GuardsModule } from './guards/guards.module';
 import { SharedModule } from './shared/shared.module';
-import { DashboardModule } from './dashboard/dashboard.module';
 //components
 import { AppComponent } from './app.component';
 //Routes
 import { AppRoutingModule } from './app-routing.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PanelModule } from './dashboard/panel.module';
 
 
 @NgModule({
@@ -33,12 +33,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     PagesModule,
     ComponentsModule,
+    PanelModule,
     AuthModule,
     DirectivesModule,
     HttpClientModule,
     GuardsModule,
     SharedModule,
-    DashboardModule,
     ScrollingModule,
     DragDropModule,
     BrowserAnimationsModule

@@ -1,9 +1,9 @@
-<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row navbar-dark">
+<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row bg-dark">
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center bg-dark">
     <a class="navbar-brand brand-logo"><img src="assets/images/logoConsorcios.png" class="logo" alt="logo"></a>
     <a class="navbar-brand brand-logo-mini"><img src="assets/images/isologoConsorcios.png" class="log-size"alt="logo"></a>
   </div>
-  <div class="navbar-menu-wrapper d-flex align-items-stretch navbar-dark">
+  <div class="navbar-menu-wrapper d-flex align-items-stretch bg-dark">
     <button *ngIf="!panel" class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
       <span class="mdi mdi-menu"></span>
     </button>
@@ -20,16 +20,22 @@
     <ul class="navbar-dark navbar-nav navbar-nav-right">
       <li class="nav-item nav-profile dropdown">
         <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-          <div class="nav-consorcio-text">
-            <i class="fa fa-building text-info"></i>
-            <p>Consorcio Juramento 2038</p>
+          <div class="nav-consorcio-text ">
+            <div class="dot">
+              <i class="fa fa-building text-info"></i>
+            </div>
+
+            <p class="text-white">Consorcio Juramento 2038</p>
           </div>
           <div class="nav-profile-img">
-            <img src="../assets/images/avatar1.png" alt="image">
+            <div class="dot">
+              <i class="fa fa-home text-info"></i>
+            </div>
+            <!-- <img src="../assets/images/avatar1.png" alt="image"> -->
             <span class="availability-status online"></span>
           </div>
           <div class="nav-profile-text">
-            <p class="mb-1 text-black">{{usuario.nombre}} {{usuario.apellido}}</p>
+            <p class="mb-1 text-white">{{usuario.nombre}} {{usuario.apellido}}</p>
           </div>
         </a>
       </li>
@@ -131,7 +137,7 @@
           <h6 class="p-3 mb-0 text-center">See all notifications</h6>
         </div>
       </li>-->
-      <li *ngIf="!panel" (click) ="auth.logout()"class="nav-item nav-logout d-none d-lg-block">
+      <li *ngIf="!panel" (click) ="auth.logout()"class="nav-item nav-logout d-none d-lg-block text-white">
         <a class="nav-link puntero">
           <i class="mdi mdi-power"></i>
         </a>

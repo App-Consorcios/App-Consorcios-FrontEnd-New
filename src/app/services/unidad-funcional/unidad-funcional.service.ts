@@ -6,79 +6,102 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UnidadFuncionalService {
-  unidadFuncionales:any[] = [
+  unidadFuncionales:UnidadFuncional[] = [
     {
-      nro: 0,
+      id: 0,
       codigo: 'PB-01',
-      ubicacion:'FI-2',
+      ubicacion:'FI-PB',
+      descripcion:'Frente izquierdo, planta baja ',
       tamanio: 42,
       prorrateo: 0.07,
       propietario:{
-        nombre:'Juan Gomez',
-        mail: 'jgomez@gmail.com',
-        password: '**********'
+        nombre: "Lucas",
+        apellido: "Ganzoroli",
+        password: "123456",
+        mail: "lganzoroli@gmail.com",
+        imagen: "",
+        roles: [
+          {
+            nombre: "propietario"
+          }
+        ]
+      },
+      inquilino:{
+        nombre: "Alberto",
+        apellido: "Rodriguez",
+        password: "123456",
+        mail: "arodriguez@gmail.com",
+        imagen: "",
+        roles: [
+            {
+              nombre: "inquilino"
+            }
+          ]
       }
     },
     {
-        nro: 1,
+        id: 1,
         codigo: 'PB-02',
-        ubicacion:'FD-1',
+        ubicacion:'FD-PB',
+        descripcion:'Frente derecho, planta baja',
         tamanio: 60,
         prorrateo: 0.10,
-        propietario:{
-          nombre:'Javier Lopez',
-          mail: 'jlopez@gmail.com',
-          password: '**********'
-        }
+        propietario:null,
+        inquilino:null
       },
       {
-        nro: 3,
-        codigo: 'PB-03',
-        ubicacion:'FI-3',
-        tamanio: 42,
-        prorrateo: 0.07,
-        propietario:{
-          nombre:'Juan Gomez',
-          mail: 'jgomez@gmail.com',
-          password: '**********'
-        }
+          id: 2,
+          codigo: 'P2-01',
+          ubicacion:'FD-P2',
+          descripcion:'Frente derecho, segundo piso',
+          tamanio: 60,
+          prorrateo: 0.10,
+          propietario:null,
+          inquilino:null
       },
       {
-        nro: 4,
-        codigo: 'PB-04',
-        ubicacion:'FD-4',
-        tamanio: 60,
-        prorrateo: 0.10,
-        propietario:{
-          nombre:'Juan Gomez',
-          mail: 'jgomez@gmail.com',
-          password: '**********'
-        }
+          id: 3,
+          codigo: 'P2-02',
+          ubicacion:'FI-P2',
+          descripcion:'Frente izquierdo, segundo piso',
+          tamanio: 60,
+          prorrateo: 0.10,
+          propietario:{
+              id: 6,
+              nombre: "lucas",
+              apellido: "Perdroza",
+              mail: "mpedroza@gmail.com",
+              imagen: "",
+              roles: [
+                  {
+                      nombre: "propietario"
+                  }
+              ]
+          },
+          inquilino:null
       },
       {
-        nro: 5,
-        codigo: '01-01',
-        ubicacion:'FI-5',
-        tamanio: 42,
-        prorrateo: 0.07,
-        propietario:{
-          nombre:'Juan Gomez',
-          mail: 'jgomez@gmail.com',
-          password: '**********'
-        }
-      },
-      {
-        nro: 6,
-        codigo: '01-02',
-        ubicacion:'FD-6',
-        tamanio: 42,
-        prorrateo: 0.07,
-        propietario:{
-          nombre:'Juan Gomez',
-          mail: 'jgomez@gmail.com',
-          password: '**********'
-        }
-      },
+          id: 4,
+          codigo: 'P3-01',
+          ubicacion:'FI-P3',
+          descripcion:'Frente izquierdo, Tercer piso',
+          tamanio: 60,
+          prorrateo: 0.10,
+          propietario:null,
+          inquilino:{
+            id: 7,
+            nombre: "Martin",
+            apellido: "Cañete",
+            mail: "mcanete@gmail.com",
+            imagen: "",
+            roles: [
+                {
+                    nombre: "inquilino"
+                }
+            ]
+          }
+
+      }
     ]
 
   constructor() { }

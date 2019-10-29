@@ -24,12 +24,6 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.usuario = JSON.parse(localStorage.getItem("usuario"));
-    console.log(this.usuario);
-    this._auth.buscarRoles()
-        .subscribe( (resp:any) =>{
-          this.roles = resp;
-          console.log(this.roles.filter(data=>{return data.nombre == 'usuario'}))
-        });
   }
   crearSubmenu(submenu:number,menu:number){
     this._navabar.menu = menu;

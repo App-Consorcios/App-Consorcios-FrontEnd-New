@@ -64,8 +64,7 @@ ul.quick-actions li.active i{
 .quick-actions li a {
 	display: block;
 	color: #666666;
-	/* font-weight:bold; */
-	text-shadow: 0 1px 0 #ffffff;
+	/* text-shadow: 0 1px 0 #ffffff; */
 }
 /* .quick-actions li a i[class^="icon-"], .quick-actions li a i[class*=" icon-"] {
 	background-repeat: no-repeat;
@@ -92,7 +91,7 @@ ul.quick-actions li.active i{
 	vertical-align: middle;
 } */
 
-.quick-actions li:active{
+/* .quick-actions li:active{
 	background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#EEEEEE), to(#F4F4F4));
 	background-image: -webkit-linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
     background-image: -moz-linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
@@ -100,4 +99,4 @@ ul.quick-actions li.active i{
     background-image: -o-linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
     background-image: linear-gradient(to top, #EEEEEE 0%, #F4F4F4 100%);
     box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2) inset, 0 1px 0 rgba(255,255,255,0.4);
-}
+} */

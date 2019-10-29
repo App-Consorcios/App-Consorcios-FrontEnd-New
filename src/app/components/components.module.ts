@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuAccionesComponent } from './menu-acciones/menu-acciones.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 // import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -36,16 +36,27 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { CarrouselMultipleComponent } from './carrousel-multiple/carrousel-multiple.component';
+import { UsuarioListComponent } from './usuario-list/usuario-list.component';
+import { UsuarioRolComponent } from './usuario-rol/usuario-rol.component';
+import { UnidadListComponent } from './unidad-list/unidad-list.component';
+import { UsuarioIconComponent } from './usuario-icon/usuario-icon.component';
+import { FormInquilinoComponent } from './form-inquilino/form-inquilino.component';
 
 @NgModule({
   declarations: [
   MenuAccionesComponent,
   DatePickerComponent,
-  CarrouselMultipleComponent
+  CarrouselMultipleComponent,
+  UsuarioListComponent,
+  UsuarioRolComponent,
+  UnidadListComponent,
+  UsuarioIconComponent,
+  FormInquilinoComponent
 ],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule,
     // BrowserAnimationsModule,
     MatCheckboxModule,
@@ -84,8 +95,12 @@ import { CarrouselMultipleComponent } from './carrousel-multiple/carrousel-multi
   exports:[
     MenuAccionesComponent,
     DatePickerComponent,
-    CarrouselMultipleComponent
-
+    CarrouselMultipleComponent,
+    UsuarioListComponent,
+    UsuarioRolComponent,
+    UnidadListComponent,
+    UsuarioIconComponent,
+    FormInquilinoComponent
   ]
 })
 export class ComponentsModule { }

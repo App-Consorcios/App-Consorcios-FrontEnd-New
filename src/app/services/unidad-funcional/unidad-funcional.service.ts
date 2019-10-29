@@ -30,7 +30,55 @@ export class UnidadFuncionalService {
           mail: 'jlopez@gmail.com',
           password: '**********'
         }
-      }
+      },
+      {
+        nro: 3,
+        codigo: 'PB-03',
+        ubicacion:'FI-3',
+        tamanio: 42,
+        prorrateo: 0.07,
+        propietario:{
+          nombre:'Juan Gomez',
+          mail: 'jgomez@gmail.com',
+          password: '**********'
+        }
+      },
+      {
+        nro: 4,
+        codigo: 'PB-04',
+        ubicacion:'FD-4',
+        tamanio: 60,
+        prorrateo: 0.10,
+        propietario:{
+          nombre:'Juan Gomez',
+          mail: 'jgomez@gmail.com',
+          password: '**********'
+        }
+      },
+      {
+        nro: 5,
+        codigo: '01-01',
+        ubicacion:'FI-5',
+        tamanio: 42,
+        prorrateo: 0.07,
+        propietario:{
+          nombre:'Juan Gomez',
+          mail: 'jgomez@gmail.com',
+          password: '**********'
+        }
+      },
+      {
+        nro: 6,
+        codigo: '01-02',
+        ubicacion:'FD-6',
+        tamanio: 42,
+        prorrateo: 0.07,
+        propietario:{
+          nombre:'Juan Gomez',
+          mail: 'jgomez@gmail.com',
+          password: '**********'
+        }
+      },
     ]
 
   constructor() { }

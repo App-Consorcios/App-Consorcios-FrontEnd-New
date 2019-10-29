@@ -27,3 +27,13 @@
 .footer{
   text-align: right;
 }
+
+
+.UF_Totales{
+  display: flex;
+}
+
+.totales{
+  padding-right: 5px;
+  padding-top: 10px;
+}

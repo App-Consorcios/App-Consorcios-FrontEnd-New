@@ -39,6 +39,8 @@ import { CarrouselMultipleComponent } from './carrousel-multiple/carrousel-multi
 import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 import { UsuarioRolComponent } from './usuario-rol/usuario-rol.component';
 import { UnidadListComponent } from './unidad-list/unidad-list.component';
+import { UsuarioIconComponent } from './usuario-icon/usuario-icon.component';
+import { FormInquilinoComponent } from './form-inquilino/form-inquilino.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { UnidadListComponent } from './unidad-list/unidad-list.component';
   CarrouselMultipleComponent,
   UsuarioListComponent,
   UsuarioRolComponent,
-  UnidadListComponent
+  UnidadListComponent,
+  UsuarioIconComponent,
+  FormInquilinoComponent
 ],
   imports: [
     CommonModule,
@@ -94,8 +98,9 @@ import { UnidadListComponent } from './unidad-list/unidad-list.component';
     CarrouselMultipleComponent,
     UsuarioListComponent,
     UsuarioRolComponent,
-    UnidadListComponent
-
+    UnidadListComponent,
+    UsuarioIconComponent,
+    FormInquilinoComponent
   ]
 })
 export class ComponentsModule { }

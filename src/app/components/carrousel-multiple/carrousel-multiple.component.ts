@@ -7,6 +7,7 @@ import { Component, OnInit, Input} from '@angular/core';
 })
 export class CarrouselMultipleComponent implements OnInit {
   @Input('content') public cards:any[] = [];
+  pos:number = 0;
   inicio:number = 0;
   fin: number = 1;
   color:string[]=[
@@ -31,42 +32,6 @@ export class CarrouselMultipleComponent implements OnInit {
   ngOnInit() {
   }
   recalcularCards(){
-    this.cards = this.cards.filter(data=>{
-      let regex = new RegExp('DocuWEB','i')
-      if(!regex.test(data.PATH)){
-        return data;
-      }
-    })
-    return this.cards.slice(this.inicio,this.fin)
-  }
-  next(){
-    console.log(this.cards.length)
-    if(this.cards.length%3 == 0 && this.fin>this.cards.length){
-      this.inicio+= 3;
-      this.fin+=3;
-      this.recalcularCards();
-    }else{
-      if(this.cards.length<this.fin+3){
-       let sobra = (this.fin+3) - this.cards.length;
-       this.inicio += 3-sobra;
-       this.fin = this.cards.length;
-       this.recalcularCards();
-
-     }
-    }
-  }
-  prev(){
-    if(this.cards.length%3 == 0 && (this.inicio-3)>0){
-
-      this.inicio-= 3;
-      this.fin-=3;
-      this.recalcularCards();
-    }else{
-      if(0>(this.inicio-3)){
-       let sobra = 0 - (this.inicio-3);
-       this.inicio = 0;
-       this.fin -= (3-sobra);
-     }
-    }
+    return this.pos;
   }
 }

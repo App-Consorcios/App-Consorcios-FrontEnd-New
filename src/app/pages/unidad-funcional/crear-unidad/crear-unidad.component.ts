@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UnidadFuncional } from 'src/app/models/unidad-funcional.model';
-import { ExpensasService } from 'src/app/services/expensas/expensas.service';
 import { UnidadFuncionalService } from 'src/app/services/unidad-funcional/unidad-funcional.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -27,6 +26,7 @@ export class CrearUnidadComponent implements OnInit {
   constructor(private _uf:UnidadFuncionalService) {
     this._uf.getUnidades().subscribe( data =>{
       this.unidadesFuncionales = data;
+      console.log(this.unidadesFuncionales);
     });
     this.forma = new FormGroup({
       'codigo': new FormControl('',[Validators.required,Validators.minLength(3)]),

@@ -1,15 +1,15 @@
   <div id="carouselExample" class="carousel slide" data-interval="false" data-ride="carousel" data-pause="hover" >
       <div class="carousel-inner">
 
-        <div class="carousel-item active">
+        <div class="carousel-item" [ngClass]="{'active':  i == recalcularCards()}"*ngFor="let item of cards;let i = index">
 
-            <div class="col-md-12" *ngFor="let item of recalcularCards();let i = index">
+            <div class="col-md-12" >
               <div class="cardhouse text-center d-block">
-                <div [style.color] = "color[item.nro]" class="card-header">
+                <div [style.color] = "color[item.id]" class="card-header">
                   {{item.codigo}}
                 </div>
                 <div class="card-body text-muted text-center">
-                  <i [style.color] = "color[item.nro]" class="fa fa-5x fa-home" ></i>
+                  <i [style.color] = "color[item.id]" class="fa fa-5x fa-home" ></i>
                 </div>
                 <div class="card-footer text-muted">
                   <table class="table table-bordered">
@@ -34,17 +34,17 @@
                       </tr>
                       <tr>
                         <td>Ubicación</td>
-                        <td><span data-toggle="tooltip" data-placement="right" [title]="item.ubicacion">{{item.ubicacion}}</span></td>
+                        <td><span data-toggle="tooltip" data-placement="right" [title]="item.descripcion">{{item.ubicacion}}</span></td>
                       </tr>
                     </tbody>
                   </table>
               </div>
               </div>
-              <a class="carousel-control-prev"  (click)="prev()" role="button" data-slide="prev">
+              <a class="carousel-control-prev" href="#carouselExample"  role="button" data-slide="prev">
                     <i class="fa fa-chevron-left fa-lg text-muted"></i>
                     <span class="sr-only"></span>
                 </a>
-                <a class="carousel-control-next text-faded" (click)="next()" href="#carouselExample" role="button" data-slide="next">
+                <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
                     <i class="fa fa-chevron-right fa-lg text-muted"></i>
                     <span class="sr-only">Next</span>
                 </a>

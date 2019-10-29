@@ -1,0 +1,86 @@
+<form [formGroup]="forma"
+      (ngSubmit)="guardarCambios()"
+      novalidate="novalidate"
+      class="form-horizontal">
+        <hr style="margin-top:10px">
+        <div class="row form-control-margin">
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <h6 class="control-label text-right col-md-3">Nombre</h6>
+                    <div class="col-md-9">
+                        <input type="text"
+                               class="form-control form-control-margin"
+                               placeholder="Ingrese un nombre ..."
+                               formControlName="nombre" disabled>
+                  </div>
+                </div>
+            </div>
+            <!--/span-->
+
+            <!--/span-->
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+              <div class="form-group row">
+                  <h6 class="control-label text-right col-md-3" >Apellido</h6>
+                  <div class="col-md-9">
+                      <input type="text"
+                             class="form-control form-control-margin"
+                             placeholder="Ingrese apellido.."
+                             formControlName="apellido" disabled>
+                 </div>
+              </div>
+          </div>
+        </div>
+        <!--/row-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group row" >
+                    <h6 class="control-label text-right col-md-3">Rol</h6>
+                    <div class="col-md-9">
+                      <input type="text"
+                             name="rol"
+                             class="form-control form-control-margin"
+                             placeholder="******"
+                             formControlName="rol" disabled>
+
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+
+        </div>
+        <!--/row-->
+        <div class="row">
+          <div class="col-md-12">
+            <h5 class="text-muted">Datos de conexión</h5>
+            <hr>
+          </div>
+
+          <!--/span-->
+        </div>
+        <div formGroupName = "contacto">
+          <div class="col-md-12">
+              <div class="form-group row">
+                  <h6 class="control-label text-right col-md-3">Email</h6>
+                  <div class="col-md-9">
+                      <input type="text"
+                             class="form-control form-control-margin"
+                             placeholder="Ingrese un email ..."
+                             formControlName="email" disabled>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-12">
+              <div class="form-group row">
+                  <h6 class="control-label text-right col-md-3">Password</h6>
+                  <div class="col-md-9">
+                      <input type="password"
+                      class="form-control form-control-margin"
+                      placeholder="Ingrese un password ..."
+                      formControlName="password" disabled>
+                  </div>
+              </div>
+          </div>
+        </div>
+</form>

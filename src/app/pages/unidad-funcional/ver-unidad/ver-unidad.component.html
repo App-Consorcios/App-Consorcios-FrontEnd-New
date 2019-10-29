@@ -1,6 +1,135 @@
 <div class="col-12">
     <div class="card">
         <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+              <app-usuario-icon (propietario)="esPropietario=$event" (inquilino)="esInquilino=$event" (unidad)="esUnidadFuncional=$event"></app-usuario-icon>
+            </div>
+            <div  *ngIf="esUnidadFuncional && !esPropietario && !esInquilino" class="col-md-9" style="margin-left:-60px">
+              <h4 class="box-title">Unidad funcional</h4>
+              <h6 class="text-muted">Datos de su unidad funcional</h6>
+            </div>
+            <div  *ngIf="!esUnidadFuncional && !esPropietario && esInquilino" class="col-md-9" style="margin-left:-60px">
+              <h4 class="box-title">Inquilino</h4>
+              <h6 class="text-muted">Datos del Inquilino</h6>
+            </div>
+            <div  *ngIf="!esUnidadFuncional && esPropietario && !esInquilino" class="col-md-9" style="margin-left:-60px">
+              <h4 class="box-title">Propietario</h4>
+              <h6 class="text-muted">Datos del propietario</h6>
+            </div>
+          </div>
+          <form *ngIf="esUnidadFuncional && !esPropietario && !esInquilino" [formGroup]="forma"
+                (ngSubmit)="guardarCambios()"
+                novalidate="novalidate"
+                class="form-horizontal">
+                  <hr style="margin-top:10px">
+                  <div class="row form-control-margin">
+                      <div class="col-md-12">
+                          <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('codigo').valid) && forma.get('codigo').touched}">
+                              <h6 class="control-label text-right col-md-3">Código</h6>
+                              <div class="col-md-9">
+                                  <input type="text"
+                                         class="form-control form-control-margin"
+                                         placeholder="Ingrese un codigo ..."
+                                         formControlName="codigo" disabled>
+                                  <div *ngIf="forma.get('codigo').errors?.required && forma.get('codigo').touched"
+                                    class="form-control-feedback text-danger">
+                                     Código es requerido
+                                  </div>
+                                  <div *ngIf="forma.get('codigo').errors?.minlength && forma.get('codigo').touched"
+                                   class="form-control-feedback text-danger">
+                                     Se necesitan al menos 3 caracteres
+                                  </div>
+                            </div>
+                          </div>
+                      </div>
+                      <!--/span-->
+
+                      <!--/span-->
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group row"  [ngClass]="{ 'has-danger': (!forma.get('prorrateo').valid) && forma.get('prorrateo').touched}">
+                            <h6 class="control-label text-right col-md-3" >Prorrateo</h6>
+                            <div class="col-md-9">
+                                <input type="text"
+                                       class="form-control form-control-margin"
+                                       placeholder="Ingrese valor en decimales"
+                                       formControlName="prorrateo" disabled>
+                               <div *ngIf="forma.get('prorrateo').errors?.required && forma.get('prorrateo').touched"
+                                 class="form-control-feedback text-danger">
+                                  Prorrateo es requerido
+                               </div>
+                           </div>
+                        </div>
+                    </div>
+                  </div>
+                  <!--/row-->
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('tamanio').valid) && forma.get('tamanio').touched}">
+                              <h6 class="control-label text-right col-md-3">Tamaño <span class="text-muted">(m<sup>2</sup>)</span></h6>
+                              <div class="col-md-9">
+                                <input type="number"
+                                       name="quantity"
+                                       min="1"
+                                       class="form-control form-control-margin"
+                                       placeholder="Ingrese un tamaño ..."
+                                       formControlName="tamanio" disabled>
+                                 <div *ngIf="forma.get('tamanio').errors?.required && forma.get('tamanio').touched"
+                                   class="form-control-feedback text-danger" >
+                                    Tamaño es requerido
+                                 </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!--/span-->
+
+                  </div>
+                  <!--/row-->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h5 class="text-muted">Ubicación</h5>
+                      <hr>
+                    </div>
+
+                    <!--/span-->
+                  </div>
+                  <div formGroupName = "ubicacion">
+                    <div class="col-md-12">
+                        <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('ubicacion.codigo').valid) && forma.get('ubicacion.codigo').touched}">
+                            <h6 class="control-label text-right col-md-3">Código</h6>
+                            <div class="col-md-9">
+                                <input type="text"
+                                       class="form-control form-control-margin"
+                                       placeholder="Ej: PB-1: Ingrese un ubicación ..."
+                                       formControlName="codigo" disabled>
+                                <div *ngIf="forma.get('ubicacion.codigo').errors?.required && forma.get('ubicacion.codigo').touched"
+                                class="form-control-feedback text-danger">
+                                 Código de ubicación es requerido
+                                </div>
+                                <div *ngIf="forma.get('ubicacion.codigo').errors?.minlength && forma.get('ubicacion.codigo').touched"
+                                class="form-control-feedback text-danger">
+                                 Se necesitan al menos 3 caracteres
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('ubicacion.descrp').valid) && forma.get('ubicacion.descrp').touched}">
+                            <h6 class="control-label text-right col-md-3">Descripción</h6>
+                            <div class="col-md-9">
+                                <input type="text"
+                                class="form-control form-control-margin"
+                                placeholder="Ingrese un ubicación ..."
+                                formControlName="descrp" disabled>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+          </form>
+          <app-form-inquilino *ngIf="!esUnidadFuncional && !esPropietario && esInquilino"></app-form-inquilino>
+          <app-form-inquilino *ngIf="!esUnidadFuncional && esPropietario && !esInquilino"></app-form-inquilino>
         </div>
     </div>
 </div>

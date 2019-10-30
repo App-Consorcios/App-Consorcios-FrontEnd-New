@@ -1,0 +1,8 @@
+<mat-form-field >
+  <mat-label><i class="fa fa-home" style="margin-right:15px"></i>Elija Unidad ...</mat-label>
+  <mat-select (selectionChange)="somethingChanged($event.value)">
+    <mat-option *ngFor="let unidad of unidades"  [(value)]="unidad.codigo" >
+      <i class="fa fa-home" style="margin-right:15px" [style.color] = "color[unidad.id]"></i><span [style.color] = "color[unidad.id]">{{unidad.codigo}}</span>
+    </mat-option>
+  </mat-select>
+</mat-form-field>

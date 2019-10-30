@@ -32,6 +32,7 @@ import { VerConsorcioComponent } from './consorcios/ver-consorcio/ver-consorcio.
 import { DetalleExpensasComponent } from './expensas/detalle-expensas/detalle-expensas.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { ResultadosComponent } from './unidad-funcional/ver-unidad/resultados/resultados.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     EliminarUsuariosComponent,
     CrearConsorcioComponent,
     VerConsorcioComponent,
+    ResultadosComponent,
     DetalleExpensasComponent
   ],
   imports: [

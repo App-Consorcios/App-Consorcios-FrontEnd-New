@@ -41,6 +41,7 @@ import { UsuarioRolComponent } from './usuario-rol/usuario-rol.component';
 import { UnidadListComponent } from './unidad-list/unidad-list.component';
 import { UsuarioIconComponent } from './usuario-icon/usuario-icon.component';
 import { FormInquilinoComponent } from './form-inquilino/form-inquilino.component';
+import { SelectUnidadComponent } from './select-unidad/select-unidad.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { FormInquilinoComponent } from './form-inquilino/form-inquilino.componen
   UsuarioRolComponent,
   UnidadListComponent,
   UsuarioIconComponent,
-  FormInquilinoComponent
+  FormInquilinoComponent,
+  SelectUnidadComponent
 ],
   imports: [
     CommonModule,
@@ -100,7 +102,8 @@ import { FormInquilinoComponent } from './form-inquilino/form-inquilino.componen
     UsuarioRolComponent,
     UnidadListComponent,
     UsuarioIconComponent,
-    FormInquilinoComponent
+    FormInquilinoComponent,
+    SelectUnidadComponent
   ]
 })
 export class ComponentsModule { }

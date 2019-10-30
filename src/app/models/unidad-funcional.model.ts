@@ -1,6 +1,7 @@
 import { Usuario } from '.';
 
 export class UnidadFuncional {
+  [x: string]: any;
   constructor(public id:number,
               public codigo: string,
               public ubicacion: string,

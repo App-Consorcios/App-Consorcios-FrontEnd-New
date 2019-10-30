@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Usuario } from 'src/app/models';
 
 @Component({
   selector: 'app-form-inquilino',
@@ -8,6 +9,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class FormInquilinoComponent implements OnInit {
     forma:FormGroup;
+    @Input('usuario') public usuario:Usuario;
     Usuario:object = {
     nombre:"",
     apellido:"",
@@ -31,6 +33,12 @@ export class FormInquilinoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.forma.controls['nombre'].setValue(this.usuario.nombre);
+    this.forma.controls['apellido'].setValue(this.usuario.apellido);
+    this.forma.controls['rol'].setValue(this.usuario.roles[0].nombre);
+    this.forma.contains['contacto'].controls['email'].setValue(this.usuario.mail);
+    this.forma.contains['contacto'].controls['password'].setValue('*******');
+
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
               public _auth:AuthService) { }
 
   ngOnInit() {
+
     init_plugin();
     let email = localStorage.getItem('email');
     let recordar  = localStorage.getItem('recordar')
@@ -34,7 +35,6 @@ export class LoginComponent implements OnInit {
     this._auth.login(forma.control.value.email, forma.control.value.password,forma.value.recuerdarme)
     .subscribe( (resp:any) => {
       if(resp.valido){
-        console.log(resp)
         this.usuario = resp.usuario;
         this.usuario.password = '*******';
         this._auth.guardarStorage(this.usuario.id.toString(), this.usuario);

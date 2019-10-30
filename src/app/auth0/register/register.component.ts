@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario.model';
 import { Roles } from 'src/app/models/roles.model';
+import { Usuarios } from 'src/app/config/usuarios';
 declare function init_plugin();
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -15,17 +17,24 @@ export class RegisterComponent implements OnInit {
   roles:Roles[] = [];
   usuario:Usuario;
   forma:FormGroup
-
+  usuariosCargados:any[]=[];
   constructor(public _auth:AuthService,
               public _router:Router) { }
 
   ngOnInit() {
     init_plugin();
-    this._auth.buscarRoles()
-        .subscribe( (resp:any) =>{
-          this.roles = resp;
-          this.cargarRoles();
-        });
+    this._auth.cargarUsuarios().subscribe( (resp:any) =>{
+      for(let user of resp){
+        this.usuariosCargados.push(user.mail);
+      }
+      this._auth.buscarRoles()
+          .subscribe( (resp:any) =>{
+            this.roles = resp;
+            this.cargarRoles();
+            this.registrarMasivaDeUsuarios();
+          });
+    })
+
 
     this.forma = new FormGroup({
       nombre: new FormControl(null, Validators.required),
@@ -63,11 +72,30 @@ export class RegisterComponent implements OnInit {
       this.forma.value.email,
       [{nombre:"usuario"}]
     );
-    this._auth.crearUsuario(usuario)
-    .subscribe( resp => {
-        this.usuario = resp;
-        this._router.navigate(['/login']);
-    });
+    if(this.usuariosCargados.indexOf(this.forma.value.email)<0){
+      this._auth.crearUsuario(usuario)
+      .subscribe( resp => {
+          this.usuario = resp;
+          this._router.navigate(['/login']);
+      });
+    }else{
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'El mail ya existe!'
+      })
+    }
+  }
+  //Carga Manual de usuarios
+  registrarMasivaDeUsuarios(){
+    for(let user of Usuarios){
+      if(this.usuariosCargados.indexOf(user.mail)<0){
+        this._auth.crearUsuario(user)
+        .subscribe( resp => {
+            console.log(resp)
+        });
+      }
+    }
   }
   navegar(){
     this._router.navigate(['/login'])
@@ -96,6 +124,4 @@ export class RegisterComponent implements OnInit {
     }
 
   }
-  // this.forma.value.pais
-
 }

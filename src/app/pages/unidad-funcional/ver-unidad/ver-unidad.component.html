@@ -5,17 +5,20 @@
             <div class="col-md-3">
               <app-usuario-icon (propietario)="esPropietario=$event" (inquilino)="esInquilino=$event" (unidad)="esUnidadFuncional=$event"></app-usuario-icon>
             </div>
-            <div  *ngIf="esUnidadFuncional && !esPropietario && !esInquilino" class="col-md-9" style="margin-left:-30px">
-              <h4 class="box-title">Unidad funcional</h4>
+            <div  *ngIf="esUnidadFuncional && !esPropietario && !esInquilino" class="col-md-6" style="margin-left:-30px">
+              <h4 class="box-title">Unidad funcional <span style = "color:#9C27B0"><strong>{{unidadesFuncionales[0].codigo}}</strong></span></h4>
               <h6 class="text-muted">Datos de su unidad funcional</h6>
             </div>
-            <div  *ngIf="!esUnidadFuncional && !esPropietario && esInquilino" class="col-md-9" style="margin-left:-30px">
+            <div  *ngIf="!esUnidadFuncional && !esPropietario && esInquilino" class="col-md-6" style="margin-left:-30px">
               <h4 class="box-title">Inquilino</h4>
               <h6 class="text-muted">Datos del Inquilino</h6>
             </div>
-            <div  *ngIf="!esUnidadFuncional && esPropietario && !esInquilino" class="col-md-9" style="margin-left:-30px">
+            <div  *ngIf="!esUnidadFuncional && esPropietario && !esInquilino" class="col-md-6" style="margin-left:-30px">
               <h4 class="box-title">Propietario</h4>
               <h6 class="text-muted">Datos del propietario</h6>
+            </div>
+            <div class="col-md-3">
+              <app-select-unidad [unidades] = "unidadesFuncionales"></app-select-unidad>
             </div>
           </div>
           <form *ngIf="esUnidadFuncional && !esPropietario && !esInquilino" [formGroup]="forma"
@@ -128,8 +131,9 @@
                     </div>
                   </div>
           </form>
-          <app-form-inquilino *ngIf="!esUnidadFuncional && !esPropietario && esInquilino"></app-form-inquilino>
-          <app-form-inquilino *ngIf="!esUnidadFuncional && esPropietario && !esInquilino"></app-form-inquilino>
+          <app-form-inquilino [usuario] = "inquilino"   *ngIf="!esUnidadFuncional && !esPropietario && esInquilino"></app-form-inquilino>
+          <app-form-inquilino [usuario] = "propietario" *ngIf="!esUnidadFuncional && esPropietario && !esInquilino"></app-form-inquilino>
+
         </div>
     </div>
 </div>

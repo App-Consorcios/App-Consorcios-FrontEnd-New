@@ -96,8 +96,8 @@ export class AuthService {
   //       return true;
   //     }));
   // }
-  cargarUsuarios(desde:number = 0){
-    let url = URL_SERVICIOS+'/usuario?desde='+desde;
+  cargarUsuarios(){
+    let url = URL_SERVICIOS+'/usuarios';
     return this.http.get(url);
   }
   buscarUsuario(termino:string){

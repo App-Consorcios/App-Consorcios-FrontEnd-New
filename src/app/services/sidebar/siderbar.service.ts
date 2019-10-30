@@ -32,7 +32,7 @@ export class SidebarService {
             {
               titulo: 'Ver Unidades',
               icono: 'fa fa-2x fa-eye  icon-navbar text-info',
-              url:'/unidad-funcional/ver-unidades',
+              url:'/unidad-funcional/ver-unidades/0',
             }
           ]
         },

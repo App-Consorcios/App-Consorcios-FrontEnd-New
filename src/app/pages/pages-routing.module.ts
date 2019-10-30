@@ -24,6 +24,7 @@ import { EliminarUsuariosComponent } from './usuarios/eliminar-usuarios/eliminar
 import { DetalleExpensasComponent } from './expensas/detalle-expensas/detalle-expensas.component';
 import { CrearConsorcioComponent } from './consorcios/crear-consorcio/crear-consorcio.component';
 import { VerConsorcioComponent } from './consorcios/ver-consorcio/ver-consorcio.component';
+import { ResultadosComponent } from './unidad-funcional/ver-unidad/resultados/resultados.component';
 
 const pagesRoutes: Routes =[
   { path: 'perfil',
@@ -58,7 +59,11 @@ const pagesRoutes: Routes =[
    component: UnidadFuncionalComponent,
     children:[
       { path: 'crear-unidad', component: CrearUnidadComponent },
-      { path: 'ver-unidades', component: VerUnidadComponent },
+      { path: 'ver-unidades/:id', component: VerUnidadComponent,
+        children:[
+          {path: 'resultados', component: ResultadosComponent}
+        ]
+      },
       { path: 'asignar-unidad', component: AsignarUnidadComponent },
       { path: '**',pathMatch: 'full', redirectTo: 'crear-unidad' }]
   },

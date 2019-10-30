@@ -51,10 +51,8 @@ export class VerUnidadComponent implements OnInit {
       'codigo': new FormControl('',[Validators.required,Validators.minLength(3)]),
       'prorrateo': new FormControl('',Validators.required),
       'tamanio': new FormControl('',Validators.required),
-      'ubicacion': new FormGroup({
-        'codigo': new FormControl('',[Validators.required,Validators.minLength(3)]),
+        'ubicacion': new FormControl('',[Validators.required,Validators.minLength(3)]),
         'descrp': new FormControl('')
-      })
     })
 
   }
@@ -63,8 +61,8 @@ export class VerUnidadComponent implements OnInit {
     this.forma.controls['codigo'].setValue(this.unidadesFuncionales[this.pagActual].codigo)
     this.forma.controls['prorrateo'].setValue(this.unidadesFuncionales[this.pagActual].prorrateo)
     this.forma.controls['tamanio'].setValue(this.unidadesFuncionales[this.pagActual].tamanio)
-    // this.forma.controls['ubicacion'].controls['codigo'].setValue(this.unidadesFuncionales[this.pagActual].ubicacion)
-    // this.forma.controls['ubicacion'].controls['descrp'].setValue(this.unidadesFuncionales[this.pagActual].descripcion)
+    this.forma.controls['ubicacion'].setValue(this.unidadesFuncionales[this.pagActual].ubicacion)
+    this.forma.controls['descrp'].setValue(this.unidadesFuncionales[this.pagActual].descripcion)
     this.inquilino = this.unidadesFuncionales[this.pagActual].inquilino;
     this.propietario = this.unidadesFuncionales[this.pagActual].propietario;
   }

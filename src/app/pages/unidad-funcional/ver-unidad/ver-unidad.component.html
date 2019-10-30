@@ -98,20 +98,19 @@
 
                     <!--/span-->
                   </div>
-                  <div formGroupName = "ubicacion">
                     <div class="col-md-12">
-                        <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('ubicacion.codigo').valid) && forma.get('ubicacion.codigo').touched}">
+                        <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('ubicacion').valid) && forma.get('ubicacion').touched}">
                             <h6 class="control-label text-right col-md-3">Código</h6>
                             <div class="col-md-9">
                                 <input type="text"
                                        class="form-control form-control-margin"
                                        placeholder="Ej: PB-1: Ingrese un ubicación ..."
-                                       formControlName="codigo" disabled>
-                                <div *ngIf="forma.get('ubicacion.codigo').errors?.required && forma.get('ubicacion.codigo').touched"
+                                       formControlName="ubicacion" disabled>
+                                <div *ngIf="forma.get('ubicacion').errors?.required && forma.get('ubicacion').touched"
                                 class="form-control-feedback text-danger">
                                  Código de ubicación es requerido
                                 </div>
-                                <div *ngIf="forma.get('ubicacion.codigo').errors?.minlength && forma.get('ubicacion.codigo').touched"
+                                <div *ngIf="forma.get('ubicacion').errors?.minlength && forma.get('ubicacion').touched"
                                 class="form-control-feedback text-danger">
                                  Se necesitan al menos 3 caracteres
                                 </div>
@@ -119,7 +118,7 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('ubicacion.descrp').valid) && forma.get('ubicacion.descrp').touched}">
+                        <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('descrp').valid) && forma.get('descrp').touched}">
                             <h6 class="control-label text-right col-md-3">Descripción</h6>
                             <div class="col-md-9">
                                 <input type="text"
@@ -129,7 +128,6 @@
                             </div>
                         </div>
                     </div>
-                  </div>
           </form>
           <app-form-inquilino [usuario] = "inquilino"   *ngIf="!esUnidadFuncional && !esPropietario && esInquilino"></app-form-inquilino>
           <app-form-inquilino [usuario] = "propietario" *ngIf="!esUnidadFuncional && esPropietario && !esInquilino"></app-form-inquilino>

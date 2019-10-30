@@ -2,18 +2,18 @@
     <div class="card">
         <div class="card-body">
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
               <app-usuario-icon (propietario)="esPropietario=$event" (inquilino)="esInquilino=$event" (unidad)="esUnidadFuncional=$event"></app-usuario-icon>
             </div>
-            <div  *ngIf="esUnidadFuncional && !esPropietario && !esInquilino" class="col-md-6" style="margin-left:-30px">
+            <div  *ngIf="esUnidadFuncional && !esPropietario && !esInquilino" class="col-md-5" style="margin-left:-30px">
               <h4 class="box-title">Unidad funcional <span style = "color:#9C27B0"><strong>{{unidadesFuncionales[0].codigo}}</strong></span></h4>
               <h6 class="text-muted">Datos de su unidad funcional</h6>
             </div>
-            <div  *ngIf="!esUnidadFuncional && !esPropietario && esInquilino" class="col-md-6" style="margin-left:-30px">
+            <div  *ngIf="!esUnidadFuncional && !esPropietario && esInquilino" class="col-md-5" style="margin-left:-30px">
               <h4 class="box-title">Inquilino</h4>
               <h6 class="text-muted">Datos del Inquilino</h6>
             </div>
-            <div  *ngIf="!esUnidadFuncional && esPropietario && !esInquilino" class="col-md-6" style="margin-left:-30px">
+            <div  *ngIf="!esUnidadFuncional && esPropietario && !esInquilino" class="col-md-5" style="margin-left:-30px">
               <h4 class="box-title">Propietario</h4>
               <h6 class="text-muted">Datos del propietario</h6>
             </div>

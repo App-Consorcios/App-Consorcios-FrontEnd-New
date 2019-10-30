@@ -480,12 +480,15 @@ export class ExpensasService {
     let matriz:any[] = [];
     let item:any = [];
     let cantConceptos = this.conceptos.length;
-    for(let i = 0; i<cantConceptos; i++){
+    let j
+    for(let i = 0; i<cantConceptos+1; i++){
       item = [];
-      for(let j = 0; j < this.unidadFuncionales.length; j++){
+      for(j = 0; j < this.unidadFuncionales.length; j++){
         item.push(this.unidadFuncionales[j].prorrateo);
+        console.log("PRORRATEO - ", this.unidadFuncionales[j].prorrateo);
       }
       matriz.push(item);
+      
     }
     return matriz;
 

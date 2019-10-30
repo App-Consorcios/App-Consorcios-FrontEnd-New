@@ -11,7 +11,14 @@
   display: flex;
   margin-left: 1.25rem;
   margin-right: 10px;
+  
 }
+
+
+.nav-consorcio-text p{
+  padding-top: 5px;
+}
+
 
 p{
   margin: 0 5px;

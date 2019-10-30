@@ -36,8 +36,8 @@ export class FormInquilinoComponent implements OnInit {
     this.forma.controls['nombre'].setValue(this.usuario.nombre);
     this.forma.controls['apellido'].setValue(this.usuario.apellido);
     this.forma.controls['rol'].setValue(this.usuario.roles[0].nombre);
-    this.forma.controls['contacto'].controls['email'].setValue(this.usuario.mail);
-    this.forma.controls['contacto'].controls['password'].setValue('*******');
+    // this.forma.controls['contacto'].controls['email'].setValue(this.usuario.mail);
+    // this.forma.controls['contacto'].controls['password'].setValue('*******');
 
   }
 

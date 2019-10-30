@@ -45,16 +45,10 @@
                           <th *ngFor="let uf of unidadFuncionales">{{uf.codigo}}</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody class="tablaExpensas">
                         <tr *ngFor="let item of matriz;let i = index">
                           <td *ngFor="let item of matriz[i];">{{item * costos[i] | number:'1.0-2'}}
                           </td>
-                        </tr>
-                        <tr>
-                          <td>Subtotal 1</td>
-                          <td>Subtotal 2</td>
-                          <td>Subtotal 3</td>
-                          <td>Subtotal 4</td>
                         </tr>
                       </tbody>
                       <tfoot>

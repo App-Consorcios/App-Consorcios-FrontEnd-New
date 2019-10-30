@@ -13,6 +13,7 @@ import { NgForm, FormGroup, FormArray, FormControl, Validators } from '@angular/
 export class CalcularExpensasComponent implements OnInit {
   unidadFuncionales:any[] = [];
   matriz:any;
+  matrizCalculada:any;
   conceptos:Concepto[] =[];
   ufSuscription:Subscription;
   conceptosSubscription:Subscription;
@@ -30,6 +31,8 @@ export class CalcularExpensasComponent implements OnInit {
     this.ufSuscription = this._uf.getUnidades().subscribe(data=>{
       this.unidadFuncionales  = data;
     });
+    console.log("UFS - ", this.unidadFuncionales);
+    
     this.recuperaSaldos()
     let formControl:any = []
     for(let i = 0;i<this.conceptos.length;i++){
@@ -39,6 +42,8 @@ export class CalcularExpensasComponent implements OnInit {
     this.forma = new FormGroup({
       'costos': new FormArray(formControl)
     });
+    console.log("FORMA COSTOS - ", this.forma);
+    
   }
   recuperaSaldos(){
     this._exp.getSaldos().subscribe( saldos =>{
@@ -49,7 +54,12 @@ export class CalcularExpensasComponent implements OnInit {
         conceptoSaldo.push(costo.concepto);
       }
       this.costos = monto;
+      const costosSUM = this.costos.reduce((a, b) => a + b, 0)
+      this.costos.push(costosSUM)
+
       this.conceptos = conceptoSaldo;
+      this.conceptos.push({nombre: "Totales", tipo: {nombre: "Totales", color: "Rojo", sigla: "T"}})
+      
     })
   }
   modificarSaldos(){
@@ -64,8 +74,23 @@ export class CalcularExpensasComponent implements OnInit {
   }
   calcularNovedad(){
     this.recuperaSaldos();
-    console.log(this.costos)
+    console.log("calcularNovedad COSTOS - ", this.costos)
+
+
+
     this.matriz = this._exp.createMatrizNovedad();
+    console.log("MATRIZ", this.matriz);
+
+    // this.matrizCalculada = this.matriz
+
+
+    
+    // for(let UF=0; UF < this.matriz.length; UF++){
+    //   for(let i = 0; i < this.matriz.UF.length; i++){
+    //     this.matrizCalculada[i][UF] = this.costos[i] * this.matriz[i][UF]
+    //   }
+    // }
+    
   }
 
 

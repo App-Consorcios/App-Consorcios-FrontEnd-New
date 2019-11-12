@@ -31,18 +31,18 @@
                       <hr style="margin-top:10px">
                       <div class="row form-control-margin">
                           <div class="col-md-12">
-                              <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('codigo').valid) && forma.get('codigo').touched}">
+                              <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('codigoDepartamento').valid) && forma.get('codigoDepartamento').touched}">
                                   <h6 class="control-label text-right col-md-4">Código</h6>
                                   <div class="col-md-8">
                                       <input type="text"
                                              class="form-control form-control-margin"
                                              placeholder="Ingrese un codigo ..."
-                                             formControlName="codigo">
-                                      <div *ngIf="forma.get('codigo').errors?.required && forma.get('codigo').touched"
+                                             formControlName="codigoDepartamento">
+                                      <div *ngIf="forma.get('codigoDepartamento').errors?.required && forma.get('codigoDepartamento').touched"
                                         class="form-control-feedback text-danger">
                                          Código es requerido
                                       </div>
-                                      <div *ngIf="forma.get('codigo').errors?.minlength && forma.get('codigo').touched"
+                                      <div *ngIf="forma.get('codigoDepartamento').errors?.minlength && forma.get('codigoDepartamento').touched"
                                        class="form-control-feedback text-danger">
                                          Se necesitan al menos 3 caracteres
                                       </div>
@@ -53,6 +53,26 @@
 
                           <!--/span-->
                       </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row"  [ngClass]="{ 'has-danger': (!forma.get('descripcionDepartamento').valid) && forma.get('descripcionDepartamento').touched}">
+                                <h6 class="control-label text-right col-md-4">Descripción</h6>
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           class="form-control form-control-margin"
+                                           placeholder="Descripción de Unidad Funcional"
+                                           formControlName="descripcionDepartamento">
+                                   <div *ngIf="forma.get('descripcionDepartamento').errors?.required && forma.get('descripcionDepartamento').touched"
+                                     class="form-control-feedback text-danger">
+                                     Descripción es requerida
+                                   </div>
+                               </div>
+                            </div>
+                        </div>
+                      </div>
+
+
                       <div class="row">
                         <div class="col-md-12">
                             <div class="form-group row"  [ngClass]="{ 'has-danger': (!forma.get('prorrateo').valid) && forma.get('prorrateo').touched}">
@@ -73,7 +93,7 @@
                       <!--/row-->
                       <div class="row">
                           <div class="col-md-12">
-                              <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('tamanio').valid) && forma.get('tamanio').touched}">
+                              <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('metrosCuadrados').valid) && forma.get('metrosCuadrados').touched}">
                                   <h6 class="control-label text-right col-md-4">Tamaño <span class="text-muted">(m<sup>2</sup>)</span></h6>
                                   <div class="col-md-8">
                                     <input type="number"
@@ -81,8 +101,8 @@
                                            min="1"
                                            class="form-control form-control-margin"
                                            placeholder="Ingrese un tamaño ..."
-                                           formControlName="tamanio">
-                                     <div *ngIf="forma.get('tamanio').errors?.required && forma.get('tamanio').touched"
+                                           formControlName="metrosCuadrados">
+                                     <div *ngIf="forma.get('metrosCuadrados').errors?.required && forma.get('metrosCuadrados').touched"
                                        class="form-control-feedback text-danger">
                                         Tamaño es requerido
                                      </div>
@@ -103,18 +123,18 @@
                       </div>
                       <div formGroupName = "ubicacion">
                         <div class="col-md-12">
-                            <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('ubicacion.codigo').valid) && forma.get('ubicacion.codigo').touched}">
+                            <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('ubicacion.codigoUbicacion').valid) && forma.get('ubicacion.codigoUbicacion').touched}">
                                 <h6 class="control-label text-right col-md-4">Código</h6>
                                 <div class="col-md-8">
                                     <input type="text"
                                            class="form-control form-control-margin"
                                            placeholder="Ej: PB-1: Ingrese un ubicación ..."
-                                           formControlName="codigo">
-                                    <div *ngIf="forma.get('ubicacion.codigo').errors?.required && forma.get('ubicacion.codigo').touched"
+                                           formControlName="codigoUbicacion">
+                                    <div *ngIf="forma.get('ubicacion.codigoUbicacion').errors?.required && forma.get('ubicacion.codigoUbicacion').touched"
                                     class="form-control-feedback text-danger">
                                      Código de ubicación es requerido
                                     </div>
-                                    <div *ngIf="forma.get('ubicacion.codigo').errors?.minlength && forma.get('ubicacion.codigo').touched"
+                                    <div *ngIf="forma.get('ubicacion.codigoUbicacion').errors?.minlength && forma.get('ubicacion.codigoUbicacion').touched"
                                     class="form-control-feedback text-danger">
                                      Se necesitan al menos 3 caracteres
                                     </div>
@@ -122,13 +142,13 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('ubicacion.descrp').valid) && forma.get('ubicacion.descrp').touched}">
+                            <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('ubicacion.descripcionUbicacion').valid) && forma.get('ubicacion.descripcionUbicacion').touched}">
                                 <h6 class="control-label text-right col-md-4">Descripción</h6>
                                 <div class="col-md-8">
                                     <input type="text"
                                     class="form-control form-control-margin"
                                     placeholder="Ingrese un ubicación ..."
-                                    formControlName="descrp">
+                                    formControlName="descripcionUbicacion">
                                 </div>
                             </div>
                         </div>

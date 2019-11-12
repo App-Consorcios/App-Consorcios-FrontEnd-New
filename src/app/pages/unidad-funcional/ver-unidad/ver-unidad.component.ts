@@ -12,7 +12,8 @@ import { Usuario } from 'src/app/models';
   styleUrls: ['./ver-unidad.component.css']
 })
 export class VerUnidadComponent implements OnInit {
-  unidadesFuncionales:UnidadFuncional[] = [];
+  // unidadesFuncionales:UnidadFuncional[] = [];
+  unidadesFuncionales:any
   esUnidadFuncional:boolean = true
   esPropietario:boolean = false
   esInquilino:boolean = false
@@ -45,24 +46,26 @@ export class VerUnidadComponent implements OnInit {
     })
     this._uf.getUnidades().subscribe( data =>{
       this.unidadesFuncionales = data;
-      console.log(this.unidadesFuncionales);
+      console.log("GET UF VER UNIDAD - ",this.unidadesFuncionales);
     });
     this.forma = new FormGroup({
-      'codigo': new FormControl('',[Validators.required,Validators.minLength(3)]),
+      'codigoDepartamento': new FormControl('',[Validators.required,Validators.minLength(3)]),
       'prorrateo': new FormControl('',Validators.required),
-      'tamanio': new FormControl('',Validators.required),
-        'ubicacion': new FormControl('',[Validators.required,Validators.minLength(3)]),
-        'descrp': new FormControl('')
+      'metrosCuadrados': new FormControl('',Validators.required),
+        'codigoUbicacion': new FormControl('',[Validators.required,Validators.minLength(3)]),
+        'descripcionUbicacion': new FormControl('')
     })
 
   }
   ngOnInit() {
     console.log(this.forma)
-    this.forma.controls['codigo'].setValue(this.unidadesFuncionales[this.pagActual].codigo)
+    console.log("PAG ACTUAL - ", this.pagActual);
+    
+    this.forma.controls['codigoDepartamento'].setValue(this.unidadesFuncionales[this.pagActual].codigoDepartamento)
     this.forma.controls['prorrateo'].setValue(this.unidadesFuncionales[this.pagActual].prorrateo)
-    this.forma.controls['tamanio'].setValue(this.unidadesFuncionales[this.pagActual].tamanio)
-    this.forma.controls['ubicacion'].setValue(this.unidadesFuncionales[this.pagActual].ubicacion)
-    this.forma.controls['descrp'].setValue(this.unidadesFuncionales[this.pagActual].descripcion)
+    this.forma.controls['metrosCuadrados'].setValue(this.unidadesFuncionales[this.pagActual].metrosCuadrados)
+    this.forma.controls['codigoUbicacion'].setValue(this.unidadesFuncionales[this.pagActual].codigoUbicacion)
+    this.forma.controls['descripcionUbicacion'].setValue(this.unidadesFuncionales[this.pagActual].descripcionUbicacion)
     this.inquilino = this.unidadesFuncionales[this.pagActual].inquilino;
     this.propietario = this.unidadesFuncionales[this.pagActual].propietario;
   }

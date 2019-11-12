@@ -11,7 +11,8 @@ import { NgForm, FormGroup, FormArray, FormControl, Validators } from '@angular/
   styleUrls: ['./calcular-expensas.component.css']
 })
 export class CalcularExpensasComponent implements OnInit {
-  unidadFuncionales:any[] = [];
+  // unidadFuncionales:any[] = [];
+  unidadFuncionales:any
   matriz:any;
   matrizCalculada:any;
   conceptos:Concepto[] =[];

@@ -9,16 +9,18 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./crear-unidad.component.css']
 })
 export class CrearUnidadComponent implements OnInit {
-  unidadesFuncionales:UnidadFuncional[] = [];
-  unidadFuncional:object = {
-    codigo:"",
-    prorrateo:"",
-    tamanio:"",
-    ubicacion:{
-      codigo: "",
-      descrp: ""
-    }
-  }
+  // unidadesFuncionales:UnidadFuncional[] = [];
+  unidadFuncional: UnidadFuncional
+  unidadesFuncionales:any
+  // unidadFuncional:object = {
+  //   codigo:"",
+  //   prorrateo:"",
+  //   tamanio:"",
+  //   ubicacion:{
+  //     codigo: "",
+  //     descrp: ""
+  //   }
+  // }
   unidad:string = "";
   mensaje:boolean = false;
   forma:FormGroup;
@@ -26,15 +28,16 @@ export class CrearUnidadComponent implements OnInit {
   constructor(private _uf:UnidadFuncionalService) {
     this._uf.getUnidades().subscribe( data =>{
       this.unidadesFuncionales = data;
-      console.log(this.unidadesFuncionales);
+      console.log("UNIDADES FUNCIONALES -", this.unidadesFuncionales);
     });
     this.forma = new FormGroup({
-      'codigo': new FormControl('',[Validators.required,Validators.minLength(3)]),
+      'codigoDepartamento': new FormControl('',[Validators.required,Validators.minLength(2)]),
+      'descripcionDepartamento': new FormControl(''),
       'prorrateo': new FormControl('',Validators.required),
-      'tamanio': new FormControl('',Validators.required),
+      'metrosCuadrados': new FormControl('',Validators.required),
       'ubicacion': new FormGroup({
-        'codigo': new FormControl('',[Validators.required,Validators.minLength(3)]),
-        'descrp': new FormControl('')
+        'codigoUbicacion': new FormControl('',[Validators.required,Validators.minLength(2)]),
+        'descripcionUbicacion': new FormControl('')
       })
     })
 
@@ -43,21 +46,33 @@ export class CrearUnidadComponent implements OnInit {
   ngOnInit() {
   }
   guardarCambios(){
-    console.log(this.forma.value);
-    console.log(this.forma);
+    // console.log(this.forma.value);
+    // console.log(this.forma);
     this.mensaje = true;
     setTimeout(()=>{ this.mensaje = false},3000)
-    this.unidad = this.forma.get('codigo').value;
 
-     this.forma.reset({
-       codigo:"",
-       prorrateo:"",
-       tamanio:"",
-       ubicacion:{
-         codigo: "",
-         descrp: ""
-       }
-     });
+    _uf:UnidadFuncionalService
+    // this._uf.crearUnidad.subscribe( data =>{
+    //   this.unidadesFuncionales = data;
+    //   console.log("UNIDADES FUNCIONALES -", this.unidadesFuncionales);
+    // });
+
+    this._uf.crearUnidad(this.forma.value)
+
+    // this._user.asignarRol(user[0].id,roles);
+
+    this.unidad = this.forma.get('codigoDepartamento').value;
+    console.log("UNIDAD GUARDADA - ",this.forma.value);
+    
+    //  this.forma.reset({
+    //   codigoDepartamento:"",
+    //    prorrateo:"",
+    //    metrosCuadrados:"",
+    //    ubicacion:{
+    //     codigoUbicacion: "",
+    //     descripcionUbicacion: ""
+    //    }
+    //  });
   }
 
 

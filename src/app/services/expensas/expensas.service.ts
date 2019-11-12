@@ -312,7 +312,8 @@ export class ExpensasService {
       ]
     }
   ];
-  unidadFuncionales:UnidadFuncional[]=[];
+  // unidadFuncionales:UnidadFuncional[]=[];
+  unidadFuncionales:any
   saldos:Saldo[] = [
     {
       periodo:'01-09-2019',

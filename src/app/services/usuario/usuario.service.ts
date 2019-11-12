@@ -12,7 +12,10 @@ export class UsuarioService {
 
   recuperarUsuarios(){
     let url = URL_SERVICIOS+'/usuarios';
-    return this.http.get(url)
+    let usuarios = this.http.get(url)
+    console.log("GET USUARIOS - ", usuarios);
+    
+    return usuarios
   }
   asignarRol(userId:any,roles:Roles[]){
     let url = URL_SERVICIOS;

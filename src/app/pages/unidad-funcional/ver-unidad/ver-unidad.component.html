@@ -6,7 +6,7 @@
               <app-usuario-icon (propietario)="esPropietario=$event" (inquilino)="esInquilino=$event" (unidad)="esUnidadFuncional=$event"></app-usuario-icon>
             </div>
             <div  *ngIf="esUnidadFuncional && !esPropietario && !esInquilino" class="col-md-5" style="margin-left:-30px">
-              <h4 class="box-title">Unidad funcional <span style = "color:#9C27B0"><strong>{{unidadesFuncionales[0].codigo}}</strong></span></h4>
+              <h4 class="box-title">Unidad funcional <span style = "color:#9C27B0"><strong>{{unidadesFuncionales[0].codigoDepartamento}}</strong></span></h4>
               <h6 class="text-muted">Datos de su unidad funcional</h6>
             </div>
             <div  *ngIf="!esUnidadFuncional && !esPropietario && esInquilino" class="col-md-5" style="margin-left:-30px">
@@ -28,14 +28,14 @@
                   <hr style="margin-top:10px">
                   <div class="row form-control-margin">
                       <div class="col-md-12">
-                          <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('codigo').valid) && forma.get('codigo').touched}">
+                          <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('codigoDepartamento').valid) && forma.get('codigoDepartamento').touched}">
                               <h6 class="control-label text-right col-md-3">Código</h6>
                               <div class="col-md-9">
                                   <input type="text"
                                          class="form-control form-control-margin"
                                          placeholder="Ingrese un codigo ..."
-                                         formControlName="codigo" disabled>
-                                  <div *ngIf="forma.get('codigo').errors?.required && forma.get('codigo').touched"
+                                         formControlName="codigoDepartamento" disabled>
+                                  <div *ngIf="forma.get('codigoDepartamento').errors?.required && forma.get('codigoDepartamento').touched"
                                     class="form-control-feedback text-danger">
                                      Código es requerido
                                   </div>
@@ -70,7 +70,7 @@
                   <!--/row-->
                   <div class="row">
                       <div class="col-md-12">
-                          <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('tamanio').valid) && forma.get('tamanio').touched}">
+                          <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('metrosCuadrados').valid) && forma.get('metrosCuadrados').touched}">
                               <h6 class="control-label text-right col-md-3">Tamaño <span class="text-muted">(m<sup>2</sup>)</span></h6>
                               <div class="col-md-9">
                                 <input type="number"
@@ -78,8 +78,8 @@
                                        min="1"
                                        class="form-control form-control-margin"
                                        placeholder="Ingrese un tamaño ..."
-                                       formControlName="tamanio" disabled>
-                                 <div *ngIf="forma.get('tamanio').errors?.required && forma.get('tamanio').touched"
+                                       formControlName="metrosCuadrados" disabled>
+                                 <div *ngIf="forma.get('metrosCuadrados').errors?.required && forma.get('metrosCuadrados').touched"
                                    class="form-control-feedback text-danger" >
                                     Tamaño es requerido
                                  </div>
@@ -99,18 +99,18 @@
                     <!--/span-->
                   </div>
                     <div class="col-md-12">
-                        <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('ubicacion').valid) && forma.get('ubicacion').touched}">
+                        <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('codigoUbicacion').valid) && forma.get('codigoUbicacion').touched}">
                             <h6 class="control-label text-right col-md-3">Código</h6>
                             <div class="col-md-9">
                                 <input type="text"
                                        class="form-control form-control-margin"
                                        placeholder="Ej: PB-1: Ingrese un ubicación ..."
-                                       formControlName="ubicacion" disabled>
-                                <div *ngIf="forma.get('ubicacion').errors?.required && forma.get('ubicacion').touched"
+                                       formControlName="codigoUbicacion" disabled>
+                                <div *ngIf="forma.get('codigoUbicacion').errors?.required && forma.get('codigoUbicacion').touched"
                                 class="form-control-feedback text-danger">
                                  Código de ubicación es requerido
                                 </div>
-                                <div *ngIf="forma.get('ubicacion').errors?.minlength && forma.get('ubicacion').touched"
+                                <div *ngIf="forma.get('codigoUbicacion').errors?.minlength && forma.get('codigoUbicacion').touched"
                                 class="form-control-feedback text-danger">
                                  Se necesitan al menos 3 caracteres
                                 </div>
@@ -118,13 +118,13 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('descrp').valid) && forma.get('descrp').touched}">
+                        <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('descripcionUbicacion').valid) && forma.get('descripcionUbicacion').touched}">
                             <h6 class="control-label text-right col-md-3">Descripción</h6>
                             <div class="col-md-9">
                                 <input type="text"
                                 class="form-control form-control-margin"
                                 placeholder="Ingrese un ubicación ..."
-                                formControlName="descrp" disabled>
+                                formControlName="descripcionUbicacion" disabled>
                             </div>
                         </div>
                     </div>

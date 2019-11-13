@@ -1,5 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UnidadFuncional } from 'src/app/models/unidad-funcional.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 export interface Food {
   value: string;
   viewValue: string;
@@ -11,6 +14,7 @@ export interface Food {
 })
 export class SelectUnidadComponent implements OnInit {
   @Input("unidades") public unidades:UnidadFuncional[]=[]
+  @Output("selected") public elegido:EventEmitter<number> = new EventEmitter<number>();
   color:string[]=[
     '#9C27B0',
     '#F44336',
@@ -28,11 +32,17 @@ export class SelectUnidadComponent implements OnInit {
     '#6D4C41'
   ];
 
-  constructor() { }
+  constructor(private _ar:ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
   }
   somethingChanged(selected){
-    console.log(selected);
+  
+    const unidad = this.unidades.filter(data => data.codigo == selected)
+    if(unidad.length>0){
+
+      this.elegido.emit();
+      this.router.navigate(['unidad-funcional','ver-unidades',unidad[0].id])
+    }
   }
 }

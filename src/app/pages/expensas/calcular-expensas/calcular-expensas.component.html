@@ -1,6 +1,6 @@
 <div class="col-12">
   <div class="card">
-    
+
     <div class="contact-page-aside">
       <div class="left-aside bg-light-part">
         <form [formGroup]="forma" (ngSubmit)="guardarConcepto()" novalidate="novalidate" style="margin-top:20px">
@@ -11,7 +11,7 @@
               <li *ngFor="let item of conceptos;let i = index">
 
                 <div class="row" formArrayName="costos">
-                  <div class="col-md-7">
+                  <div class="col-md-12">
                     {{item.nombre | truncate: 50}}
                   </div>
                   <!-- <input class="col-md-5" align='right' type='double' [formControlName]="i" name='costo'
@@ -23,9 +23,9 @@
         </form>
       </div>
 
-      <div class="right-aside scroll-aside" style="margin-top:20px; margin-left: 350px">
+      <div class="right-aside scroll-aside" style="margin-top:20px; margin-left: 200px">
         <div class="right-page-header">
-              
+
               <div class="d-flex">
                 <div class="align-self-center">
                   <h4 class="card-title m-t-10">Costos / Unidad Funcional</h4>
@@ -82,7 +82,7 @@
 
 
     </div>
-    
+
     <footer class="footer">
       <div class="guardarCalculo">
         <button (click)="guardarCalculo()" type="button" class="btn btn-success btn-rounded"

@@ -17,7 +17,7 @@
                             <span class="label" [ngClass]="{'label-danger': item.tipo.color == 'Rojo',
                                                             'label-info': item.tipo.color == 'Celeste',
                                                             'label-warning': item.tipo.color == 'Amarillo',
-                                                            'label-success': item.tipo.color == 'Verde'}">{{item.tipo.sigla}}</span>
+                                                            'label-success': item.tipo.color == 'Verde'}">{{item.tipo.nombre | sigla:2}}</span>
                             {{item.nombre}}
                         </div>
                       <!-- </div> -->
@@ -78,7 +78,7 @@
                                   <td><span class="label" [ngClass]="{'label-danger': item.concepto.tipo.color == 'Rojo',
                                                                   'label-info': item.concepto.tipo.color == 'Celeste',
                                                                   'label-warning': item.concepto.tipo.color == 'Amarillo',
-                                                                  'label-success': item.concepto.tipo.color == 'Verde'}">{{item.concepto.tipo.sigla}}</span></td>
+                                                                  'label-success': item.concepto.tipo.color == 'Verde'}">{{item.concepto.tipo.nombre | sigla:2}}</span></td>
                                   <td id="td1">{{item.concepto.nombre}}</td>
                                   <td id="td2"><input type="text" name="" [value]="item.descripcion" placeholder="Ingrese una descripción.."> </td>
                                   <td id="td3"><input type="text" name="" [value]="item.monto | number:'1.0-2'" ></td>

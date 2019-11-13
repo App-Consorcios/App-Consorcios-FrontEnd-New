@@ -14,13 +14,12 @@ export class UsuarioService {
     let url = URL_SERVICIOS+'/usuarios';
     return this.http.get(url)
   }
-  asignarRol(userId:any,roles:Roles[]){
+  asignarRol(userId:any,roles:any){
     let url = URL_SERVICIOS;
     var headers = new HttpHeaders({
       "Content-Type": "application/json"
     });
     url+=`/usuario?id=${userId}`
-
     return this.http.put(url,JSON.stringify(roles),{headers: headers});
   }
 }

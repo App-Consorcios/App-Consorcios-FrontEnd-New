@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { Usuario } from 'src/app/models';
 import { Roles } from 'src/app/models/roles.model';
@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 
 export interface ListUsuario {
+  mail:string;
   nombre:string;
   roles:Roles[];
 }
@@ -25,10 +26,16 @@ export class UsuarioListComponent implements OnInit {
   usuarios:Usuario[]=[];
   roles:Roles[]=[];
   listUsuario:ListUsuario[] = [];
+  //lista de usuario con rol
+  usuarioConRol:Usuario[]=[];
+  cantidadSelected:number = 0;
+  selected:Usuario[] =[];
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(public _user:UsuarioService,public _auth:AuthService) {
+  constructor(public _user:UsuarioService,
+              public _auth:AuthService,
+              public cd:ChangeDetectorRef) {
 
   }
 
@@ -39,7 +46,7 @@ export class UsuarioListComponent implements OnInit {
 
     for(let i = 0;i<this.usuarios.length;i++){
       if(this.usuarios[i].roles[0].nombre == "usuario"){
-        let tupla = { nombre: `${this.usuarios[i].nombre} ${this.usuarios[i].apellido}`, roles: this.roles};
+        let tupla = { mail:this.usuarios[i].mail, nombre: `${this.usuarios[i].nombre} ${this.usuarios[i].apellido}`, roles: this.roles};
         this.listUsuario.push(tupla);
       }
     }
@@ -48,6 +55,11 @@ export class UsuarioListComponent implements OnInit {
     this._user.recuperarUsuarios()
               .subscribe( (resp:any) =>{
                 this.usuarios = resp;
+                for(let user of resp){
+                  if(user.roles[0].nombre == "propietario" || user.roles[0].nombre == "inquilino"){
+                    this.usuarioConRol.push(user);
+                  }
+                }
       this._auth.buscarRoles()
               .subscribe( (resp:any) =>{
                 this.roles = resp;
@@ -58,7 +70,29 @@ export class UsuarioListComponent implements OnInit {
       });
     });
   }
-  guardar(forma){
+  onSelection(opciones){
+    this.selected = opciones
+  }
+  borrarRol(){
+    let usuario;
+    for(let user of this.selected){
+      usuario = this.usuarioConRol.filter( (data:any) => data.mail == user);
+      if(usuario.length>0){
+        let index = this.usuarioConRol.indexOf(usuario[0]);
+        this.usuarioConRol.splice(index,1);
+        this.usuarios.push(usuario[0])
+        console.log("hola")
+
+        this._user.asignarRol(usuario[0].id,{roles:[{nombre: "usuario" }]}).subscribe((data:any)=>{
+            let tupla = { mail:data.mail, nombre: `${data.nombre} ${data.apellido}`, roles: data.roles};
+            this.listUsuario.push(tupla);
+            this.dataSource = new MatTableDataSource(this.listUsuario);
+            this.dataSource.sort = this.sort;
+        });
+      }
+    }
+  }
+  asignarRol(forma){
     let roles;
     let user:any;
     let tupla = {};
@@ -66,17 +100,24 @@ export class UsuarioListComponent implements OnInit {
       if(row.name == "nombre" && row.model){
         user = this.usuarios.filter(data => `${data.nombre} ${data.apellido}` == row.model);
       }
-
       if(row.name == "roles" && row.model!="" && row.model!= undefined){
         console.log(row.model);
         roles  = this.roles.filter(data=> data.nombre == row.model);
-
-        this._user.asignarRol(user[0].id,roles);
+        let rol={
+          roles:roles
+        }
+        this._user.asignarRol(user[0].id,rol).subscribe( (data:any) =>{
+          this.cd.markForCheck();
+            for(let i = 0;i<this.listUsuario.length;i++){
+              if(this.listUsuario[i].mail=== data.mail){
+                    this.listUsuario.splice(i,1);
+                    this.usuarioConRol.push(data);
+                    this.dataSource = new MatTableDataSource(this.listUsuario);
+                    this.dataSource.sort = this.sort;
+              }
+          }
+        });
       }
     }
-    // console.log(this.usuarios);
-    // let usuario = this.usuarios.filter(data => `${data.nombre} ${data.apellido}` == forma._directives[0].model)
-    // console.log(usuario)
-    //
   }
 }

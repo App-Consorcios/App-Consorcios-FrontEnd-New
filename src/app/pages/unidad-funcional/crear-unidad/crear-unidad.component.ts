@@ -22,6 +22,7 @@ export class CrearUnidadComponent implements OnInit {
   unidad:string = "";
   mensaje:boolean = false;
   forma:FormGroup;
+  forma2:FormGroup;
 
   constructor(private _uf:UnidadFuncionalService) {
     this._uf.getUnidades().subscribe( data =>{
@@ -36,6 +37,9 @@ export class CrearUnidadComponent implements OnInit {
         'codigo': new FormControl('',[Validators.required,Validators.minLength(3)]),
         'descrp': new FormControl('')
       })
+    });
+    this.forma2 = new FormGroup({
+      'buscar':new FormControl('')
     })
 
   }

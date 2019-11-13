@@ -6,7 +6,7 @@
               <app-usuario-icon (propietario)="esPropietario=$event" (inquilino)="esInquilino=$event" (unidad)="esUnidadFuncional=$event"></app-usuario-icon>
             </div>
             <div  *ngIf="esUnidadFuncional && !esPropietario && !esInquilino" class="col-md-5" style="margin-left:-30px">
-              <h4 class="box-title">Unidad funcional <span style = "color:#9C27B0"><strong>{{unidadesFuncionales[0].codigo}}</strong></span></h4>
+              <h4 class="box-title">Unidad funcional <span style = "color:#9C27B0"><strong>{{this._vu.getCodigo()}}</strong></span></h4>
               <h6 class="text-muted">Datos de su unidad funcional</h6>
             </div>
             <div  *ngIf="!esUnidadFuncional && !esPropietario && esInquilino" class="col-md-5" style="margin-left:-30px">
@@ -18,7 +18,7 @@
               <h6 class="text-muted">Datos del propietario</h6>
             </div>
             <div class="col-md-3">
-              <app-select-unidad [unidades] = "unidadesFuncionales"></app-select-unidad>
+              <app-select-unidad [unidades] = "unidadesFuncionales" (selected) = "pagActual  =$event" ></app-select-unidad>
             </div>
           </div>
           <form *ngIf="esUnidadFuncional && !esPropietario && !esInquilino" [formGroup]="forma"
@@ -31,7 +31,7 @@
                           <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('codigo').valid) && forma.get('codigo').touched}">
                               <h6 class="control-label text-right col-md-3">Código</h6>
                               <div class="col-md-9">
-                                  <input type="text"
+                                  <input type="text" [value] = "this._vu.getCodigo()"
                                          class="form-control form-control-margin"
                                          placeholder="Ingrese un codigo ..."
                                          formControlName="codigo" disabled>
@@ -46,16 +46,14 @@
                             </div>
                           </div>
                       </div>
-                      <!--/span-->
 
-                      <!--/span-->
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                         <div class="form-group row"  [ngClass]="{ 'has-danger': (!forma.get('prorrateo').valid) && forma.get('prorrateo').touched}">
                             <h6 class="control-label text-right col-md-3" >Prorrateo</h6>
                             <div class="col-md-9">
-                                <input type="text"
+                                <input type="text" [value] = "this._vu.getProrrateo()"
                                        class="form-control form-control-margin"
                                        placeholder="Ingrese valor en decimales"
                                        formControlName="prorrateo" disabled>
@@ -67,18 +65,17 @@
                         </div>
                     </div>
                   </div>
-                  <!--/row-->
                   <div class="row">
                       <div class="col-md-12">
                           <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('tamanio').valid) && forma.get('tamanio').touched}">
                               <h6 class="control-label text-right col-md-3">Tamaño <span class="text-muted">(m<sup>2</sup>)</span></h6>
                               <div class="col-md-9">
-                                <input type="number"
+                                <input type="number" [value] = "this._vu.getTamanio()"
                                        name="quantity"
                                        min="1"
                                        class="form-control form-control-margin"
                                        placeholder="Ingrese un tamaño ..."
-                                       formControlName="tamanio" disabled>
+                                       formControlName="tamanio"  disabled >
                                  <div *ngIf="forma.get('tamanio').errors?.required && forma.get('tamanio').touched"
                                    class="form-control-feedback text-danger" >
                                     Tamaño es requerido
@@ -86,23 +83,20 @@
                               </div>
                           </div>
                       </div>
-                      <!--/span-->
 
                   </div>
-                  <!--/row-->
                   <div class="row">
                     <div class="col-md-12">
                       <h5 class="text-muted">Ubicación</h5>
                       <hr>
                     </div>
 
-                    <!--/span-->
                   </div>
                     <div class="col-md-12">
                         <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('ubicacion').valid) && forma.get('ubicacion').touched}">
                             <h6 class="control-label text-right col-md-3">Código</h6>
                             <div class="col-md-9">
-                                <input type="text"
+                                <input type="text" [value] = "this._vu.getUbicacion()"
                                        class="form-control form-control-margin"
                                        placeholder="Ej: PB-1: Ingrese un ubicación ..."
                                        formControlName="ubicacion" disabled>
@@ -121,7 +115,7 @@
                         <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('descrp').valid) && forma.get('descrp').touched}">
                             <h6 class="control-label text-right col-md-3">Descripción</h6>
                             <div class="col-md-9">
-                                <input type="text"
+                                <input type="text" [value] = "this._vu.getDescripcion()"
                                 class="form-control form-control-margin"
                                 placeholder="Ingrese un ubicación ..."
                                 formControlName="descrp" disabled>

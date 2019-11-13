@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Tipo } from 'src/app/models/tipo.model';
 import { Observable } from 'rxjs';
+import { URL_SERVICIOS } from 'src/app/config/config';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Concepto } from 'src/app/models/concepto.model';
 import { Expensa } from 'src/app/models/expensa.model';
 import { UnidadFuncionalService } from '../unidad-funcional/unidad-funcional.service';
@@ -12,25 +14,13 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ExpensasService {
-  tipos:Tipo[] = [
-    {
-      nombre: "Generales",
-      color: "Rojo",
-      sigla: "G"
-    },
-    {
-      nombre: "Gastos Varios",
-      color: "Verde",
-      sigla: "V"
-    }
-  ]
+  tipos:Tipo[] = []
   conceptos:Concepto[] = [
     {
       nombre: "Cargas Sociales",
       tipo: {
         nombre: "Generales",
         color: "Rojo",
-        sigla: "G"
       },
     },
     {
@@ -38,7 +28,6 @@ export class ExpensasService {
       tipo: {
         nombre: "Generales",
         color: "Rojo",
-        sigla: "G"
       }
     },
     {
@@ -46,7 +35,6 @@ export class ExpensasService {
       tipo: {
         nombre: "Generales",
         color: "Rojo",
-        sigla: "G"
       }
     },
     {
@@ -54,7 +42,6 @@ export class ExpensasService {
       tipo: {
         nombre: "Gastos Varios",
         color: "Verde",
-        sigla: "V"
       }
     },
     {
@@ -62,7 +49,6 @@ export class ExpensasService {
       tipo: {
         nombre: "Generales",
         color: "Rojo",
-        sigla: "G"
       }
     },
     {
@@ -70,7 +56,6 @@ export class ExpensasService {
       tipo: {
         nombre: "Generales",
         color: "Rojo",
-        sigla: "G"
       }
     },
     {
@@ -78,7 +63,6 @@ export class ExpensasService {
       tipo: {
         nombre: "Generales",
         color: "Rojo",
-        sigla: "G"
       }
     },
     {
@@ -86,7 +70,6 @@ export class ExpensasService {
       tipo: {
         nombre: "Generales",
         color: "Rojo",
-        sigla: "G"
       }
     }
   ]
@@ -320,8 +303,7 @@ export class ExpensasService {
         nombre: "Cargas Sociales",
         tipo: {
           nombre: "Generales",
-          color: "Rojo",
-          sigla: "G"
+          color: "Rojo"
         },
       },
       descripcion:"Portería",
@@ -333,8 +315,7 @@ export class ExpensasService {
        nombre: "Papeluchos",
        tipo: {
          nombre: "Gastos Varios",
-         color: "Verde",
-         sigla: "V"
+         color: "Verde"
        }
      },
      descripcion:"Imprenta Don Jose: Actas e impresiones",
@@ -346,8 +327,7 @@ export class ExpensasService {
         nombre: "Abonos Servicios",
         tipo: {
           nombre: "Generales",
-          color: "Rojo",
-          sigla: "G"
+          color: "Rojo"
         }
       },
       descripcion:"ABL",
@@ -359,8 +339,7 @@ export class ExpensasService {
         nombre: "Fumigación",
         tipo: {
           nombre: "Generales",
-          color: "Rojo",
-          sigla: "G"
+          color: "Rojo"
         }
       },
       descripcion:"Masacre de roedores",
@@ -372,8 +351,7 @@ export class ExpensasService {
         nombre: "Limpieza y servicios",
         tipo: {
           nombre: "Generales",
-          color: "Rojo",
-          sigla: "G"
+          color: "Rojo"
         }
       },
       descripcion:"Barrido de pasillo y limpieza de ventanas",
@@ -385,8 +363,7 @@ export class ExpensasService {
         nombre: "Servicios Publicos",
         tipo: {
           nombre: "Generales",
-          color: "Rojo",
-          sigla: "G"
+          color: "Rojo"
           }
       },
       descripcion:"Entongado: Acomodo de inspector municipal",
@@ -398,8 +375,7 @@ export class ExpensasService {
            nombre: "Gastos Administrativos",
            tipo: {
              nombre: "Generales",
-             color: "Rojo",
-             sigla: "G"
+             color: "Rojo"
              }
          },
          descripcion:"Viaticos y sellos",
@@ -411,8 +387,7 @@ export class ExpensasService {
         nombre: "Gastos Mantenimiento",
         tipo: {
           nombre: "Generales",
-          color: "Rojo",
-          sigla: "G"
+          color: "Rojo"
         }
       },
       descripcion:"Mantenimiento de luminarias",
@@ -420,7 +395,8 @@ export class ExpensasService {
     }
 ]
 
-  constructor(public _uf:UnidadFuncionalService) {
+  constructor(public _uf:UnidadFuncionalService,
+              private _http:HttpClient) {
      this._uf.getUnidades().subscribe( data =>{
          this.unidadFuncionales = data;
      })
@@ -428,18 +404,26 @@ export class ExpensasService {
   }
 
   getTipos():Observable<any>{
-   return new Observable(tipos =>{
-     tipos.next(this.tipos);
-    });
+    let url = URL_SERVICIOS + '/conceptos/tipos'
+    return this._http.get(url);
+   // return new Observable(tipos =>{
+   //   tipos.next(this.tipos);
+   //  });
   }
   postTipo(tipo:Tipo):Observable<any>{
-    return new Observable( payload =>{
-      this.tipos.push(tipo);
-      payload.next({
-        ok:true,
-        message: 'El tipo se guardo correctamente'
-      });
-    })
+    let url = URL_SERVICIOS + '/conceptos/tipo'
+    var headers = new HttpHeaders({
+      "Content-Type": "application/json"
+    });
+    return this._http.post(url,JSON.stringify(tipo),{headers: headers});
+
+    // return new Observable( payload =>{
+    //   this.tipos.push(tipo);
+    //   payload.next({
+    //     ok:true,
+    //     message: 'El tipo se guardo correctamente'
+    //   });
+    // })
   }
   deleteTipo(tipo:Tipo):Observable<any>{
     return new Observable( tipos =>{
@@ -451,11 +435,20 @@ export class ExpensasService {
     })
   }
   getConceptos():Observable<any>{
+   // let url = URL_SERVICIOS + '/conceptos'
+   // return this._http.get(url);
    return new Observable(conceptos =>{
      conceptos.next(this.conceptos);
     });
   }
   postConcepto(concepto:Concepto):Observable<any>{
+    // let url = URL_SERVICIOS + '/concepto'
+    // var headers = new HttpHeaders({
+    //   "Content-Type": "application/json"
+    // });
+    // console.log(JSON.stringify(concepto))
+    // return this._http.post(url,JSON.stringify(concepto),{headers: headers});
+
     return new Observable( payload =>{
       this.conceptos.push(concepto);
       this.postSaldos(concepto).subscribe( data =>{
@@ -488,7 +481,7 @@ export class ExpensasService {
         console.log("PRORRATEO - ", this.unidadFuncionales[j].prorrateo);
       }
       matriz.push(item);
-      
+
     }
     return matriz;
 

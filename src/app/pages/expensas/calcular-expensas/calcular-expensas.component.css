@@ -1,11 +1,15 @@
 .scroll-aside{
-  width: auto;
+  /* width: auto; */
   height: 600px;
   overflow: auto;
 }
 .left-aside{
   height: 600px;
-  width: 350px;
+  width: 200px;
+}
+.right-aside{
+  /* height: 600px; */
+  /* width: auto; */
 }
 .label-danger {
     background-color: #ef5350;

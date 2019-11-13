@@ -70,63 +70,63 @@ export class SidebarService {
           icono:'fa fa-2x fa-users menu-icon',
           action:[
             {
-              titulo: 'Crear Reuniones',
-              icono: 'fa fa-2x fa-edit icon-navbar text-success',
-              url:'/reuniones/crear-reuniones',
+              titulo: 'Agendar Reuniones',
+              icono: 'fa fa-2x fa-calendar icon-navbar text-success',
+              url:'/reuniones/agendar-reuniones',
             },
+            // {
+            //   titulo: 'Crear Reuniones',
+            //   icono: 'fa fa-2x fa-edit icon-navbar text-success',
+            //   url:'/reuniones/crear-reuniones',
+            // },
             {
               titulo: 'Ver Reuniones',
               icono: 'fa fa-2x fa-eye icon-navbar text-info',
               url:'/reuniones/ver-reuniones',
             }
-            ,
-            {
-              titulo: 'Agendar Reuniones',
-              icono: 'fa fa-2x fa-calendar icon-navbar text-warning',
-              url:'/reuniones/agendar-reuniones',
-            }
+
           ]
-        },
-        {
-          titulo:'Estadísticas',
-          icono:'mdi mdi-chart-bar menu-icon',
-          url:'/estadistica',
-          action:[
-            {
-              titulo: 'Crear Estadísticas',
-              icono: 'fa fa-2x fa-edit icon-navbar text-success',
-              url:'/estadistica/crear-estadisticas',
-            },
-            {
-              titulo: 'Ver Estadísticas',
-              icono: 'fa fa-2x fa-eye icon-navbar text-info',
-              url:'/estadistica/ver-estadisticas',
-            }
-          ]
-        },
+        }
+        // {
+        //   titulo:'Estadísticas',
+        //   icono:'mdi mdi-chart-bar menu-icon',
+        //   url:'/estadistica',
+        //   action:[
+        //     {
+        //       titulo: 'Crear Estadísticas',
+        //       icono: 'fa fa-2x fa-edit icon-navbar text-success',
+        //       url:'/estadistica/crear-estadisticas',
+        //     },
+        //     {
+        //       titulo: 'Ver Estadísticas',
+        //       icono: 'fa fa-2x fa-eye icon-navbar text-info',
+        //       url:'/estadistica/ver-estadisticas',
+        //     }
+        //   ]
+        // },
       ]
     },
     {
       titulo:'Mentenimiento',
       url:'/principal',
       submenu:[
-        {
-          titulo:'Consorcios',
-          icono:'fa fa-building menu-icon icon-navbar',
-          url:'/consorcios',
-          action:[
-            {
-              titulo: 'Crear Consorcio',
-              icono: 'fa fa-2x fa-edit icon-navbar text-success',
-              url:'/consorcios/crear-consorcio',
-            },
-            {
-              titulo: 'Ver Consorcios',
-              icono: 'fa fa-2x fa-eye icon-navbar text-info',
-              url:'/consorcios/ver-consorcios',
-            }
-          ]
-        },
+        // {
+        //   titulo:'Consorcios',
+        //   icono:'fa fa-building menu-icon icon-navbar',
+        //   url:'/consorcios',
+        //   action:[
+        //     {
+        //       titulo: 'Crear Consorcio',
+        //       icono: 'fa fa-2x fa-edit icon-navbar text-success',
+        //       url:'/consorcios/crear-consorcio',
+        //     },
+        //     {
+        //       titulo: 'Ver Consorcios',
+        //       icono: 'fa fa-2x fa-eye icon-navbar text-info',
+        //       url:'/consorcios/ver-consorcios',
+        //     }
+        //   ]
+        // },
         {
           titulo:'Usuarios',
           icono:'fa fa-briefcase menu-icon',

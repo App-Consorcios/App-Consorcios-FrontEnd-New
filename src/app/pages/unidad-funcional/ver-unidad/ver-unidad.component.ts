@@ -5,6 +5,7 @@ import { UnidadFuncional } from 'src/app/models/unidad-funcional.model';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Usuario } from 'src/app/models';
+import { VerUnidadService } from 'src/app/services/ver-unidad/ver-unidad.service';
 
 @Component({
   selector: 'app-ver-unidad',
@@ -36,7 +37,9 @@ export class VerUnidadComponent implements OnInit {
 
   constructor(private _uf:UnidadFuncionalService,
               private _ar:ActivatedRoute,
-              private _auth:AuthService) {
+              private _auth:AuthService,
+              private _vu:VerUnidadService) {
+
     this._ar.params.subscribe( params =>{
       this.pagActual = params['id'];
     })
@@ -45,7 +48,12 @@ export class VerUnidadComponent implements OnInit {
     })
     this._uf.getUnidades().subscribe( data =>{
       this.unidadesFuncionales = data;
-      console.log(this.unidadesFuncionales);
+      this._vu.setCodigo(this.unidadesFuncionales[this.pagActual].codigo)
+      this._vu.setProrrateo(this.unidadesFuncionales[this.pagActual].prorrateo)
+      this._vu.setTamanio(this.unidadesFuncionales[this.pagActual].tamanio)
+      this._vu.setUbicacion(this.unidadesFuncionales[this.pagActual].ubicacion)
+      this._vu.setDescripcion(this.unidadesFuncionales[this.pagActual].descripcion)
+
     });
     this.forma = new FormGroup({
       'codigo': new FormControl('',[Validators.required,Validators.minLength(3)]),
@@ -57,12 +65,7 @@ export class VerUnidadComponent implements OnInit {
 
   }
   ngOnInit() {
-    console.log(this.forma)
-    this.forma.controls['codigo'].setValue(this.unidadesFuncionales[this.pagActual].codigo)
-    this.forma.controls['prorrateo'].setValue(this.unidadesFuncionales[this.pagActual].prorrateo)
-    this.forma.controls['tamanio'].setValue(this.unidadesFuncionales[this.pagActual].tamanio)
-    this.forma.controls['ubicacion'].setValue(this.unidadesFuncionales[this.pagActual].ubicacion)
-    this.forma.controls['descrp'].setValue(this.unidadesFuncionales[this.pagActual].descripcion)
+
     this.inquilino = this.unidadesFuncionales[this.pagActual].inquilino;
     this.propietario = this.unidadesFuncionales[this.pagActual].propietario;
   }

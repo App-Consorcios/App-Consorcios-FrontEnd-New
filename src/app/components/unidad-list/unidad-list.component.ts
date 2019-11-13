@@ -6,6 +6,7 @@ import { MatSort, MatTableDataSource } from '@angular/material';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UnidadFuncionalService } from 'src/app/services/unidad-funcional/unidad-funcional.service';
+import { SelectionModel } from '@angular/cdk/collections';
 
 export interface ListUsuario {
   nombre:string;
@@ -28,7 +29,7 @@ export class UnidadListComponent implements OnInit {
   element:any;
   nombre:string;
   displayedColumns: string[] = ['nombre', 'roles','unidades'];
-  displayedColumnsUnidades: string[] = ['propietario', 'inquilino','unidad','descripcion'];
+  displayedColumnsUnidades: string[] = ['propietario', 'inquilino','unidad','descripcion','select'];
   dataSourcePropietario;
   dataSourceInquilino;
   dataSourceUnidades;
@@ -46,10 +47,34 @@ export class UnidadListComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(public _user:UsuarioService,public _uni:UnidadFuncionalService) { }
+  selection = new SelectionModel<ListUnidadesCompleta>(true, []);
 
   ngOnInit() {
     this.init();
   }
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    // this.init();
+    const numSelected = this.selection.selected.length;
+    // console.log(this.dataSourceUnidades)
+    // const numRows = this.dataSourceUnidades.unidad.length;
+    const numRows = 3;
+    return numSelected === numRows;
+  }
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+   masterToggle() {
+     this.isAllSelected() ?
+         this.selection.clear() :
+         this.dataSourceUnidades.data.forEach(row => this.selection.select(row));
+   }
+
+   /** The label for the checkbox on the passed row */
+   checkboxLabel(row?: ListUnidadesCompleta): string {
+     if (!row) {
+       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+     }
+     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.propietario + 1}`;
+   }
   init(){
     this._user.recuperarUsuarios()
               .subscribe( (resp:any) =>{

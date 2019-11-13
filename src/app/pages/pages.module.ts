@@ -32,7 +32,7 @@ import { VerConsorcioComponent } from './consorcios/ver-consorcio/ver-consorcio.
 import { DetalleExpensasComponent } from './expensas/detalle-expensas/detalle-expensas.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {DragDropModule} from '@angular/cdk/drag-drop';
-import { ResultadosComponent } from './unidad-funcional/ver-unidad/resultados/resultados.component';
+// import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
 
 @NgModule({
   declarations: [
@@ -60,7 +60,6 @@ import { ResultadosComponent } from './unidad-funcional/ver-unidad/resultados/re
     EliminarUsuariosComponent,
     CrearConsorcioComponent,
     VerConsorcioComponent,
-    ResultadosComponent,
     DetalleExpensasComponent
   ],
   imports: [

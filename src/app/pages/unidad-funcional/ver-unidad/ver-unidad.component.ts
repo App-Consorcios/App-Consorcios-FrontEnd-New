@@ -46,8 +46,12 @@ export class VerUnidadComponent implements OnInit {
     })
     this._uf.getUnidades().subscribe( data =>{
       this.unidadesFuncionales = data;
-      console.log("GET UF VER UNIDAD - ",this.unidadesFuncionales);
-    });
+      console.log("GET UFs VER UNIDAD - ",this.unidadesFuncionales);
+
+      console.log("UNIDADES FUNCIONALES - ", this.unidadesFuncionales);
+
+    
+    
     this.forma = new FormGroup({
       'codigoDepartamento': new FormControl('',[Validators.required,Validators.minLength(3)]),
       'prorrateo': new FormControl('',Validators.required),
@@ -56,10 +60,14 @@ export class VerUnidadComponent implements OnInit {
         'descripcionUbicacion': new FormControl('')
     })
 
-  }
-  ngOnInit() {
     console.log(this.forma)
-    console.log("PAG ACTUAL - ", this.pagActual);
+    // console.log("PAG ACTUAL - ", this.pagActual);
+    // console.log("FORMA CONTROLS - ", this.forma.controls);
+    
+    // console.log("UNIDADES FUNCIONALES - ", this.unidadesFuncionales);
+    // console.log("SET VALUE - ", this.unidadesFuncionales[this.pagActual].codigoDepartamento);
+    
+    
     
     this.forma.controls['codigoDepartamento'].setValue(this.unidadesFuncionales[this.pagActual].codigoDepartamento)
     this.forma.controls['prorrateo'].setValue(this.unidadesFuncionales[this.pagActual].prorrateo)
@@ -68,6 +76,25 @@ export class VerUnidadComponent implements OnInit {
     this.forma.controls['descripcionUbicacion'].setValue(this.unidadesFuncionales[this.pagActual].descripcionUbicacion)
     this.inquilino = this.unidadesFuncionales[this.pagActual].inquilino;
     this.propietario = this.unidadesFuncionales[this.pagActual].propietario;
+    });
+  }
+  ngOnInit() {
+    // console.log(this.forma)
+    // // console.log("PAG ACTUAL - ", this.pagActual);
+    // // console.log("FORMA CONTROLS - ", this.forma.controls);
+    
+    // // console.log("UNIDADES FUNCIONALES - ", this.unidadesFuncionales);
+    // // console.log("SET VALUE - ", this.unidadesFuncionales[this.pagActual].codigoDepartamento);
+    
+    
+    
+    // this.forma.controls['codigoDepartamento'].setValue(this.unidadesFuncionales[this.pagActual].codigoDepartamento)
+    // this.forma.controls['prorrateo'].setValue(this.unidadesFuncionales[this.pagActual].prorrateo)
+    // this.forma.controls['metrosCuadrados'].setValue(this.unidadesFuncionales[this.pagActual].metrosCuadrados)
+    // this.forma.controls['codigoUbicacion'].setValue(this.unidadesFuncionales[this.pagActual].codigoUbicacion)
+    // this.forma.controls['descripcionUbicacion'].setValue(this.unidadesFuncionales[this.pagActual].descripcionUbicacion)
+    // this.inquilino = this.unidadesFuncionales[this.pagActual].inquilino;
+    // this.propietario = this.unidadesFuncionales[this.pagActual].propietario;
   }
 
 }

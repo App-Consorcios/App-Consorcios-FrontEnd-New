@@ -4,7 +4,7 @@
 }
 .example-viewport {
   height: 400px;
-  width: 290px;
+  width: 100%;
   border: 1px solid #acacac;
 }
 .example-list {

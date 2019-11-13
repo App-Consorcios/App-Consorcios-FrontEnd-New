@@ -49,6 +49,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ReunionesVistaComponent } from './reuniones-vista/reuniones-vista.component';
 import { VotacionComponent } from './votacion/votacion.component';
+import { IconLikeComponent } from './icon-like/icon-like.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { VotacionComponent } from './votacion/votacion.component';
   CalcularTotalesComponent,
   CalendarComponent,
   ReunionesVistaComponent,
-  VotacionComponent
+  VotacionComponent,
+  IconLikeComponent
 ],
   imports: [
     CommonModule,

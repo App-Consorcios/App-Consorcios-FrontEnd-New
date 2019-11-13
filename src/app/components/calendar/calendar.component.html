@@ -1,8 +1,8 @@
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-md-4">
         <div class="card-body">
             <h4 class="card-title m-t-10" >Reuniones</h4>
-            <h6 class="text-muted">Hay solo <span><strong>10</strong></span> reuniones creadas </h6>
+            <h6 class="text-muted">Hay solo <span><strong>9</strong></span> reuniones creadas </h6>
             <hr>
 
             <div class="row">
@@ -27,9 +27,11 @@
                       </mat-accordion>
 
                       </cdk-virtual-scroll-viewport>
-                      <p>
+
+                      <hr>
+                      <p >
                         <input type='checkbox' #dropRemove id='drop-remove' />
-                        <label for='drop-remove'>remove after drop</label>
+                        <label for='drop-remove'>Borrar despues de arrojar</label>
                       </p>
                     </div>
                     <a href="#" data-toggle="modal" data-target="#add-new-event" class="btn m-t-10 btn-info btn-block waves-effect waves-light">
@@ -39,8 +41,8 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-8">
-        <div class="container b-l calender-sidebar">
+    <div class="col-md-8">
+        <div class="container calender-sidebar">
             <div #calendar id="calendar"></div>
         </div>
     </div>

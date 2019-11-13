@@ -3,7 +3,7 @@
 
     <div class="contact-page-aside">
       <div class="left-aside bg-light-part">
-        <form [formGroup]="forma" (ngSubmit)="guardarConcepto()" novalidate="novalidate" style="margin-top:20px">
+        <form [formGroup]="forma" (ngSubmit)="guardarConcepto()" novalidate="novalidate" style="margin-top:30px">
           <div class="form-group">
             <ul class="list-style-none">
               <li class="box-label"><a href="javascript:void(0)">Categorías<span> </span></a></li>
@@ -37,9 +37,9 @@
                 </div>
               </div>
 
-              <div class="UF_Totales">
+              <div class="UF_Totales" style="margin-top:-20px;">
                   <div class="table-responsive">
-                    <table id="demo-foo-addrow" class="table m-t-30 table-hover no-wrap contact-list table-striped" data-page-size="10">
+                    <table id="demo-foo-addrow" class="table  table-hover no-wrap contact-list table-striped" data-page-size="10">
                       <thead>
                         <tr>
                           <th *ngFor="let uf of unidadFuncionales">{{uf.codigo}}</th>

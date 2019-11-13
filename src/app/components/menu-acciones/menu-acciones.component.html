@@ -8,7 +8,7 @@
         <div class="col-md-10">
           <!--  -->
           <ul class="quick-actions border">
-            <span class="title-menu"><h5>Menu de acciones</h5></span>
+            <span class="title-menu"><h5>Menú de acciones</h5></span>
             <li  [ngClass]="{'active': isActive(menu.url)}" [routerLink]="[menu.url]"  *ngFor="let menu of this._navbar.cargarSubmenu()"> <i [class]="menu.icono"></i> <a > {{menu.titulo}} </a> </li>
           </ul>
         </div>

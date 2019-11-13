@@ -116,7 +116,7 @@
       </ng-container>
 
       <ng-container matColumnDef="descripcion">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>  Descripcion</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  Descripción</th>
         <td mat-cell *matCellDef="let element;let i = index;">
           <input type="hidden" [(ngModel)]="element.descripcion" name="descripcion">{{element.descripcion}}
         </td>
@@ -127,6 +127,6 @@
     </table>
   </div>
   <div class="text-right" style="margin-top:10px;">
-    <button class="btn btn-danger text-white" type="submit"><i class="fa fa-trash" style="margin-right:10px;"></i>  <b>Elimnar asignación</b></button>
+    <button class="btn btn-danger text-white" type="submit"><i class="fa fa-trash" style="margin-right:10px;"></i>  <b>Eliminar asignación</b></button>
   </div>
 </form>

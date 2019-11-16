@@ -5,6 +5,7 @@ import { UnidadFuncional } from 'src/app/models/unidad-funcional.model';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Usuario } from 'src/app/models';
+import { VerUnidadService } from 'src/app/services/ver-unidad/ver-unidad.service';
 
 @Component({
   selector: 'app-ver-unidad',
@@ -37,7 +38,9 @@ export class VerUnidadComponent implements OnInit {
 
   constructor(private _uf:UnidadFuncionalService,
               private _ar:ActivatedRoute,
-              private _auth:AuthService) {
+              private _auth:AuthService,
+              private _vu:VerUnidadService) {
+
     this._ar.params.subscribe( params =>{
       this.pagActual = params['id'];
     })
@@ -52,6 +55,21 @@ export class VerUnidadComponent implements OnInit {
 
     
     
+      this._vu.setCodigo(this.unidadesFuncionales[this.pagActual].codigoDepartamento)
+      this._vu.setProrrateo(this.unidadesFuncionales[this.pagActual].prorrateo)
+      this._vu.setTamanio(this.unidadesFuncionales[this.pagActual].metrosCuadrados)
+      this._vu.setUbicacion(this.unidadesFuncionales[this.pagActual].codigoUbicacion)
+      this._vu.setDescripcion(this.unidadesFuncionales[this.pagActual].descripcionUbicacion)
+
+
+      this.forma.controls['codigoDepartamento'].setValue(this.unidadesFuncionales[this.pagActual].codigoDepartamento)
+      this.forma.controls['prorrateo'].setValue(this.unidadesFuncionales[this.pagActual].prorrateo)
+      this.forma.controls['metrosCuadrados'].setValue(this.unidadesFuncionales[this.pagActual].metrosCuadrados)
+      this.forma.controls['codigoUbicacion'].setValue(this.unidadesFuncionales[this.pagActual].codigoUbicacion)
+      this.forma.controls['descripcionUbicacion'].setValue(this.unidadesFuncionales[this.pagActual].descripcionUbicacion)
+
+
+    });
     this.forma = new FormGroup({
       'codigoDepartamento': new FormControl('',[Validators.required,Validators.minLength(3)]),
       'prorrateo': new FormControl('',Validators.required),
@@ -69,32 +87,14 @@ export class VerUnidadComponent implements OnInit {
     
     
     
-    this.forma.controls['codigoDepartamento'].setValue(this.unidadesFuncionales[this.pagActual].codigoDepartamento)
-    this.forma.controls['prorrateo'].setValue(this.unidadesFuncionales[this.pagActual].prorrateo)
-    this.forma.controls['metrosCuadrados'].setValue(this.unidadesFuncionales[this.pagActual].metrosCuadrados)
-    this.forma.controls['codigoUbicacion'].setValue(this.unidadesFuncionales[this.pagActual].codigoUbicacion)
-    this.forma.controls['descripcionUbicacion'].setValue(this.unidadesFuncionales[this.pagActual].descripcionUbicacion)
-    this.inquilino = this.unidadesFuncionales[this.pagActual].inquilino;
-    this.propietario = this.unidadesFuncionales[this.pagActual].propietario;
-    });
+
   }
   ngOnInit() {
-    // console.log(this.forma)
-    // // console.log("PAG ACTUAL - ", this.pagActual);
-    // // console.log("FORMA CONTROLS - ", this.forma.controls);
+
+    this.inquilino = this.unidadesFuncionales[this.pagActual].inquilino;
+    this.propietario = this.unidadesFuncionales[this.pagActual].propietario;
     
-    // // console.log("UNIDADES FUNCIONALES - ", this.unidadesFuncionales);
-    // // console.log("SET VALUE - ", this.unidadesFuncionales[this.pagActual].codigoDepartamento);
-    
-    
-    
-    // this.forma.controls['codigoDepartamento'].setValue(this.unidadesFuncionales[this.pagActual].codigoDepartamento)
-    // this.forma.controls['prorrateo'].setValue(this.unidadesFuncionales[this.pagActual].prorrateo)
-    // this.forma.controls['metrosCuadrados'].setValue(this.unidadesFuncionales[this.pagActual].metrosCuadrados)
-    // this.forma.controls['codigoUbicacion'].setValue(this.unidadesFuncionales[this.pagActual].codigoUbicacion)
-    // this.forma.controls['descripcionUbicacion'].setValue(this.unidadesFuncionales[this.pagActual].descripcionUbicacion)
-    // this.inquilino = this.unidadesFuncionales[this.pagActual].inquilino;
-    // this.propietario = this.unidadesFuncionales[this.pagActual].propietario;
   }
+
 
 }

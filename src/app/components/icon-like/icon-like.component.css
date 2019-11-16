@@ -1,0 +1,9 @@
+.alineado{
+  position: absolute;
+  top: -5px;
+  left: 50px;
+  font-size: 14px;
+}
+.pointer{
+  cursor:pointer;
+}

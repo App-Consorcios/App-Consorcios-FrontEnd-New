@@ -3,8 +3,8 @@
     width: auto;
 } */
 .carousel{
-  height: 400px;
-  width: 350px;
+  height: 420px;
+  width: 100%;
   background-color: rgba(0,0,0,.03);
   padding-top: 5px;
   padding-left: 10px;

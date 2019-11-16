@@ -42,6 +42,14 @@ import { UnidadListComponent } from './unidad-list/unidad-list.component';
 import { UsuarioIconComponent } from './usuario-icon/usuario-icon.component';
 import { FormInquilinoComponent } from './form-inquilino/form-inquilino.component';
 import { SelectUnidadComponent } from './select-unidad/select-unidad.component';
+import { CalcularTotalesComponent } from './calcular-totales/calcular-totales.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ReunionesVistaComponent } from './reuniones-vista/reuniones-vista.component';
+import { VotacionComponent } from './votacion/votacion.component';
+import { IconLikeComponent } from './icon-like/icon-like.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +61,12 @@ import { SelectUnidadComponent } from './select-unidad/select-unidad.component';
   UnidadListComponent,
   UsuarioIconComponent,
   FormInquilinoComponent,
-  SelectUnidadComponent
+  SelectUnidadComponent,
+  CalcularTotalesComponent,
+  CalendarComponent,
+  ReunionesVistaComponent,
+  VotacionComponent,
+  IconLikeComponent
 ],
   imports: [
     CommonModule,
@@ -92,7 +105,10 @@ import { SelectUnidadComponent } from './select-unidad/select-unidad.component';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    FullCalendarModule,
+    ScrollingModule,
+    DragDropModule
   ],
   exports:[
     MenuAccionesComponent,
@@ -103,7 +119,11 @@ import { SelectUnidadComponent } from './select-unidad/select-unidad.component';
     UnidadListComponent,
     UsuarioIconComponent,
     FormInquilinoComponent,
-    SelectUnidadComponent
+    SelectUnidadComponent,
+    CalcularTotalesComponent,
+    CalendarComponent,
+    ReunionesVistaComponent,
+    VotacionComponent
   ]
 })
 export class ComponentsModule { }

@@ -1,0 +1,11 @@
+.scroll-aside{
+  /* width: auto; */
+  /* height: 600px; */
+ background-color: #f8f9fa;
+  overflow:scroll;
+}
+.colorHeader{
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+}

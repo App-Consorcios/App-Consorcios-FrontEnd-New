@@ -1,0 +1,103 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="card-body">
+            <h4 class="card-title m-t-10" >Reuniones</h4>
+            <h6 class="text-muted">Hay solo <span><strong>9</strong></span> reuniones creadas </h6>
+            <hr>
+
+            <div class="row">
+                <div class="col-md-12">
+                  <div #externalEvents>
+                    <cdk-virtual-scroll-viewport itemSize="5" class="example-viewport list-group">
+                      <mat-accordion>
+                      <mat-expansion-panel *ngFor="let item of listEvents;let i  = index" class='fc-event'>
+                        <mat-expansion-panel-header >
+                          <mat-panel-title style="text-align:left;">
+                            <div  class="calendar-events" ><span class="fa fa-circle" [ngClass]="item.className"  style="margin-right:5px"></span>{{item.title}}</div>
+                          </mat-panel-title>
+
+                        </mat-expansion-panel-header>
+                          <mat-panel-description>
+                            Temas propuestos
+                          </mat-panel-description>
+                          <ol>
+                            <li style="color:#000;text-align:left;" *ngFor="let item of listEvents[i].item">{{item.descripcion}}  </li>
+                          </ol>
+                      </mat-expansion-panel>
+                      </mat-accordion>
+
+                      </cdk-virtual-scroll-viewport>
+
+                      <hr>
+                      <p >
+                        <input type='checkbox' #dropRemove id='drop-remove' />
+                        <label for='drop-remove'>Borrar despues de arrojar</label>
+                      </p>
+                    </div>
+                    <a href="#" data-toggle="modal" data-target="#add-new-event" class="btn m-t-10 btn-info btn-block waves-effect waves-light">
+                            <i class="fa fa-plus"></i> Crear una reunión
+                        </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8" style="margin-left:-10px;">
+        <div class="calender-sidebar">
+            <div #calendar id="calendar"></div>
+        </div>
+    </div>
+</div>
+
+<!-- BEGIN MODAL -->
+<div class="modal none-border" id="my-event">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Crear reunión</strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success save-event waves-effect waves-light">Crear reunión</button>
+                <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Borrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Add Category -->
+<div class="modal fade none-border" id="add-new-event">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Agregar</strong> Reunión</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label">Nombre de la reunión</label>
+                            <input class="form-control form-white" placeholder="Ingresar nombre" type="text" name="category-name" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label">Elija un color</label>
+                            <select class="form-control form-white" data-placeholder="Elejir color..." name="category-color">
+                                <option value="success">Verde</option>
+                                <option value="danger">Rojo</option>
+                                <option value="info">Gris</option>
+                                <option value="primary">Celeste</option>
+                                <option value="warning">Amarillo</option>
+                                <option value="inverse">Negro</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info waves-effect waves-light save-category" data-dismiss="modal">Guardar</button>
+                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

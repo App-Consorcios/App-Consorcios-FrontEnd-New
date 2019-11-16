@@ -1,0 +1,86 @@
+<!--
+<div class="row">
+  <div class="col-md-8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="prioridad">
+      <th mat-header-cell *matHeaderCellDef> Prioridad </th>
+      <td mat-cell *matCellDef="let element;let i =index;" (click)="item=i"> {{element.prioridad}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="descripcion" >
+      <th mat-header-cell *matHeaderCellDef> Descripción </th>
+      <td mat-cell *matCellDef="let element;let i =index;" (click)="item=i"> {{element.descripcion}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fecha">
+      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+      <td mat-cell *matCellDef="let element;let i =index;" (click)="item=i"> {{element.fecha}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div class="col-md-4">
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let item of reuniones[0].item">
+        <div class="row">
+          <div class="col-md-6">
+          {{item.descripcion}}
+          </div>
+          <div class="col-md-3">
+              <mat-icon class="example-tab-icon">thumb_down</mat-icon>
+          </div>
+          <div class="col-md-3">
+              <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+          </div>
+        </div>
+      <mat-divider ></mat-divider>
+      </mat-list-item>
+
+    </mat-list>
+  </div>
+</div> -->
+  <h4 class="card-title m-t-10" >Historial de Reuniones </h4>
+  <hr>
+<mat-accordion>
+<mat-expansion-panel *ngFor="let item of listEvents;let i  = index" >
+  <mat-expansion-panel-header >
+    <mat-panel-title style="text-align:left;">
+      <div  class="calendar-events" ><span class="fa fa-circle" [ngClass]="item.className"  style="margin-right:5px"></span>{{item.date}} -  {{item.title}}</div>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+    <mat-panel-description *ngIf="listEvents[i].item.length>0">
+      Temas propuestos
+    </mat-panel-description>
+    <ol *ngIf="listEvents[i].item.length>0">
+      <li style="color:#000;text-align:left;" *ngFor="let item of listEvents[i].item">
+
+        <div class="row">
+          <div class="col-md-10">
+            {{item.descripcion}}
+          </div>
+          <div class="col-md-2">
+
+            <div class="row">
+
+              <div class="col-md-6">
+                <!-- <mat-icon class="example-tab-icon text-success">thumb_up</mat-icon> -->
+                <app-icon-like [up] ="true" [down] = "false"></app-icon-like>
+                <!-- <mat-icon class="example-tab-icon text-danger">thumb_down</mat-icon> -->
+              </div>
+              <div class="col-md-6">
+
+                <app-icon-like [up] ="false" [down] = "true"></app-icon-like>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </li>
+    </ol>
+</mat-expansion-panel>
+</mat-accordion>

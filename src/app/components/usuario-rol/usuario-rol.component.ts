@@ -11,7 +11,8 @@ import { Usuario } from 'src/app/models';
 export class UsuarioRolComponent implements OnInit {
   usuarios: Usuario[] = [];
   cantidadSelected:number = 0;
-  selected:Usuario[] =[]
+  selected:Usuario[] =[];
+
 
   constructor(public _user:UsuarioService,
               public _auth:AuthService) { }
@@ -46,8 +47,12 @@ export class UsuarioRolComponent implements OnInit {
   guardar(){
     let usuario;
     for(let user of this.selected){
-      usuario = this.usuarios.filter( (data:any) => data.mail == user );
-      this._user.asignarRol(usuario.id,[{nombre: "usuario" }]);
+      usuario = this.usuarios.filter( (data:any) => data.mail == user);
+      if(usuario.length>0){
+        let index = this.usuarios.indexOf(usuario[0]);
+        this.usuarios.splice(index,1);
+      }
+      this._user.asignarRol(usuario[0].id,{roles:[{nombre: "usuario" }]}).subscribe(data=>console.log(data));
     }
   }
 }

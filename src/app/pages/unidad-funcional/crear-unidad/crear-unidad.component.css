@@ -10,3 +10,6 @@
 .form-group .row{
   text-align: left;
 }
+.badge-borde{
+  border-radius: 30px;
+}

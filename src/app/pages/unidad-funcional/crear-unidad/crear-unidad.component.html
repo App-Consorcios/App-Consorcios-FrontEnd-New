@@ -1,4 +1,3 @@
-<div class="col-12">
     <div class="card">
         <div class="card-body">
           <div class="row">
@@ -7,6 +6,27 @@
               <h6 class="text-muted">Hay solo <span><strong>{{unidadesFuncionales.length}}</strong></span> modelos creados </h6>
 
               <hr>
+<!--
+                <form [formGroup]="forma2"
+                      (ngSubmit)="guardarCambios()"
+                      novalidate="novalidate"
+                      class="form-horizontal">
+                      <div class="row" style="margin-left: 5px;">
+                        <div class="col-md-8 row">
+                            <input type="text"
+                                   class="form-control form-control-margin badge-borde"
+                                   placeholder="Buscar unidad funcional..."
+                                   formControlName="buscar">
+                        </div>
+                        <div class="col-md-4">
+                          <a href="javascript:void(0);" class="btn btn-primary badge-borde"><i class="fa fa-search"></i>   Buscar </a>
+                        </div>
+                      </div>
+                </form> -->
+
+
+              <br>
+
               <app-carrousel-multiple [content] = "unidadesFuncionales"></app-carrousel-multiple>
             </div>
             <div class="col-md-7">
@@ -22,13 +42,16 @@
                   </div>
 
                   <div class="col-md-4">
-                    <div class="text-right" >
-                      <button class="btn btn-info text-white" type="submit" [disabled]="forma.valid?false:false"><i class="fa fa-save" style="margin-right:10px;"></i>  <b>Guardar</b></button>
-                    </div>
+                    <!-- <div class="text-right" >
+                      <button class="btn btn-primary text-white" type="submit" [disabled]="forma.valid?false:false"><i class="fa fa-file" style="margin-right:10px;"></i>  <b>Importar</b></button>
+                    </div> -->
                   </div>
                 </div>
 
                       <hr style="margin-top:10px">
+                      <div *ngIf="mensaje"style="text-align:center;margin-top:5px;">
+                        <h5 ><i class="fa fa-check text-success" style="margin-right:10px;"> </i>Genial !! La unidad <strong>{{unidad}}</strong> se a guardado con éxito... </h5>
+                      </div>
                       <div class="row form-control-margin">
                           <div class="col-md-12">
                               <div class="form-group row" [ngClass]="{ 'has-danger': (!forma.get('codigoDepartamento').valid) && forma.get('codigoDepartamento').touched}">
@@ -153,10 +176,18 @@
                             </div>
                         </div>
                       </div>
+                  <div class="row">
+                    <div class="col-md-8">
+                      </div>
+
+                    <div class="col-md-4">
+                      <div class="text-right" >
+                        <button class="btn btn-info text-white" type="submit" [disabled]="forma.valid?false:false"><i class="fa fa-save" style="margin-right:10px;"></i>  <b>Guardar</b></button>
+                      </div>
+                    </div>
+                  </div>
               </form>
-              <div *ngIf="mensaje"style="text-align:center;margin-top:5px;">
-                <h5 ><i class="fa fa-check text-success" style="margin-right:10px;"> </i>Genial !! La unidad <strong>{{unidad}}</strong> se a guardado con éxito... </h5>
-              </div>
+
 
             </div>
           </div>
@@ -166,4 +197,3 @@
 
         </div>
     </div>
-</div>

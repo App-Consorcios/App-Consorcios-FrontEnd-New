@@ -33,7 +33,7 @@ export class CalcularExpensasComponent implements OnInit {
       this.unidadFuncionales  = data;
     });
     console.log("UFS - ", this.unidadFuncionales);
-    
+
     this.recuperaSaldos()
     let formControl:any = []
     for(let i = 0;i<this.conceptos.length;i++){
@@ -44,7 +44,7 @@ export class CalcularExpensasComponent implements OnInit {
       'costos': new FormArray(formControl)
     });
     console.log("FORMA COSTOS - ", this.forma);
-    
+
   }
   recuperaSaldos(){
     this._exp.getSaldos().subscribe( saldos =>{
@@ -59,8 +59,8 @@ export class CalcularExpensasComponent implements OnInit {
       this.costos.push(costosSUM)
 
       this.conceptos = conceptoSaldo;
-      this.conceptos.push({nombre: "Totales", tipo: {nombre: "Totales", color: "Rojo", sigla: "T"}})
-      
+      this.conceptos.push({nombre: "Totales", tipo: {nombre: "Totales", color: "Rojo"}})
+
     })
   }
   modificarSaldos(){
@@ -85,13 +85,13 @@ export class CalcularExpensasComponent implements OnInit {
     // this.matrizCalculada = this.matriz
 
 
-    
+
     // for(let UF=0; UF < this.matriz.length; UF++){
     //   for(let i = 0; i < this.matriz.UF.length; i++){
     //     this.matrizCalculada[i][UF] = this.costos[i] * this.matriz[i][UF]
     //   }
     // }
-    
+
   }
 
 

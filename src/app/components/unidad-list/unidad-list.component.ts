@@ -7,6 +7,7 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UnidadFuncionalService } from 'src/app/services/unidad-funcional/unidad-funcional.service';
 import { SelectionModel } from '@angular/cdk/collections';
+import { NgForm } from '@angular/forms';
 
 export interface ListUsuario {
   nombre:string;
@@ -160,9 +161,13 @@ export class UnidadListComponent implements OnInit {
   }
 
 
-  guardar(forma){
-    console.log("GUARDAR");
+  guardar(forma:NgForm){
+    console.log("UNIDADES guardar", this.unidades);
+    console.log("FORMA", forma);
     
+
+    //asignarRol SERVICE
+
   }
 
 }

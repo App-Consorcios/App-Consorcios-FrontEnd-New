@@ -5,6 +5,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
+import { ReunionesService } from 'src/app/services/reuniones/reuniones.service';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 declare var jQuery:any;
 @Component({
@@ -13,7 +14,18 @@ declare var jQuery:any;
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
-  listEvents:any[] = [
+
+  nombreReunion: string
+  colorReunion: string
+  
+  reunion: {
+    title,
+    date,
+    className,
+    item: []
+  }
+
+  listEvents:any = [
     { title: 'Reunion para alquileres de amenities', date: '2019-11-10', className:'text-info',
       item:[
         {nroitm:1, descripcion:"Alquiler de sala de juegos"},
@@ -38,7 +50,7 @@ export class CalendarComponent implements OnInit {
     { title: 'Horarios de descanso', date: '2019-11-10', className:'text-success', item:[] },
     { title: 'Alquileres de garage', date: '2019-11-10', className:'text-danger', item:[] }
 ];
-  calendarEvents:any[] = [{ title: 'Gran fiesta', date: '2019-11-10', color: 'red' }];
+  calendarEvents:any = [{ title: 'Gran fiesta', date: '2019-11-10', color: 'red' }];
   // calendarPlugins = [dayGridPlugin, timeGridPlugin, listPlugin]; // important!
 
   @ViewChild('calendar',{static:true}) calendar: ElementRef<any>;
@@ -48,7 +60,27 @@ export class CalendarComponent implements OnInit {
   // calendarEvents = [
   //   { title: 'event 1', date: '2019-04-01' }
   // ];
-  constructor(public cd:ChangeDetectorRef) { }
+  constructor(public cd:ChangeDetectorRef, private reunionesService: ReunionesService) { 
+    this.reunionesService.getReuniones().subscribe(data => {
+
+      // Object.keys(data).forEach(function(key) {
+      //   // console.log(key, data[key]);
+        
+      //   //mapeo
+      //   let reunion
+      //   reunion.title = data[descripcion]]
+
+      //   this.listEvents.push(reunion)
+  
+      // });
+
+      // this.listEvents = data;
+      // this.calendarEvents = data;
+      // console.log("get reuniones LIST EVENTS - ", this.listEvents );
+      
+    })
+
+  }
 
   ngOnInit() {
      var calendarEl = this.calendar.nativeElement
@@ -131,6 +163,27 @@ export class CalendarComponent implements OnInit {
 
     }
   }
+
+  nuevaReunion(){
+    console.log("NUEVA REUNION - ", this.nombreReunion, this.colorReunion);
+    this.reunionesService.crearReunion(this.nombreReunion, this.colorReunion)
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // addEvent() {
   //   this.calendarEvents = this.calendarEvents.concat({ // creates a new array!
   //      title: 'event 2', date: '2019-04-02'

@@ -78,24 +78,24 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label class="control-label">Nombre de la reunión</label>
-                            <input class="form-control form-white" placeholder="Ingresar nombre" type="text" name="category-name" />
+                            <input [(ngModel)]="nombreReunion" class="form-control form-white" placeholder="Ingresar nombre" type="text" name="category-name" />
                         </div>
                         <div class="col-md-6">
                             <label class="control-label">Elija un color</label>
-                            <select class="form-control form-white" data-placeholder="Elejir color..." name="category-color">
-                                <option value="success">Verde</option>
-                                <option value="danger">Rojo</option>
-                                <option value="info">Gris</option>
-                                <option value="primary">Celeste</option>
-                                <option value="warning">Amarillo</option>
-                                <option value="inverse">Negro</option>
+                            <select  [(ngModel)]="colorReunion" class="form-control form-white" data-placeholder="Elejir color..." name="category-color">
+                                <option value="verde">Verde</option>
+                                <option value="rojo">Rojo</option>
+                                <option value="gris">Gris</option>
+                                <option value="celeste">Celeste</option>
+                                <option value="amarillo">Amarillo</option>
+                                <option value="negro">Negro</option>
                             </select>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-info waves-effect waves-light save-category" data-dismiss="modal">Guardar</button>
+                <button type="button" (click)="nuevaReunion()" class="btn btn-info waves-effect waves-light save-category" data-dismiss="modal">Guardar</button>
                 <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cerrar</button>
             </div>
         </div>

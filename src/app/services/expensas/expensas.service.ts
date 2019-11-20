@@ -535,4 +535,9 @@ export class ExpensasService {
      });
    }
 
+
+   //POST de total expensas generales
+   postExpensas(){
+   }
+
 }

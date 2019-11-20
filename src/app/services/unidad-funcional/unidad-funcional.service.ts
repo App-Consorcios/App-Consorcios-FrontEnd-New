@@ -177,7 +177,7 @@ export class UnidadFuncionalService {
   }
 
   asignarUnidad(){
-
+    //PUT
   }
 
 }

@@ -32,15 +32,28 @@ export class ReunionesService {
 
 
     let reunion = {
-      "color": nombre,
-      "descripcion": color
+      "color": color,
+      "descripcion": nombre
     }
 
-    return this.http.post(url,JSON.stringify(reunion),{headers: headers}).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error))
+    return this.http.post(url,JSON.stringify(reunion),{headers: headers})
+  }
+
+  agendarReunion(idReunion:any, fecha:Date){
+    console.log("SERVICE AGENDAR REUNION - ", idReunion, fecha );
+    let url = URL_SERVICIOS+'/reunion?id='+idReunion;
+    console.log("URL - ", url);
+    
+    var headers = new HttpHeaders({
+      "Content-Type": "application/json"
+    });
 
 
+    let fechaRequest = {
+      "fecha": fecha
+    }
+
+    return this.http.put(url,JSON.stringify(fechaRequest),{headers: headers})
   }
   
 }

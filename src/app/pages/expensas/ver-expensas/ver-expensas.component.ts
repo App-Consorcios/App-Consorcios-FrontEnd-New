@@ -26,6 +26,9 @@ export class VerExpensasComponent implements OnInit {
           dom: 'Bfrtip',
           buttons: [], // 'pdf', 'print'
           info: false,
+          language: {
+            url: '//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'
+          }
         });
       });
     }, 300);

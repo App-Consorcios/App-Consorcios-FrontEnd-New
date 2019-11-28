@@ -2,7 +2,7 @@
     <div class="col-md-4">
         <div class="card-body">
             <h4 class="card-title m-t-10" >Reuniones</h4>
-            <h6 class="text-muted">Hay solo <span><strong>9</strong></span> reuniones creadas </h6>
+            <!-- <h6 class="text-muted">Hay solo <span><strong>9</strong></span> reuniones creadas </h6> -->
             <hr>
 
             <div class="row">
@@ -13,7 +13,7 @@
                       <mat-expansion-panel *ngFor="let item of listEvents;let i  = index" class='fc-event'>
                         <mat-expansion-panel-header >
                           <mat-panel-title style="text-align:left;">
-                            <div  class="calendar-events" ><span style="display:none;">1</span><span class="fa fa-circle" [ngClass]="item.className"  style="margin-right:5px"></span>{{item.title}}</div>
+                            <div  class="calendar-events" > <span style="display:none;">{{item.id}} </span> <span class="fa fa-circle" [ngClass]= "'text-'+item.className"  style="margin-right:5px"></span>{{item.title}}</div>
                           </mat-panel-title>
 
                         </mat-expansion-panel-header>
@@ -22,6 +22,7 @@
                           </mat-panel-description>
                           <ol>
                             <li style="color:#000;text-align:left;" *ngFor="let item of listEvents[i].item">{{item.descripcion}}  </li>
+
                           </ol>
                       </mat-expansion-panel>
                       </mat-accordion>
@@ -83,12 +84,12 @@
                         <div class="col-md-6">
                             <label class="control-label">Elija un color</label>
                             <select  [(ngModel)]="colorReunion" class="form-control form-white" data-placeholder="Elejir color..." name="category-color">
-                                <option value="verde">Verde</option>
-                                <option value="rojo">Rojo</option>
-                                <option value="gris">Gris</option>
-                                <option value="celeste">Celeste</option>
-                                <option value="amarillo">Amarillo</option>
-                                <option value="negro">Negro</option>
+                                <option value="success">Verde</option>
+                                <option value="danger">Rojo</option>
+                                <option value="info">Gris</option>
+                                <option value="primary">Celeste</option>
+                                <option value="warning">Amarillo</option>
+                                <option value="inverse">Negro</option>
                             </select>
                         </div>
                     </div>

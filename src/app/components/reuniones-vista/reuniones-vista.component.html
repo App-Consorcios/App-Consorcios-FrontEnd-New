@@ -50,7 +50,7 @@
 <mat-expansion-panel *ngFor="let item of listEvents;let i  = index" >
   <mat-expansion-panel-header >
     <mat-panel-title style="text-align:left;">
-      <div  class="calendar-events" ><span class="fa fa-circle" [ngClass]="item.className"  style="margin-right:5px"></span>{{item.date}} -  {{item.title}}</div>
+      <div  class="calendar-events" ><span class="fa fa-circle" [ngClass]="'text-'+item.className"  style="margin-right:5px"></span>{{item.date}} -  {{item.title}}</div>
     </mat-panel-title>
   </mat-expansion-panel-header>
     <mat-panel-description *ngIf="listEvents[i].item.length>0">

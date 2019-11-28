@@ -24,9 +24,7 @@ export class VerExpensasComponent implements OnInit {
       jQuery(() => {
         jQuery('#example23').DataTable({
           dom: 'Bfrtip',
-          buttons: [
-            'pdf', 'print'
-          ],
+          buttons: [], // 'pdf', 'print'
           info: false,
         });
       });

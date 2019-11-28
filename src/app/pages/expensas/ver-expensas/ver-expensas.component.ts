@@ -9,31 +9,36 @@ declare var jQuery: any;
   styleUrls: ['./ver-expensas.component.css']
 })
 export class VerExpensasComponent implements OnInit {
-  
-  expensasSubscription:Subscription
-  expensas:Expensa[] = [];
+  expensasSubscription: Subscription;
+  expensas: Expensa[] = [];
 
   constructor(
-    private _exp:ExpensasService
+    private _exp: ExpensasService
   ) { }
 
   ngOnInit() {
-    jQuery('#example23').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-          'pdf', 'print'
-        ]
-    });
-
+    // hacky way to solve the 'No data available in table' message
+    // https://stackoverflow.com/questions/44940021/data-table-is-showing-no-data-available-in-table-using-angular
+    // dirty but works ¯\_(°°.)_/¯
+    setTimeout(() => {
+      jQuery(() => {
+        jQuery('#example23').DataTable({
+          dom: 'Bfrtip',
+          buttons: [
+            'pdf', 'print'
+          ],
+          info: false,
+        });
+      });
+    }, 300);
     this.cargarExpensas();
   }
 
-  cargarExpensas(){
+  cargarExpensas() {
     this.expensasSubscription = this._exp.getExpensas()
-                  .subscribe(expensas =>{
-                    this.expensas = expensas;});
-    console.log("EXPENSAS SUB - ", this.expensas);
-    
+                  .subscribe(expensas => {
+                    this.expensas = expensas; });
+    console.log('EXPENSAS SUB - ', this.expensas);
   }
 
 }

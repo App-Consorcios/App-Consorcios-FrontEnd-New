@@ -1,10 +1,14 @@
+
   <div id="carouselExample" class="carousel slide" data-interval="false" data-ride="carousel" data-pause="hover" >
       <div class="carousel-inner">
-
+        <div *ngIf="cards.length==0" style="margin-top:50%;">
+          <h4 class="text-muted">No tiene unidades funcionales creadas</h4>
+        </div>
         <div class="carousel-item" [ngClass]="{'active':  i == recalcularCards()}"*ngFor="let item of cards;let i = index">
 
             <div class="col-md-12" >
               <div class="cardhouse text-center d-block">
+
                 <div [style.color] = "color[item.id]" class="card-header">
                   {{item.codigo}}
                 </div>
@@ -22,7 +26,7 @@
                     <tbody>
                       <tr>
                         <td>Código</td>
-                        <td>{{item.codigoDepartamento}}</td>
+                        <td><span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="right" [title]="item.descripcionDepartamento">{{item.codigoDepartamento}}</span></td>
                       </tr>
                       <tr>
                         <td>Prorrateo</td>

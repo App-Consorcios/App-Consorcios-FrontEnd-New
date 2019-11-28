@@ -3,31 +3,17 @@
           <div class="row">
             <div class="col-md-5">
               <h4>Unidades Funcionales</h4>
-              <h6 class="text-muted">Hay solo <span><strong>{{unidadesFuncionales.length}}</strong></span> modelos creados </h6>
-
+              <h6 *ngIf="unidadesFuncionales.length!=0"  class="text-muted">Hay solo <span><strong>{{unidadesFuncionales.length}}</strong></span> modelos creados </h6>
               <hr>
-<!--
-                <form [formGroup]="forma2"
-                      (ngSubmit)="guardarCambios()"
-                      novalidate="novalidate"
-                      class="form-horizontal">
-                      <div class="row" style="margin-left: 5px;">
-                        <div class="col-md-8 row">
-                            <input type="text"
-                                   class="form-control form-control-margin badge-borde"
-                                   placeholder="Buscar unidad funcional..."
-                                   formControlName="buscar">
-                        </div>
-                        <div class="col-md-4">
-                          <a href="javascript:void(0);" class="btn btn-primary badge-borde"><i class="fa fa-search"></i>   Buscar </a>
-                        </div>
-                      </div>
-                </form> -->
-
-
-              <br>
-
+              <!-- <div class="row" style="text-align:left;">
+                <a href="javascript:void(0);" routerLinkActive ="active"><i class="material-icons md-36">photo_library</i></a>
+                <a href="javascript:void(0);" routerLinkActive ="active"><i class="material-icons md-36">list_alt</i></a>
+              </div> -->
               <app-carrousel-multiple [content] = "unidadesFuncionales"></app-carrousel-multiple>
+
+
+
+
             </div>
             <div class="col-md-7">
 

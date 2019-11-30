@@ -22,7 +22,7 @@ export class ReunionesService {
 
 
 
-  crearReunion(nombre:string, color:string){
+  crearReunion(nombre:string, color:string, temas:any[]){
     let url = URL_SERVICIOS+'/reunion';
     console.log("URL - ", url);
     
@@ -33,7 +33,8 @@ export class ReunionesService {
 
     let reunion = {
       "color": color,
-      "descripcion": nombre
+      "descripcion": nombre,
+      "temas": temas
     }
 
     return this.http.post(url,JSON.stringify(reunion),{headers: headers})

@@ -17,18 +17,21 @@ declare var jQuery:any;
 export class CalendarComponent implements OnInit {
 
   nombreReunion: string
-  colorReunion: string
+  colorReunion
 
   idReunion: string
   fechaReunion: Date
-  
-  // reunion: {
-  //   title: string;
-  //   date: Date;
-  //   className:string;
-  //   item: []
-  // }
-  
+
+  temasInput: {      
+    tema1: "",
+    tema2: "",
+    tema3: "",
+    tema4: "",
+    tema5: ""
+}
+
+  temas:any[]
+
 
   listEvents:any = [
     // { title: 'Reunion para alquileres de amenities', date: '2019-11-10', className:'text-info',
@@ -87,12 +90,7 @@ export class CalendarComponent implements OnInit {
           title: data[key].descripcion,
           date: data[key].fecha ? data[key].fecha : "",
           className: data[key].color,
-          item: [    {
-            "descripcion": "Pintura"
-          },
-          {
-            "descripcion": "Entrada"
-          }],
+          item: data[key].temas
         }
         
         let reunionCalendario = {
@@ -171,7 +169,7 @@ export class CalendarComponent implements OnInit {
           // this.agendarReunion(idReunion, fechaReunion)
 
           
-          this.agendarReunion(this.idReunion, this.fechaReunion)
+          // this.agendarReunion(this.idReunion, this.fechaReunion)
 
            // is the "remove after drop" checkbox checked?
            if (checkbox.checked) {
@@ -188,6 +186,37 @@ export class CalendarComponent implements OnInit {
     })
 
   }
+
+  ngOnInit(){
+    this.temasInput = {
+      tema1: "",
+      tema2: "",
+      tema3: "",
+      tema4: "",
+      tema5: ""
+    }
+
+
+    this.temas = [
+      {
+        descripcion: ""
+      },
+      {
+        descripcion: ""
+      },
+      {
+        descripcion: ""
+      },
+      {
+        descripcion: ""
+      },
+      {
+        descripcion: ""
+      }
+    ]
+  }
+
+
 
 
   drop(event: CdkDragDrop<string[]>) {
@@ -209,20 +238,36 @@ export class CalendarComponent implements OnInit {
   }
 
   nuevaReunion(){
-    console.log("NUEVA REUNION - ", this.nombreReunion, this.colorReunion);
-    this.reunionesService.crearReunion(this.nombreReunion, this.colorReunion).subscribe(
+    console.log("NUEVA REUNION - ", this.nombreReunion, this.colorReunion, this.temasInput);
+
+    this.temas[0].descripcion = this.temasInput.tema1
+    this.temas[1].descripcion = this.temasInput.tema2
+    this.temas[2].descripcion = this.temasInput.tema3
+    this.temas[3].descripcion = this.temasInput.tema4
+    this.temas[4].descripcion = this.temasInput.tema5
+    
+
+    console.log("TEMAS - ", this.temas)
+
+    this.temas = this.temas.filter(tema => tema.descripcion!=="")
+
+    console.log("TEMAS filtrados- ", this.temas)
+
+    this.reunionesService.crearReunion(this.nombreReunion, this.colorReunion, this.temas).subscribe(
       (response) => console.log(response),
       (error) => console.log(error))
 
-    this.obtenerReuniones()
+    setTimeout(() => {
+      this.obtenerReuniones()
+    }, 1000);
+    
     
       
   }
 
-  agendarReunion(idReunion:any, fecha:Date){
-    debugger
-    console.log("NUEVA REUNION - ", this.nombreReunion, this.colorReunion);
-    this.reunionesService.agendarReunion(idReunion, fecha).subscribe(
+  agendarReunion(){
+    console.log("AGENDAR REUNION - ", this.idReunion, this.fechaReunion);
+    this.reunionesService.agendarReunion(this.idReunion, this.fechaReunion).subscribe(
       (response) => console.log(response),
       (error) => console.log(error))
   }
@@ -276,7 +321,7 @@ export class CalendarComponent implements OnInit {
     })
   }
 
-  ngOnInit(){}
+
 
 }
 

@@ -10,9 +10,9 @@ import { NgForm, FormGroup, FormArray, FormControl, Validators } from '@angular/
   templateUrl: './calcular-expensas.component.html',
   styleUrls: ['./calcular-expensas.component.css']
 })
+
 export class CalcularExpensasComponent implements OnInit {
-  // unidadFuncionales:any[] = [];
-  unidadFuncionales:any
+  unidadFuncionales:any[] = [];
   matriz:any;
   matrizCalculada:any;
   conceptos:Concepto[] =[];
@@ -21,16 +21,28 @@ export class CalcularExpensasComponent implements OnInit {
   costos:any[] = [];
   forma:FormGroup;
   mensaje:string;
+
+  displayedColumns:any[] = [];
+  columnDinamic:any[] = [];
+  tableData:any[] = [];
+  periodo:Date = new Date();
+  dataSource = this.tableData;
+  // ['name', 'position', 'weight', 'symbol', 'position', 'weight', 'symbol', 'star'];
+  // dataSource = ELEMENT_DATA;
   constructor(private _exp:ExpensasService,
-              private _uf:UnidadFuncionalService) {
-
-
-  }
+              private _uf:UnidadFuncionalService) {}
 
   ngOnInit() {
 
-    this.ufSuscription = this._uf.getUnidades().subscribe(data=>{
+    this.ufSuscription = this._uf.getUnidades().subscribe((data:any)=>{
       this.unidadFuncionales  = data;
+      for(let col of data){
+        this.displayedColumns.push(col.codigoDepartamento.toString());
+      }
+      this.displayedColumns.push("TOTALES")
+      for(let i = 0;i<this.displayedColumns.length-1;i++){
+        this.columnDinamic.push(this.displayedColumns[i]);
+      }
     });
     console.log("UFS - ", this.unidadFuncionales);
 
@@ -47,21 +59,46 @@ export class CalcularExpensasComponent implements OnInit {
 
   }
   recuperaSaldos(){
-    this._exp.getSaldos().subscribe( saldos =>{
-      let monto:any[] = [];
-      let conceptoSaldo:any[] = [];
-      for(let costo of saldos){
-        monto.push(costo.monto);
-        conceptoSaldo.push(costo.concepto);
-      }
-      this.costos = monto;
-      const costosSUM = this.costos.reduce((a, b) => a + b, 0)
-      this.costos.push(costosSUM)
+    let mes = this.periodo.getMonth()+1;
+    let contador = mes.toString().length;
+    let periodoActual =`${this.periodo.getFullYear()}-${('0'.repeat(2-contador)).concat(mes.toString())}`;
+    this._exp.getSaldos(periodoActual).subscribe( saldos =>{
+      this.tableData = saldos;
+      console.log(this.tableData);
+      this.matriz = this.createMatrizNovedad();
+        console.log(this.matriz);
+      // let monto:any[] = [];
+      // let conceptoSaldo:any[] = [];
+      // for(let costo of saldos){
+      //   monto.push(costo.monto);
+      //   conceptoSaldo.push(costo.concepto);
+      // }
+      // this.costos = monto;
+      // const costosSUM = this.costos.reduce((a, b) => a + b, 0)
+      // this.costos.push(costosSUM)
 
-      this.conceptos = conceptoSaldo;
-      this.conceptos.push({nombre: "Totales", tipo: {nombre: "Totales", color: "Rojo"}})
+      // this.conceptos = conceptoSaldo;
+      // this.conceptos.push({nombre: "Totales", tipo: {nombre: "Totales", color: "Rojo"}})
 
     })
+  }
+  createMatrizNovedad(){
+    let matriz:any[] = [];
+    let item:any = [];
+    console.log(this.tableData);
+    let cantConceptos = this.conceptos.length;
+    let j
+    for(let i = 0; i<cantConceptos+1; i++){
+      item = [];
+      for(j = 0; j < this.unidadFuncionales.length; j++){
+        item.push(this.unidadFuncionales[j].prorrateo);
+        console.log("PRORRATEO - ", this.unidadFuncionales[j].prorrateo);
+      }
+      matriz.push(item);
+
+    }
+    return matriz;
+
   }
   modificarSaldos(){
     let saldos:SaldoTotales[] = []

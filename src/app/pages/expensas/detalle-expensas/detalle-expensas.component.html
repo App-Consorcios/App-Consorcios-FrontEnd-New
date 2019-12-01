@@ -4,7 +4,8 @@
           <div class="left-aside bg-light-part">
               <ul class="list-style-none">
                   <li class="box-label"><h4>Categorias</h4></li>
-                  <li class="divider"></li>
+                  <li><h6 class="text-muted">Hay <strong>{{categorias.length}}</strong> categorías cargadas</h6></li>
+                  <li class="divider"><hr></li>
                   <li>
                     <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport list-group">
                         <div cdkDropList *cdkVirtualFor="let item of categorias; let i = index"
@@ -13,11 +14,11 @@
                              [cdkDropListData]="categorias"
                              (cdkDropListDropped)="drop($event)"
                              cdkDrag>
-                            <span class="label" [ngClass]="{'label-danger': item.tipo.color == 'Rojo',
-                                                            'label-info': item.tipo.color == 'Celeste',
-                                                            'label-warning': item.tipo.color == 'Amarillo',
-                                                            'label-success': item.tipo.color == 'Verde'}">{{item.tipo.nombre | sigla:2}}</span>
-                            {{item.nombre}}
+                            <span class="label" [ngClass]="{'label-danger': item.tipoConcepto.color == 'Rojo',
+                                                            'label-info': item.tipoConcepto.color == 'Celeste',
+                                                            'label-warning': item.tipoConcepto.color == 'Amarillo',
+                                                            'label-success': item.tipoConcepto.color == 'Verde'}">{{item.tipoConcepto.nombre | sigla:2}}</span>
+                            {{item.nombre | truncate:25}}
                         </div>
                       <!-- </div> -->
                     </cdk-virtual-scroll-viewport>
@@ -26,27 +27,33 @@
                   <li><span><h6>(Arrastre y suelte en la tabla de la izquierda)</h6></span></li>
               </ul>
           </div>
-          <div class="right-aside scroll-aside">
+          <div class="right-aside ">
               <div class="right-page-header">
                   <div class="d-flex" style="margin-bottom:-15px;">
                       <div class="align-self-center">
                         <div class="row">
                           <div class="col-md-6 title-expensa">
                             <h4 class="card-title m-t-8">Detalle de la expensa</h4>
+                            <h6 class="text-muted">Hay <strong>{{detalles[0].itemsGenerales.length || 0}}</strong> detalles cargados</h6>
                           </div>
                           <div class="col-md-6 title-month">
                             <app-date-picker (periodo)="periodo = $event"></app-date-picker>
                           </div>
                         </div>
-
                       </div>
                       <div class="ml-auto">
                             <button (click) ="recuperarUltimoMes()" type="button" class="btn btn-danger btn-rounded" data-target="#add-contact" style="margin:-10px;padding:-10px"><i class="fa fa-calendar" style="margin-right:10px"></i>Recuperar</button>
                       </div>
                   </div>
-              <hr>
+                  <app-execls-migration [margenIzq]="6" [margenDer] = "6" (output-table)="fileContent=$event" [guardar]="impGuardar" [header]="[['Tipo','Categoría','Descripción','Monto']]" [fileExportName]="filename"></app-execls-migration>
+                  <div *ngIf="fileContent.length>0" style="text-align:right;">
+                    <button type="button" class="btn btn-info btn-rounded" name="button" (click)="importar()">guardar</button>
+                  </div>
+              </div>
+
+
               <br>
-                  <div class="table-responsive" style="margin-top:10px;">
+                  <div class="table-responsive scroll-aside" style="margin-top:-10px;">
                       <table id="demo-foo-addrow" class="table table-hover no-wrap contact-list" data-page-size="10">
                           <thead class="border-table">
                               <tr >
@@ -57,7 +64,7 @@
                                   <th>Acción</th>
                               </tr>
                           </thead>
-                          <tbody>
+                          <tbody *ngFor="let detail of detalles">
                               <tr *ngIf="detalles.length==0" class="centrado centrado-color">
                                 <td></td>
                                 <td></td>
@@ -73,12 +80,13 @@
                                 <td></td>
                                 <td></td>
                               </tr>
-                              <tr *ngFor="let item of detalles" class="border-table">
-                                  <td><span class="label" [ngClass]="{'label-danger': item.concepto.tipo.color == 'Rojo',
-                                                                  'label-info': item.concepto.tipo.color == 'Celeste',
-                                                                  'label-warning': item.concepto.tipo.color == 'Amarillo',
-                                                                  'label-success': item.concepto.tipo.color == 'Verde'}">{{item.concepto.tipo.nombre | sigla:2}}</span></td>
-                                  <td id="td1">{{item.concepto.nombre}}</td>
+                              <tr *ngFor="let item of detail.itemsGenerales" class="border-table">
+
+                                  <td><span class="label" [ngClass]="{'label-danger': item.conceptoNombre.tipoConcepto.color == 'Rojo',
+                                                                  'label-info': item.conceptoNombre.tipoConcepto.color == 'Celeste',
+                                                                  'label-warning': item.conceptoNombre.tipoConcepto.color == 'Amarillo',
+                                                                  'label-success': item.conceptoNombre.tipoConcepto.color == 'Verde'}">{{item.conceptoNombre.tipoConcepto.nombre | sigla:2}}</span></td>
+                                  <td id="td1">{{item.conceptoNombre.nombre}}</td>
                                   <td id="td2"><input type="text" name="" [value]="item.descripcion" placeholder="Ingrese una descripción.."> </td>
                                   <td id="td3"><input type="text" name="" [value]="item.monto | number:'1.0-2'" ></td>
                                   <td><i (click)="eliminarDetalle(item)" class="fa fa-trash text-danger" style="margin:10px;text-align:center"></i></td>
@@ -91,7 +99,7 @@
                             <tr>
                               <td colspan="3"></td>
                               <td colspan="2" style="text-align:right;">
-                                <div class="ml-auto">
+                                <div class="card-footer">
                                     <button (click) ="guardarMesActual()" type="button" class="btn btn-info btn-rounded" data-target="#add-contact" style="margin:-10px;padding:-10px"><i class="fa fa-save" style="margin-right:10px"></i>Guardar</button>
                                 </div>
                               </td>

@@ -17,6 +17,9 @@ export class CrearUnidadComponent implements OnInit {
   mensaje:boolean = false;
   forma:FormGroup;
   forma2:FormGroup;
+  fileContent:any[] =[];
+  impGuardar:boolean = false;
+  filenameexport:string="unidad-funcional.xlsx";
 
   constructor(private _uf:UnidadFuncionalService) {
     this._uf.getUnidades().subscribe( (data:any) =>{
@@ -65,6 +68,29 @@ export class CrearUnidadComponent implements OnInit {
     this._uf.getUnidades().subscribe( (data:any) =>{
       this.unidadesFuncionales = data;
     });
+  }
+  importar(){
+    for(let f = 0;f<this.fileContent.length;f++){
+      if(f!=0){
+        let unidadFuncional = {
+           "codigoDepartamento": this.fileContent[f][0],
+           "descripcionDepartamento": this.fileContent[f][1],
+           "metrosCuadrados": this.fileContent[f][2],
+           "prorrateo": this.fileContent[f][3],
+           "codigoUbicacion": this.fileContent[f][4],
+           "descripcionUbicacion": this.fileContent[f][5]
+        }
+        this._uf.crearUnidad(unidadFuncional).subscribe((data:any) =>{
+          this.unidadFuncional = data;
+          this.unidad = this.unidadFuncional.codigoDepartamento;
+        }),catchError( err=>{
+            return throwError(err);
+        });
+      }
+    }
+    this.impGuardar = false;
+    this.filenameexport = "";
+    this.fileContent = [];
   }
 
 }

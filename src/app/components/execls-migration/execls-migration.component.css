@@ -1,0 +1,40 @@
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.inputfile + label {
+    max-width: 70%;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    margin-top: -5px;
+    /* padding: 0.325rem 0.85rem; */
+}
+
+/* .inputfile-1 + label {
+    color: #fff;
+    background-color: #ec9b1b;
+    border-radius: 50px;
+} */
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
+}
+
+.iborrainputfile {
+	font-size:16px;
+	font-weight:normal;
+	font-family: 'Lato';
+}

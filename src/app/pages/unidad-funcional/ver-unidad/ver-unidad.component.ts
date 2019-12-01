@@ -13,8 +13,7 @@ import { VerUnidadService } from 'src/app/services/ver-unidad/ver-unidad.service
   styleUrls: ['./ver-unidad.component.css']
 })
 export class VerUnidadComponent implements OnInit {
-  // unidadesFuncionales:UnidadFuncional[] = [];
-  unidadesFuncionales:any
+  unidadesFuncionales:UnidadFuncional[] = [];
   esUnidadFuncional:boolean = true
   esPropietario:boolean = false
   esInquilino:boolean = false
@@ -40,35 +39,26 @@ export class VerUnidadComponent implements OnInit {
               private _ar:ActivatedRoute,
               private _auth:AuthService,
               private _vu:VerUnidadService) {
-
     this._ar.params.subscribe( params =>{
       this.pagActual = params['id'];
     })
     this._auth.cargarUsuarios().subscribe( (user:any) =>{
       this.usuarios = user;
     })
-    this._uf.getUnidades().subscribe( data =>{
+    this._uf.getUnidades().subscribe( (data:any) =>{
       this.unidadesFuncionales = data;
-      console.log("GET UFs VER UNIDAD - ",this.unidadesFuncionales);
-
-      console.log("UNIDADES FUNCIONALES - ", this.unidadesFuncionales);
-
-    
-    
-      this._vu.setCodigo(this.unidadesFuncionales[this.pagActual].codigoDepartamento)
-      this._vu.setProrrateo(this.unidadesFuncionales[this.pagActual].prorrateo)
-      this._vu.setTamanio(this.unidadesFuncionales[this.pagActual].metrosCuadrados)
-      this._vu.setUbicacion(this.unidadesFuncionales[this.pagActual].codigoUbicacion)
-      this._vu.setDescripcion(this.unidadesFuncionales[this.pagActual].descripcionUbicacion)
-
-
-      this.forma.controls['codigoDepartamento'].setValue(this.unidadesFuncionales[this.pagActual].codigoDepartamento)
-      this.forma.controls['prorrateo'].setValue(this.unidadesFuncionales[this.pagActual].prorrateo)
-      this.forma.controls['metrosCuadrados'].setValue(this.unidadesFuncionales[this.pagActual].metrosCuadrados)
-      this.forma.controls['codigoUbicacion'].setValue(this.unidadesFuncionales[this.pagActual].codigoUbicacion)
-      this.forma.controls['descripcionUbicacion'].setValue(this.unidadesFuncionales[this.pagActual].descripcionUbicacion)
-
-
+      if(this.unidadesFuncionales.length>0){
+        this._vu.setCodigo(this.unidadesFuncionales[this.pagActual].codigoDepartamento)
+        this._vu.setProrrateo(this.unidadesFuncionales[this.pagActual].prorrateo)
+        this._vu.setTamanio(this.unidadesFuncionales[this.pagActual].metrosCuadrados)
+        this._vu.setUbicacion(this.unidadesFuncionales[this.pagActual].codigoUbicacion)
+        this._vu.setDescripcion(this.unidadesFuncionales[this.pagActual].descripcionUbicacion)
+        this.forma.controls['codigoDepartamento'].setValue(this.unidadesFuncionales[this.pagActual].codigoDepartamento)
+        this.forma.controls['prorrateo'].setValue(this.unidadesFuncionales[this.pagActual].prorrateo)
+        this.forma.controls['metrosCuadrados'].setValue(this.unidadesFuncionales[this.pagActual].metrosCuadrados)
+        this.forma.controls['codigoUbicacion'].setValue(this.unidadesFuncionales[this.pagActual].codigoUbicacion)
+        this.forma.controls['descripcionUbicacion'].setValue(this.unidadesFuncionales[this.pagActual].descripcionUbicacion)
+      }
     });
     this.forma = new FormGroup({
       'codigoDepartamento': new FormControl('',[Validators.required,Validators.minLength(3)]),
@@ -77,24 +67,11 @@ export class VerUnidadComponent implements OnInit {
         'codigoUbicacion': new FormControl('',[Validators.required,Validators.minLength(3)]),
         'descripcionUbicacion': new FormControl('')
     })
-
-    console.log(this.forma)
-    // console.log("PAG ACTUAL - ", this.pagActual);
-    // console.log("FORMA CONTROLS - ", this.forma.controls);
-    
-    // console.log("UNIDADES FUNCIONALES - ", this.unidadesFuncionales);
-    // console.log("SET VALUE - ", this.unidadesFuncionales[this.pagActual].codigoDepartamento);
-    
-    
-    
-
   }
   ngOnInit() {
-
-    this.inquilino = this.unidadesFuncionales[this.pagActual].inquilino;
-    this.propietario = this.unidadesFuncionales[this.pagActual].propietario;
-    
+    if(this.unidadesFuncionales.length>0){
+      this.inquilino = this.unidadesFuncionales[this.pagActual].inquilino;
+      this.propietario = this.unidadesFuncionales[this.pagActual].propietario;
+    }
   }
-
-
 }

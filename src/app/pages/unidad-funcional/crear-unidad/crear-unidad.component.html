@@ -10,10 +10,6 @@
                 <a href="javascript:void(0);" routerLinkActive ="active"><i class="material-icons md-36">list_alt</i></a>
               </div> -->
               <app-carrousel-multiple [content] = "unidadesFuncionales"></app-carrousel-multiple>
-
-
-
-
             </div>
             <div class="col-md-7">
 
@@ -33,8 +29,12 @@
                     </div> -->
                   </div>
                 </div>
+                <app-execls-migration [margenIzq]="5" [margenDer] = "7" (output-table)="fileContent=$event" [guardar]="impGuardar" [header]="[['Código','Descripción','Prorrateo','Tamaño (m2)','Código','Descripción']]" [fileExportName]="filenameexport"></app-execls-migration>
+                <div *ngIf="fileContent.length>0" style="text-align:right;">
+                  <button type="button" class="btn btn-info btn-rounded" name="button" (click)="importar()">guardar</button>
+                </div>
+                      <!-- <hr style="margin-top:10px"> -->
 
-                      <hr style="margin-top:10px">
                       <div *ngIf="mensaje"style="text-align:center;margin-top:5px;">
                         <h5 ><i class="fa fa-check text-success" style="margin-right:10px;"> </i>Genial !! La unidad <strong>{{unidad}}</strong> se a guardado con éxito... </h5>
                       </div>

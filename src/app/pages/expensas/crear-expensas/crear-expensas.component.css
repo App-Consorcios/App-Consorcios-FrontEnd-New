@@ -4,9 +4,10 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
 }
 .scroll-aside{
+overflow: auto;
   width: auto;
-  height: 600px;
-  overflow: auto;
+  height: 450px;
+
 }
 .label {
     padding: 3px 10px;
@@ -16,9 +17,9 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 4px;
     font-size: 75%;
 }
-.left-aside{
+/* .left-aside{
   height: 600px;
-}
+} */
 .label-danger {
     background-color: #ef5350;
 }
@@ -38,6 +39,16 @@ h1, h2, h3, h4, h5, h6 {
 
 element.style {
 }
+.table-responsive{
+  margin-top: -20px;
+  height: 500px;
+
+}
+.scrolling{
+  width: auto;
+  overflow: auto;
+  /* -webkit-overflow-scrolling: touch; */
+}
 [class^="ti-"], [class*=" ti-"] {
     font-family: 'themify';
     speak: none;
@@ -48,4 +59,17 @@ element.style {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+.card {
+  position: relative;
+}
+
+.card-footer {
+  /* display: bottom; */
+  background-color: #fff;
+  position: absolute;
+  width:74%;
+  /* margin-top: 20px; */
+  bottom: 0px;
+  left: 24%;
 }

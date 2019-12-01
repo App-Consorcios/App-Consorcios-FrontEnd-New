@@ -5,7 +5,7 @@
   <div class="col-md-6">
     <h4 class="box-title">Propietario</h4>
     <h6 class="text-muted">Asigne una unidad funcional</h6>
-    <form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate="">
+    <form (ngSubmit)="asignarUnidadPropietario(forma)" #forma="ngForm" novalidate="">
       <div class="example-container mat-elevation-z8">
         <table mat-table [dataSource]="dataSourcePropietario" matSort>
 
@@ -49,7 +49,7 @@
   <div class="col-md-6">
     <h4 class="box-title">Inquilino</h4>
     <h6 class="text-muted">Asigne una unidad funcional</h6>
-    <form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate="">
+    <form (ngSubmit)="asignarUnidadInquilino(forma2)" #forma2="ngForm" novalidate="">
       <div class="example-container mat-elevation-z8">
         <table mat-table [dataSource]="dataSourceInquilino" matSort>
 
@@ -91,7 +91,7 @@
 <hr>
 <h4 class="box-title">Resumen</h4>
 <h6 class="text-muted">Unidades funcionales con asignación completa</h6>
-<form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate="">
+<form (ngSubmit)="eliminarAsignacionesUnidades(forma3)" #forma3="ngForm" novalidate="">
   <div class="example-container mat-elevation-z8">
     <table mat-table [dataSource]="dataSourceUnidades" matSort>
 

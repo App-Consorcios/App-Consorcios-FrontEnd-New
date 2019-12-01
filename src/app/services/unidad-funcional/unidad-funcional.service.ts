@@ -16,12 +16,19 @@ export class UnidadFuncionalService {
 
   crearUnidad(unidadFuncional:any){
     let url = URL_SERVICIOS+'/unidad-funcional';
-    console.log("URL - ", url);
     var headers = new HttpHeaders({
       "Content-Type": "application/json"
     });
-    console.log(JSON.stringify(unidadFuncional))
-    return this.http.post(url,JSON.stringify(unidadFuncional),{headers: headers})
+    return this.http.post(url,JSON.stringify(unidadFuncional),{headers: headers});
+  }
+  asignarUnidadFuncional(usuario:any,id:number){
+    let url = URL_SERVICIOS+`/unidad-funcional?id=${id}`;
+    var headers = new HttpHeaders({
+      "Content-Type": "application/json"
+    });
+    console.log(JSON.stringify(usuario));
+    console.log(id);
+    return this.http.put(url,JSON.stringify(usuario),{headers: headers});
   }
 /*
 

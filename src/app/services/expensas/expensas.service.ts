@@ -14,65 +14,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ExpensasService {
-  tipos:Tipo[] = []
-  conceptos:Concepto[] = [
-    {
-      nombre: "Cargas Sociales",
-      tipo: {
-        nombre: "Generales",
-        color: "Rojo",
-      },
-    },
-    {
-      nombre: "Limpieza y servicios",
-      tipo: {
-        nombre: "Generales",
-        color: "Rojo",
-      }
-    },
-    {
-      nombre: "Fumigación",
-      tipo: {
-        nombre: "Generales",
-        color: "Rojo",
-      }
-    },
-    {
-      nombre: "Papeluchos",
-      tipo: {
-        nombre: "Gastos Varios",
-        color: "Verde",
-      }
-    },
-    {
-      nombre: "Abonos Servicios",
-      tipo: {
-        nombre: "Generales",
-        color: "Rojo",
-      }
-    },
-    {
-      nombre: "Servicios Publicos",
-      tipo: {
-        nombre: "Generales",
-        color: "Rojo",
-      }
-    },
-    {
-      nombre: "Gastos Administrativos",
-      tipo: {
-        nombre: "Generales",
-        color: "Rojo",
-      }
-    },
-    {
-      nombre: "Gastos Mantenimiento",
-      tipo: {
-        nombre: "Generales",
-        color: "Rojo",
-      }
-    }
-  ]
+  tipos:Tipo[] = [];
+  conceptos:Concepto[] = [];
   expensas:any[] = [
     {
       id: '001',
@@ -295,110 +238,12 @@ export class ExpensasService {
       ]
     }
   ];
-  // unidadFuncionales:UnidadFuncional[]=[];
-  unidadFuncionales:any
-  saldos:Saldo[] = [
-    {
-      periodo:'01-09-2019',
-      concepto:{
-        nombre: "Cargas Sociales",
-        tipo: {
-          nombre: "Generales",
-          color: "Rojo"
-        },
-      },
-      descripcion:"Portería",
-      monto: 14000
-    },
-    {
-     periodo:'01-09-2019',
-     concepto:{
-       nombre: "Papeluchos",
-       tipo: {
-         nombre: "Gastos Varios",
-         color: "Verde"
-       }
-     },
-     descripcion:"Imprenta Don Jose: Actas e impresiones",
-     monto: 600
-    },
-    {
-      periodo:'01-09-2019',
-      concepto:{
-        nombre: "Abonos Servicios",
-        tipo: {
-          nombre: "Generales",
-          color: "Rojo"
-        }
-      },
-      descripcion:"ABL",
-      monto: 20000
-    },
-    {
-      periodo:'01-09-2019',
-      concepto:{
-        nombre: "Fumigación",
-        tipo: {
-          nombre: "Generales",
-          color: "Rojo"
-        }
-      },
-      descripcion:"Masacre de roedores",
-      monto: 20000
-    },
-    {
-      periodo:'01-09-2019',
-      concepto:{
-        nombre: "Limpieza y servicios",
-        tipo: {
-          nombre: "Generales",
-          color: "Rojo"
-        }
-      },
-      descripcion:"Barrido de pasillo y limpieza de ventanas",
-      monto: 20000
-    },
-    {
-      periodo:'01-09-2019',
-      concepto:{
-        nombre: "Servicios Publicos",
-        tipo: {
-          nombre: "Generales",
-          color: "Rojo"
-          }
-      },
-      descripcion:"Entongado: Acomodo de inspector municipal",
-      monto: 16000
-    },
-    {
-      periodo:'01-09-2019',
-      concepto:{
-           nombre: "Gastos Administrativos",
-           tipo: {
-             nombre: "Generales",
-             color: "Rojo"
-             }
-         },
-         descripcion:"Viaticos y sellos",
-         monto: 17000
-    },
-    {
-      periodo:'01-09-2019',
-      concepto:{
-        nombre: "Gastos Mantenimiento",
-        tipo: {
-          nombre: "Generales",
-          color: "Rojo"
-        }
-      },
-      descripcion:"Mantenimiento de luminarias",
-      monto: 6000
-    }
-]
+  unidadFuncionales:UnidadFuncional[]=[];
+  saldos:Saldo[] = []
 
   constructor(public _uf:UnidadFuncionalService,
               private _http:HttpClient) {
-     this._uf.getUnidades().subscribe( data =>{
+     this._uf.getUnidades().subscribe( (data:any) =>{
          this.unidadFuncionales = data;
      })
 
@@ -407,9 +252,6 @@ export class ExpensasService {
   getTipos():Observable<any>{
     let url = URL_SERVICIOS + '/conceptos/tipos'
     return this._http.get(url);
-   // return new Observable(tipos =>{
-   //   tipos.next(this.tipos);
-   //  });
   }
   postTipo(tipo:Tipo):Observable<any>{
     let url = URL_SERVICIOS + '/conceptos/tipo'
@@ -417,14 +259,6 @@ export class ExpensasService {
       "Content-Type": "application/json"
     });
     return this._http.post(url,JSON.stringify(tipo),{headers: headers});
-
-    // return new Observable( payload =>{
-    //   this.tipos.push(tipo);
-    //   payload.next({
-    //     ok:true,
-    //     message: 'El tipo se guardo correctamente'
-    //   });
-    // })
   }
   deleteTipo(tipo:Tipo):Observable<any>{
     return new Observable( tipos =>{
@@ -436,39 +270,20 @@ export class ExpensasService {
     })
   }
   getConceptos():Observable<any>{
-   // let url = URL_SERVICIOS + '/conceptos'
-   // return this._http.get(url);
-   return new Observable(conceptos =>{
-     conceptos.next(this.conceptos);
-    });
+   let url = URL_SERVICIOS + '/conceptos'
+   return this._http.get(url);
+
   }
   postConcepto(concepto:Concepto):Observable<any>{
-    // let url = URL_SERVICIOS + '/concepto'
-    // var headers = new HttpHeaders({
-    //   "Content-Type": "application/json"
-    // });
-    // console.log(JSON.stringify(concepto))
-    // return this._http.post(url,JSON.stringify(concepto),{headers: headers});
-
-    return new Observable( payload =>{
-      this.conceptos.push(concepto);
-      this.postSaldos(concepto).subscribe( data =>{
-        console.log(data);
-      });
-      payload.next({
-        ok:true,
-        message: 'El concepto se guardo correctamente'
-      });
-    })
+    let url = URL_SERVICIOS + '/concepto'
+    var headers = new HttpHeaders({
+      "Content-Type": "application/json"
+    });
+    return this._http.post(url,JSON.stringify(concepto),{headers: headers});
   }
-  deleteConcepto(concepto:Concepto):Observable<any>{
-    return new Observable( conceptos =>{
-      this.conceptos.splice(this.conceptos.indexOf(concepto), 1);
-      conceptos.next({
-        ok:true,
-        message: 'El concepto fue eliminado correctamente'
-      });
-    })
+  deleteConcepto(nombre:string):Observable<any>{
+    let url = `${URL_SERVICIOS}/concepto?nombre=${nombre}`;
+    return this._http.delete(url);
   }
   createMatrizNovedad(){
     let matriz:any[] = [];
@@ -487,27 +302,31 @@ export class ExpensasService {
     return matriz;
 
   }
-  getSaldos():Observable<any>{
-    return new Observable(saldos =>{
-      saldos.next(this.saldos);
-    })
-  }
-  postSaldos(concepto):Observable<any>{
-    return new Observable((payload) =>{
-    let saldo = {
-        periodo :'',
-        concepto: concepto,
-        descripcion: "",
-        monto: 0
+  getSaldos(periodo):Observable<any>{
+    let url = `${URL_SERVICIOS}/expensas?periodo=${periodo}`;
+    return this._http.get(url).pipe(map((data:any) =>{
+      this.saldos =[];
+      if(data.length>0 && data!=undefined){
+        this.saldos.push({periodo:data[0].periodo,itemsGenerales:[]})
+        for(let saldo of data[0].itemsGenerales){
+          this.saldos[0].itemsGenerales.push({
+              conceptoNombre:saldo.concepto,
+              descripcion: saldo.descripcion,
+              monto: saldo.monto
+            });
+        }
+        return this.saldos;
       }
-      this.saldos.push(saldo);
-      console.log(this.saldos);
-
-      payload.next({
-        ok:true,
-        message: 'Los saldos agregaron correctamente'
-      });
-    })
+      return data;
+    }));
+  }
+  postSaldos(expensa:any):Observable<any>{
+    let url = `${URL_SERVICIOS}/expensa`;
+    var headers = new HttpHeaders({
+      "Content-Type": "application/json"
+    });
+    console.log(JSON.stringify(expensa))
+    return this._http.post(url,JSON.stringify(expensa),{headers: headers});
   }
   putSaldos(saldos):Observable<any>{
     return new Observable((payload) =>{

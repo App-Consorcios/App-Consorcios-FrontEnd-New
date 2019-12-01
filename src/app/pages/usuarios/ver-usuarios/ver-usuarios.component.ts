@@ -15,7 +15,5 @@ export class VerUsuariosComponent implements OnInit {
 
   ngOnInit() {
   }
-  asignarRol(){
 
-  }
 }

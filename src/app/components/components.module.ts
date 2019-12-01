@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 // import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatCheckboxModule, MatNativeDateModule} from '@angular/material';
+import {MatCheckboxModule, MatNativeDateModule, MAT_DATE_LOCALE} from '@angular/material';
 import {MatButtonModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -50,6 +50,11 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ReunionesVistaComponent } from './reuniones-vista/reuniones-vista.component';
 import { VotacionComponent } from './votacion/votacion.component';
 import { IconLikeComponent } from './icon-like/icon-like.component';
+import { ModalComponent } from './modal/modal.component';
+import { PipesModule } from '../pipes/pipes.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ExeclsMigrationComponent } from './execls-migration/execls-migration.component';
+import { AngularTableComponent } from './angular-table/angular-table.component';
 
 @NgModule({
   declarations: [
@@ -66,14 +71,17 @@ import { IconLikeComponent } from './icon-like/icon-like.component';
   CalendarComponent,
   ReunionesVistaComponent,
   VotacionComponent,
-  IconLikeComponent
+  IconLikeComponent,
+  ModalComponent,
+  ExeclsMigrationComponent,
+  AngularTableComponent
 ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    // BrowserAnimationsModule,
+    PipesModule,
     MatCheckboxModule,
     MatCheckboxModule,
     MatButtonModule,
@@ -123,7 +131,12 @@ import { IconLikeComponent } from './icon-like/icon-like.component';
     CalcularTotalesComponent,
     CalendarComponent,
     ReunionesVistaComponent,
-    VotacionComponent
+    VotacionComponent,
+    ExeclsMigrationComponent,
+    AngularTableComponent
+  ],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
   ]
 })
 export class ComponentsModule { }

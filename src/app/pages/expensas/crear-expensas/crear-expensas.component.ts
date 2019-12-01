@@ -13,20 +13,26 @@ import { Concepto } from 'src/app/models/concepto.model';
 export class CrearExpensasComponent implements OnInit {
   tipos:Tipo[] = [];
   tiposSubscription:Subscription;
+  fileContent:any[] =[];
+  impGuardar:boolean = false;
+  filename:string="categoría.xlsx";
   tipo:Tipo = {
     nombre:"",
     color:""
   };
+  nuevoConcepto:any;
+  nuevoTipo:any;
+  mensaje:boolean = false;
   conceptos:Concepto[]=[];
   concepto:Concepto = {
     nombre:"",
-    tipo:{
+    tipoConcepto:{
       nombre:"",
       color:""
     }
   }
   conceptosSubscription:Subscription;
-  mensaje:string="";
+  // mensaje:string="";
 
   constructor(private _exp:ExpensasService) {
 
@@ -46,7 +52,13 @@ export class CrearExpensasComponent implements OnInit {
     if(forma.value.nombre != ""){
       let tipo = new Tipo(forma.value.nombre,forma.value.color);
       this._exp.postTipo(tipo).subscribe(result =>{
-        this.mensaje = result.message;
+        forma.reset( {
+          nombre:"",
+          color:""
+        });
+        this.nuevoTipo = result.nombre;
+        this.mensaje = true;
+        setTimeout(()=>{this.mensaje = false},3000)
         this._exp.getTipos()
                       .subscribe(tipos =>{
                         this.tipos = tipos;
@@ -68,9 +80,15 @@ export class CrearExpensasComponent implements OnInit {
   guardarConcepto(forma:NgForm){
     if(forma.value.nombre != ""){
       let tipo:any = this.tipos.filter((data:any)=> {return data.nombre === forma.value.tipo})[0];
-      let concepto = new Concepto(forma.value.nombreConcepto,tipo);
+      let concepto = new Concepto(forma.value.nombreConcepto,{nombre:tipo.nombre});
       this._exp.postConcepto(concepto).subscribe(result =>{
-        this.mensaje = result.message;
+        this.nuevoConcepto  = result;
+        forma.reset({ nombre:"", tipoConcepto:{
+          nombre:"",
+          color:""
+        }});
+        this.mensaje = true;
+        setTimeout(()=>{this.mensaje = false},3000)
         this._exp.getConceptos()
                       .subscribe(conceptos =>{
                         this.conceptos = conceptos;});
@@ -78,10 +96,33 @@ export class CrearExpensasComponent implements OnInit {
     }
   }
   eliminarConcepto(item){
-    let concepto = new Concepto(item.nombre,this.tipo);
-    this._exp.deleteConcepto(concepto).subscribe(data =>{
-       this.mensaje = data.message;
+    let nombre =item.nombre.replace(/ /g,"+");
+    this._exp.deleteConcepto(nombre).subscribe(data =>{
+       console.log(data);
     })
   }
+  importar(){
+    let tipos:any;
+    let tupla;
+
+    for(let f = 0;f<this.fileContent.length;f++){
+      if(f!=0){
+        tipos = this.tipos.filter(data=>{
+          return data.nombre.toLowerCase().trim() ==  this.fileContent[f][1].toLowerCase().trim()}
+        );
+        tupla = {
+            nombre: this.fileContent[f][0].toString(),
+          	tipoConcepto: {
+                  nombre: tipos[0].nombre
+              }
+            }
+        this._exp.postConcepto(tupla).subscribe(result =>{console.log(result)});
+        }
+      }
+
+      this.impGuardar = false;
+      this.filename = "";
+      this.fileContent = [];
+    }
 
 }

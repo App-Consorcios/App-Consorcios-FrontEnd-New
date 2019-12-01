@@ -101,7 +101,6 @@ export class UsuarioListComponent implements OnInit {
         user = this.usuarios.filter(data => `${data.nombre} ${data.apellido}` == row.model);
       }
       if(row.name == "roles" && row.model!="" && row.model!= undefined){
-        console.log(row.model);
         roles  = this.roles.filter(data=> data.nombre == row.model);
         let rol={
           roles:roles
@@ -109,7 +108,7 @@ export class UsuarioListComponent implements OnInit {
         this._user.asignarRol(user[0].id,rol).subscribe( (data:any) =>{
           this.cd.markForCheck();
             for(let i = 0;i<this.listUsuario.length;i++){
-              if(this.listUsuario[i].mail=== data.mail){
+              if(this.listUsuario[i].mail === data.mail){
                     this.listUsuario.splice(i,1);
                     this.usuarioConRol.push(data);
                     this.dataSource = new MatTableDataSource(this.listUsuario);

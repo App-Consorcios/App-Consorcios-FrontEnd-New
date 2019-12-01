@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { UnidadFuncional } from 'src/app/models/unidad-funcional.model';
 import { Roles } from 'src/app/models/roles.model';
 import { Usuario } from 'src/app/models';
@@ -45,37 +45,55 @@ export class UnidadListComponent implements OnInit {
   listUsuarioPropietario:ListUsuario[] = [];
   listUsuarioInquilino:ListUsuario[] = [];
   listUnidadesCompleta:ListUnidadesCompleta[] = [];
+  seleccionado:any[] = [];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(public _user:UsuarioService,public _uni:UnidadFuncionalService) { }
+  constructor(public _user:UsuarioService,
+              public _uni:UnidadFuncionalService,
+              private ref:ChangeDetectorRef) { }
   selection = new SelectionModel<ListUnidadesCompleta>(true, []);
 
   ngOnInit() {
     this.init();
   }
-  /** Whether the number of selected elements matches the total number of rows. */
+
   isAllSelected() {
     // this.init();
+    let count
+    if(this.dataSourceUnidades!=undefined) count = this.dataSourceUnidades.filteredData.length
     const numSelected = this.selection.selected.length;
-    // console.log(this.dataSourceUnidades)
-    // const numRows = this.dataSourceUnidades.unidad.length;
-    const numRows = 3;
+    const numRows = count;
     return numSelected === numRows;
   }
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-   masterToggle() {
+  masterToggle() {
      this.isAllSelected() ?
-         this.selection.clear() :
-         this.dataSourceUnidades.data.forEach(row => this.selection.select(row));
-   }
+     this.selection.clear() :
+     this.dataSourceUnidades.data.forEach(row => this.selection.select(row));
+  }
 
-   /** The label for the checkbox on the passed row */
-   checkboxLabel(row?: ListUnidadesCompleta): string {
-     if (!row) {
-       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-     }
-     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.propietario + 1}`;
+  checkboxLabel(row?: ListUnidadesCompleta): string {
+    let seleccionado;
+    let noseleccionado;
+    if(this.selection.isSelected(row)==true){
+      seleccionado = this.seleccionado.filter( data => data.unidad == row.unidad );
+      if(seleccionado.length==0){
+        this.seleccionado.push(row);
+        console.log(this.seleccionado);
+      }
+    }else{
+      if(this.seleccionado.length>0 && row!=undefined){
+        noseleccionado = this.seleccionado.filter( data => data.unidad == row.unidad);
+        if(noseleccionado.length>0){
+          this.seleccionado.splice(this.seleccionado.indexOf(noseleccionado[0]),1)
+          console.log(this.seleccionado);
+        }
+      }
+    }
+   if (!row) {
+     return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
    }
+   return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.propietario + 1}`;
+  }
   init(){
     this._user.recuperarUsuarios()
               .subscribe( (resp:any) =>{
@@ -95,34 +113,18 @@ export class UnidadListComponent implements OnInit {
                 for(let uniInq of unidadesCoInquilino){
                   this.usuarioInquilinos = this.usuarioInquilinos.filter( (data:any) => data.mail != uniInq.inquilino.mail);
                 }
-                console.log("----usuario Propietarios----");
-                  console.log(this.usuarioPropietarios);
-                  console.log(this.usuarioInquilinos);
-
-
                 this.unidadesSinPropietario = this.unidades.filter(data=>{ return data.propietario==null && data.propietario==undefined });
                 this.unidadesSinInquilino = this.unidades.filter(data => { return data.inquilino==null && data.inquilino==undefined })
                 this.unidadesCompletas  = this.unidades.filter(data => { return data.inquilino || data.propietario});
-                console.log("----unidades funcionales----");
-                console.log(this.unidadesCompletas);
-                console.log(this.unidadesSinInquilino);
-                console.log(this.unidadesCompletas);
-                console.log(this.unidadesSinInquilino);
-                console.log(this.unidadesCompletas);
-                console.log("--------");
-                this.matrizDataSource(this.unidadesSinPropietario,this.usuarioPropietarios,this.listUsuarioPropietario);
-                console.log(this.listUsuarioPropietario)
+                  this.matrizDataSource(this.unidadesSinPropietario,this.usuarioPropietarios,this.listUsuarioPropietario);
                 this.dataSourcePropietario = new MatTableDataSource(this.listUsuarioPropietario);
                 this.dataSourcePropietario.sort = this.sort;
                 this.matrizDataSource(this.unidadesSinInquilino,this.usuarioInquilinos,this.listUsuarioInquilino);
-                console.log(this.listUsuarioInquilino)
                 this.dataSourceInquilino = new MatTableDataSource(this.listUsuarioInquilino);
                 this.dataSourceInquilino.sort = this.sort;
                 this.matrizDataSourceCompletas(this.unidadesCompletas,this.listUnidadesCompleta)
-                console.log(this.listUnidadesCompleta)
                 this.dataSourceUnidades = new MatTableDataSource(this.listUnidadesCompleta);
                 this.dataSourceUnidades.sort = this.sort;
-
       });
     });
   }
@@ -134,7 +136,6 @@ export class UnidadListComponent implements OnInit {
   }
   matrizDataSourceCompletas(unidades:any,lista:any){
     let tupla:ListUnidadesCompleta;
-
     for(let i = 0;i<unidades.length;i++){
       tupla = {
         propietario: "" ,
@@ -143,7 +144,7 @@ export class UnidadListComponent implements OnInit {
         descripcion:""
       }
         if(unidades[i].propietario){
-          console.log(`${unidades[i].propietario.nombre} ${unidades[i].propietario.apellido}`)
+          // console.log(`${unidades[i].propietario.nombre} ${unidades[i].propietario.apellido}`)
           tupla.propietario = `${unidades[i].propietario.nombre} ${unidades[i].propietario.apellido}`;
 
         }else{
@@ -154,20 +155,115 @@ export class UnidadListComponent implements OnInit {
        }else{
          tupla.inquilino = null;
        }
-       tupla.unidad =  unidades[i].codigo;
-       tupla.descripcion = unidades[i].descripcion;
+       tupla.unidad =  unidades[i].codigoDepartamento;
+       tupla.descripcion = unidades[i].descripcionDepartamento;
        lista.push(tupla);
     }
   }
+  asignarUnidadPropietario(forma){
+    let user, rol, unidad;
+    let tupla = {
+      nombre:"",
+      roles:"",
+      unidad:""
+    }
+    for(let row of forma._directives){
+        if(row.name == "nombre" && row.model!="" && row.model!= undefined){
+          tupla.nombre = row.model;
+        }
+        if(row.name == "roles" && row.model!="" && row.model!= undefined ){
+          tupla.roles = row.model;
+        }
+        if(row.name == "unidadesSinPropietario" && row.model!="" && row.model!= undefined){
+          tupla.unidad = row.model;
+        }
+        if(tupla.nombre!="" && tupla.roles!="" && tupla.unidad!=""){
+          unidad = this.unidades.filter(data => `${data.codigoDepartamento}` == tupla.unidad);
+          user = this.usuarios.filter(data => `${data.nombre} ${data.apellido}` == tupla.nombre);
+          rol =  {
+                   inquilino:null,
+                   propietario:null
+                 };
+          if(unidad[0].inquilino){
+            rol.inquilino = {mail: unidad[0].inquilino.mail};
+          }
+          rol.propietario = { mail: user[0].mail};
+          this._uni.asignarUnidadFuncional(rol,unidad[0].id).subscribe( (data:any) =>{
+          //   this.matrizDataSource(this.unidadesSinPropietario,this.usuarioPropietarios,this.listUsuarioPropietario);
+          // this.dataSourcePropietario = new MatTableDataSource(this.listUsuarioPropietario);
+          // this.dataSourcePropietario.sort = this.sort;
+          // this.matrizDataSource(this.unidadesSinInquilino,this.usuarioInquilinos,this.listUsuarioInquilino);
+          // this.dataSourceInquilino = new MatTableDataSource(this.listUsuarioInquilino);
+          // this.dataSourceInquilino.sort = this.sort;
 
-
-  guardar(forma:NgForm){
-    console.log("UNIDADES guardar", this.unidades);
-    console.log("FORMA", forma);
-    
-
-    //asignarRol SERVICE
+            this.matrizDataSourceCompletas(data,this.listUnidadesCompleta)
+            this.dataSourceUnidades = new MatTableDataSource(this.listUnidadesCompleta);
+            this.dataSourceUnidades.sort = this.sort;
+          });
+           tupla = {
+            nombre:"",
+            roles:"",
+            unidad:""
+          }
+        }
+      }
+    }
+  asignarUnidadInquilino(forma){
+      let user, rol, unidad;
+      let tupla = {
+        nombre:"",
+        roles:"",
+        unidad:""
+      }
+      for(let row of forma._directives){
+        if(row.name == "nombre" && row.model!="" && row.model!= undefined){
+          tupla.nombre = row.model;
+        }
+        if(row.name == "roles" && row.model!="" && row.model!= undefined ){
+          tupla.roles = row.model;
+        }
+        if(row.name == "unidadesSinInquilino" && row.model!="" && row.model!= undefined){
+          tupla.unidad = row.model;
+        }
+        if(tupla.nombre!="" && tupla.roles!="" && tupla.unidad!=""){
+          unidad = this.unidades.filter(data => `${data.codigoDepartamento}` == tupla.unidad);
+          user = this.usuarios.filter(data => `${data.nombre} ${data.apellido}` == tupla.nombre);
+          rol =  {
+                   inquilino:null,
+                   propietario:null
+                 };
+          if(unidad[0].propietario){
+            rol.propietario = {mail: unidad[0].propietario.mail};
+          }
+          rol.inquilino = { mail: user[0].mail};
+          this._uni.asignarUnidadFuncional(rol,unidad[0].id).subscribe( (data:any) =>{
+            console.log(data);
+            this.matrizDataSourceCompletas(data,this.listUnidadesCompleta)
+            this.dataSourceUnidades = new MatTableDataSource(this.listUnidadesCompleta);
+            this.dataSourceUnidades.sort = this.sort;
+          });
+           tupla = {
+            nombre:"",
+            roles:"",
+            unidad:""
+          }
+        }
+      }
+    }
+  eliminarAsignacionesUnidades(){
+    let unidad, inquilino, propietario, rol;
+    for(let unidad of this.seleccionado){
+      unidad = this.unidades.filter(data => `${data.codigoDepartamento}` == unidad.unidad);
+      rol =  {
+               inquilino: null,
+               propietario:null
+             };
+     this._uni.asignarUnidadFuncional(rol,unidad[0].id).subscribe( (data:any) =>{
+       this.matrizDataSourceCompletas(data,this.listUnidadesCompleta)
+       this.dataSourceUnidades = new MatTableDataSource(this.listUnidadesCompleta);
+       this.dataSourceUnidades.sort = this.sort;
+     });
+    }
 
   }
-
 }

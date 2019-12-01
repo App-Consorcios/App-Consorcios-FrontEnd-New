@@ -1,6 +1,7 @@
   <div class="card">
 
     <div class="contact-page-aside">
+
       <div class="left-aside bg-light-part">
         <form [formGroup]="forma" (ngSubmit)="guardarConcepto()" novalidate="novalidate" style="margin-top:30px">
           <div class="form-group">
@@ -13,8 +14,6 @@
                   <div class="col-md-12">
                     {{item.nombre | truncate: 50}}
                   </div>
-                  <!-- <input class="col-md-5" align='right' type='double' [formControlName]="i" name='costo'
-                    style="text-align:right;border:none;" [value]="costos[i]"> -->
                 </div>
               </li>
             </ul>
@@ -24,19 +23,20 @@
 
       <div class="right-aside scroll-aside" style="margin-top:20px; margin-left: 200px">
         <div class="right-page-header">
-
-              <div class="d-flex">
-                <div class="align-self-center">
-                  <h4 class="card-title m-t-10">Costos / Unidad Funcional</h4>
-                </div>
-                <div class="ml-auto">
-                  <button (click)="calcularNovedad()" type="button" class="btn btn-success btn-rounded"
-                    data-target="#add-contact" style="margin:-10px;padding:-10px"><i class="fa fa-calculator"
-                      style="margin-right:10px"></i>Calcular</button>
-                </div>
+            <div class="d-flex">
+              <div class="align-self-center">
+                <h4 class="card-title m-t-10">Costos / Unidad Funcional</h4>
               </div>
+              <div class="ml-auto">
+                <button (click)="calcularNovedad()" type="button" class="btn btn-success btn-rounded"
+                  data-target="#add-contact" style="margin:-10px;padding:-10px"><i class="fa fa-calculator"
+                    style="margin-right:10px"></i>Calcular</button>
+              </div>
+            </div>
+          <app-angular-table [headers] = "displayedColumns" [noStickyheaders] = "columnDinamic" [tableContent]="tableData"></app-angular-table>
 
-              <div class="UF_Totales" style="margin-top:-20px;">
+
+              <!-- <div class="UF_Totales" style="margin-top:-20px;">
                   <div class="table-responsive">
                     <table id="demo-foo-addrow" class="table  table-hover no-wrap contact-list table-striped" data-page-size="10">
                       <thead>
@@ -69,24 +69,17 @@
                       </li>
                     </ul>
                   </div>
-              </div>
-
+              </div> -->
         </div>
-
-
-
       </div>
-
-
-
 
     </div>
 
-    <footer class="footer">
+    <!-- <footer class="footer">
       <div class="guardarCalculo">
         <button (click)="guardarCalculo()" type="button" class="btn btn-success btn-rounded"
           data-target="#add-contact"><i class="fa fa-calculator" style="margin-right:10px"></i>Guardar</button>
       </div>
-    </footer>
+    </footer> -->
 
   </div>

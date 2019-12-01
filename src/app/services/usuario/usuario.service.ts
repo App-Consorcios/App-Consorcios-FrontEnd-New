@@ -13,8 +13,6 @@ export class UsuarioService {
   recuperarUsuarios(){
     let url = URL_SERVICIOS+'/usuarios';
     let usuarios = this.http.get(url)
-    console.log("GET USUARIOS - ", usuarios);
-    
     return usuarios
   }
   asignarRol(userId:any,roles:any){

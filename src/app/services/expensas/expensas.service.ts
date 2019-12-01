@@ -331,11 +331,11 @@ export class ExpensasService {
   putSaldos(saldos):Observable<any>{
     return new Observable((payload) =>{
       console.log(saldos);
-      for(let i = 0;i<this.saldos.length;i++){
-        if(this.saldos[i].concepto.nombre == saldos[i].nombre){
-          this.saldos[i].monto = saldos[i].monto;
-        }
-      }
+      // for(let i = 0;i<this.saldos.length;i++){
+      //   if(this.saldos[i].concepto.nombre == saldos[i].nombre){
+      //     this.saldos[i].monto = saldos[i].monto;
+      //   }
+      // }
       console.log(this.saldos);
 
       payload.next({

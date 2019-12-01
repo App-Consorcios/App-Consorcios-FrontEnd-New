@@ -66,12 +66,7 @@ export class ReunionesVistaComponent implements OnInit {
           title: data[key].descripcion,
           date: data[key].fecha ? data[key].fecha : "",
           className: data[key].color,
-          item: [    {
-            "descripcion": "Pintura"
-          },
-          {
-            "descripcion": "Entrada"
-          }],
+          item: data[key].temas
         }
       
         console.log("REUNION -----", reunion)

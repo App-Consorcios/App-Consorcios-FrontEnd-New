@@ -53,3 +53,12 @@
     border-radius: 4px;
     font-size: 75%;
 }
+
+#guardarReunion{
+  text-align: end;
+  margin-top: 10px;
+}
+
+.temas{
+  margin-top: 15px;
+}

@@ -46,6 +46,9 @@
         <div class="calender-sidebar">
             <div #calendar id="calendar"></div>
         </div>
+        <div id="guardarReunion">
+            <button type="button" (click)="agendarReunion()" class="btn btn-success save-event waves-effect waves-light">Guardar</button>
+        </div>
     </div>
 </div>
 
@@ -83,7 +86,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="control-label">Elija un color</label>
-                            <select  [(ngModel)]="colorReunion" class="form-control form-white" data-placeholder="Elejir color..." name="category-color">
+                            <select  [(ngModel)]="colorReunion" class="form-control form-white" data-placeholder="Elija un color:" name="category-color" >
                                 <option value="success">Verde</option>
                                 <option value="danger">Rojo</option>
                                 <option value="info">Gris</option>
@@ -91,6 +94,16 @@
                                 <option value="warning">Amarillo</option>
                                 <option value="inverse">Negro</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 temas">
+                            <label>Temas a tratar:</label>
+                            <input [(ngModel)]="temasInput.tema1" class="form-control form-white" placeholder="Tema A" type="text"  name="tema1" />
+                            <input [(ngModel)]="temasInput.tema2" class="form-control form-white" placeholder="Tema B" type="text"  name="tema2"/>
+                            <input [(ngModel)]="temasInput.tema3" class="form-control form-white" placeholder="Tema C" type="text"  name="tema3"/>
+                            <input [(ngModel)]="temasInput.tema4" class="form-control form-white" placeholder="Tema D" type="text"  name="tema4" />
+                            <input [(ngModel)]="temasInput.tema5" class="form-control form-white" placeholder="Tema E" type="text"  name="tema5"/>
                         </div>
                     </div>
                 </form>

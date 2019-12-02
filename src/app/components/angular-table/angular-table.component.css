@@ -10,9 +10,10 @@ table {
 }
 .mat-column-TOTALES {
     /* flex: 0 0 25% !important; */
-    max-width: 20px !important;
+    max-width: 80px !important;
     text-align: center !important;
     padding-right: 0px !important;
+    font-weight: bold;
     /* padding-left: 8px!important;
     padding-right: -58px!important; */
 }
@@ -23,13 +24,18 @@ table {
 .sticky {
    flex : 0  0  30% !important;
 }
+th.mat-header-cell{
+  width:80px;
+  font-weight: bold;
+}
 th.mat-column-position, td.mat-column-position {
   padding-left: 8px;
+
 }
 
 .mat-table-sticky:first-child {
     flex : 0  0  10% !important;
-  border-right: 1px solid #e0e0e0;
+  /* border-right: 1px solid #e0e0e0; */
 }
 
 .mat-table-sticky:last-child {

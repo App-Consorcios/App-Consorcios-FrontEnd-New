@@ -22,7 +22,7 @@ export class CalendarComponent implements OnInit {
   idReunion: string
   fechaReunion: Date
 
-  temasInput: {      
+  temasInput: {
     tema1: "",
     tema2: "",
     tema3: "",
@@ -70,7 +70,7 @@ export class CalendarComponent implements OnInit {
   // calendarEvents = [
   //   { title: 'event 1', date: '2019-04-01' }
   // ];
-  constructor(public cd:ChangeDetectorRef, private reunionesService: ReunionesService) { 
+  constructor(public cd:ChangeDetectorRef, private reunionesService: ReunionesService) {
     this.reunionesService.getReuniones().subscribe(data => {
       console.log("data",data);
       var reuniones = []
@@ -82,7 +82,7 @@ export class CalendarComponent implements OnInit {
         console.log("GET REUNIONES ID -----", data[key].id);
 
         console.log("TYPE OF DATE -.------ ", typeof data[key].fecha);
-        
+
         //mapeo
 
         let reunion = {
@@ -92,7 +92,7 @@ export class CalendarComponent implements OnInit {
           className: data[key].color,
           item: data[key].temas
         }
-        
+
         let reunionCalendario = {
           title: data[key].descripcion,
           date: data[key].fecha ? data[key].fecha.toString().substr(0,10) : "",
@@ -136,10 +136,10 @@ export class CalendarComponent implements OnInit {
              case 'text-info' :  color = '#398bf7';
              break;
            }
- 
- 
- 
- 
+
+
+
+
            console.log()
            return {
              title: eventEl.innerText,
@@ -147,7 +147,7 @@ export class CalendarComponent implements OnInit {
            };
          }
        });
- 
+
      var calendar = new Calendar(calendarEl, {
          plugins: [ dayGridPlugin, timeGridPlugin, listPlugin,interactionPlugin ],
          eventDurationEditable   : false,
@@ -164,11 +164,12 @@ export class CalendarComponent implements OnInit {
            this.idReunion = info.draggedEl.childNodes[0].textContent.split(" ")[0]
            this.fechaReunion = new Date(info.dateStr).toISOString()
 
+
            console.log("REUNION EN DROP - ", this.idReunion, this.fechaReunion );
            //put(idreunion)
           // this.agendarReunion(idReunion, fechaReunion)
 
-          
+
           // this.agendarReunion(this.idReunion, this.fechaReunion)
 
            // is the "remove after drop" checkbox checked?
@@ -218,6 +219,9 @@ export class CalendarComponent implements OnInit {
 
 
 
+recuperarEze(event){
+  console.log("evento"+event);
+}
 
   drop(event: CdkDragDrop<string[]>) {
     let  array = event.container.element.nativeElement.textContent.split(" ");
@@ -245,7 +249,7 @@ export class CalendarComponent implements OnInit {
     this.temas[2].descripcion = this.temasInput.tema3
     this.temas[3].descripcion = this.temasInput.tema4
     this.temas[4].descripcion = this.temasInput.tema5
-    
+
 
     console.log("TEMAS - ", this.temas)
 
@@ -260,9 +264,9 @@ export class CalendarComponent implements OnInit {
     setTimeout(() => {
       this.obtenerReuniones()
     }, 1000);
-    
-    
-      
+
+
+
   }
 
   agendarReunion(){
@@ -284,7 +288,7 @@ export class CalendarComponent implements OnInit {
         console.log("GET REUNIONES ID -----", data[key].id);
 
         console.log("TYPE OF DATE -.------ ", typeof data[key].fecha);
-        
+
         //mapeo
 
         let reunion = {
@@ -299,7 +303,7 @@ export class CalendarComponent implements OnInit {
             "descripcion": "Entrada"
           }],
         }
-        
+
         let reunionCalendario = {
           title: data[key].descripcion,
           date: data[key].fecha ? data[key].fecha.toString().substr(0,10) : "",
@@ -406,7 +410,3 @@ export class CalendarComponent implements OnInit {
     //   themeSystem: 'bootstrap'
     // });
   // }
-
-
-
-

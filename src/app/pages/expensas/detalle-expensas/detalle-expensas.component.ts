@@ -173,23 +173,34 @@ export class DetalleExpensasComponent implements OnInit {
     this.saveDetalle = {periodo:this.detalles[0].periodo,itemsGenerales:[]}
     for(let saldoDetalle of this.detalles[0].itemsGenerales){
       this.saveDetalle.itemsGenerales.push({
-           conceptoNombre:saldoDetalle.conceptoNombre,
+           conceptoNombre:saldoDetalle.conceptoNombre.nombre,
            descripcion:saldoDetalle.descripcion,
            monto:saldoDetalle.monto});
     }
-
-    this._exp.postSaldos(this.saveDetalle).subscribe( data =>{
+    this._exp.getSaldos(this.detalles[0].periodo).subscribe( data=>{
       console.log(data);
-    },(error)=>{
-
-      if(error.error.status==400){
+      if(data.length>0 && data!=undefined){
         Swal.fire({
           type: 'error',
           title: 'Oops...',
           html: 'La expensa ya para el periodo <strong>'+ periodo.toString()+'</strong> ya se encuentra fue cargada',
         })
+      }else{
+        this._exp.postSaldos(this.saveDetalle).subscribe( data =>{
+          console.log(data);
+        },(error)=>{
+          if(error.error.status==400){
+            Swal.fire({
+              type: 'error',
+              title: 'Oops...',
+              html: 'La expensa ya para el periodo <strong>'+ periodo.toString()+'</strong> ya se encuentra fue cargada',
+            })
+          }
+        });
       }
-    });
+    })
+
+
     // console.log(this.detalles);
   }
 

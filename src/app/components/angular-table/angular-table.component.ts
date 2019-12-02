@@ -9,16 +9,15 @@ export class AngularTableComponent implements OnInit {
   @Input('headers') displayedColumns:string[] = [];
   @Input('noStickyheaders') columnDinamic:string[] = [];
   @Input('tableContent') dataSource:any[] = [];
-  // columnDinamic:string[] = []
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.dataSource);
-
   }
-  getTotalCost(){
-    return this.dataSource.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+  getTotalCost(index){
+    let total = 0;
+     this.dataSource.map((t) =>t[index]).forEach(element=>{total += element})
+     return total;
   }
 
 }

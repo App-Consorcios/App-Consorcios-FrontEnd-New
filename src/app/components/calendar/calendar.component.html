@@ -30,7 +30,7 @@
                       </cdk-virtual-scroll-viewport>
 
                       <hr>
-                      <p >
+                      <p style="display: none">
                         <input type='checkbox' #dropRemove id='drop-remove' />
                         <label for='drop-remove'>Borrar despues de arrojar</label>
                       </p>
@@ -46,9 +46,9 @@
         <div class="calender-sidebar">
             <div #calendar id="calendar"></div>
         </div>
-        <div id="guardarReunion">
+        <!-- <div id="guardarReunion">
             <button type="button" (click)="agendarReunion()" class="btn btn-success save-event waves-effect waves-light">Guardar</button>
-        </div>
+        </div> -->
     </div>
 </div>
 
@@ -104,6 +104,13 @@
                             <input [(ngModel)]="temasInput.tema3" class="form-control form-white" placeholder="Tema C" type="text"  name="tema3"/>
                             <input [(ngModel)]="temasInput.tema4" class="form-control form-white" placeholder="Tema D" type="text"  name="tema4" />
                             <input [(ngModel)]="temasInput.tema5" class="form-control form-white" placeholder="Tema E" type="text"  name="tema5"/>
+                        </div>
+                        <div class="col-md-6" >
+                            <mat-form-field>
+                                <input [(ngModel)]="fechaReunionCalendar" matInput [matDatepicker]="picker" placeholder="Elija la fecha" [ngModelOptions]="{standalone: true}">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
                         </div>
                     </div>
                 </form>

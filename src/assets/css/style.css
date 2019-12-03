@@ -50,6 +50,8 @@
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");
+
+/*
 @-webkit-keyframes flash {
   0% {
     opacity: 1; }
@@ -1799,7 +1801,9 @@ body {
   line-height: 1.5;
   color: #343a40;
   text-align: left;
-  background-color: #fff; }
+  background-color: #fff; 
+  min-width: 1350px;}
+  
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }

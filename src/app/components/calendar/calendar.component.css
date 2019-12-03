@@ -62,3 +62,8 @@
 .temas{
   margin-top: 15px;
 }
+
+::ng-deep .cdk-overlay-container {
+  position: fixed !important;
+  z-index: 100000 !important; /* set value you need */
+}

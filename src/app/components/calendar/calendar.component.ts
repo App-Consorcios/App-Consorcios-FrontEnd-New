@@ -7,6 +7,8 @@ import { FullCalendarComponent } from '@fullcalendar/angular';
 import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
 import { ReunionesService } from 'src/app/services/reuniones/reuniones.service';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { EstadisticaModule } from 'src/app/pages/estadisticas/estadistica.module';
+import { DateAdapter } from '@angular/material';
 import { Router } from '@angular/router';
 // import { type } from 'os';
 declare var jQuery:any;
@@ -23,6 +25,8 @@ export class CalendarComponent implements OnInit {
   idReunion: string
   fechaReunion: Date
 
+  fechaReunionCalendar: Date
+
   temasInput: {
     tema1: "",
     tema2: "",
@@ -33,6 +37,7 @@ export class CalendarComponent implements OnInit {
 
   temas:any[]
 
+  calendar2: any
 
   listEvents:any = [
     // { title: 'Reunion para alquileres de amenities', date: '2019-11-10', className:'text-info',
@@ -71,7 +76,40 @@ export class CalendarComponent implements OnInit {
   // calendarEvents = [
   //   { title: 'event 1', date: '2019-04-01' }
   // ];
-  constructor(public cd:ChangeDetectorRef, private reunionesService: ReunionesService,private router:Router) {
+  constructor(public cd:ChangeDetectorRef, private reunionesService: ReunionesService, private dateAdapter: DateAdapter<Date>, private router: Router) {
+    this.dateAdapter.setLocale('es');
+  }
+
+  ngOnInit(){
+    this.temasInput = {
+      tema1: "",
+      tema2: "",
+      tema3: "",
+      tema4: "",
+      tema5: ""
+    }
+
+
+    this.temas = [
+      {
+        descripcion: ""
+      },
+      {
+        descripcion: ""
+      },
+      {
+        descripcion: ""
+      },
+      {
+        descripcion: ""
+      },
+      {
+        descripcion: ""
+      }
+    ]
+
+
+
     this.reunionesService.getReuniones().subscribe(data => {
       console.log("data",data);
       var reuniones = []
@@ -113,116 +151,10 @@ export class CalendarComponent implements OnInit {
       console.log("get reuniones LIST EVENTS - ", this.listEvents );
       console.log("get reuniones CALENDAR EVENTS - ", this.calendarEvents );
 
-
-
-
-
-      var calendarEl = this.calendar.nativeElement
-      var containerEl = this.externalEvents.nativeElement
-      var checkbox = this.dropRemove.nativeElement
-      console.log("ngOnInit LIST EVENTS - ", this.listEvents );
-      console.log("ngOnInit CALENDAR EVENTS - ", this.calendarEvents );
-      new Draggable(containerEl, {
-         itemSelector: '.fc-event',
-         eventData: function(eventEl) {
-           let className = eventEl.getElementsByClassName('calendar-events')[0].children[0].classList[2];
-           let color;
-           switch(className){
-             case 'text-success' :  color = '#06d79c';
-             break;
-             case 'text-danger' :  color = '##ef5350';
-             break;
-             case 'text-warning' :  color = '#ffb22b';
-             break;
-             case 'text-info' :  color = '#398bf7';
-             break;
-           }
-
-
-
-
-           console.log()
-           return {
-             title: eventEl.innerText,
-             color: color
-           };
-         }
-       });
-
-     var calendar = new Calendar(calendarEl, {
-         plugins: [ dayGridPlugin, timeGridPlugin, listPlugin,interactionPlugin ],
-         eventDurationEditable   : false,
-         eventLimit : true,
-         events: this.calendarEvents,
-         locale : 'es',
-         editable: true,
-         droppable: true, // this allows things to be dropped onto the calendar
-         drop: function(info) {
-           console.log(info)
-          //  console.log("FECHA DE REUNION STRING",info.dateStr);
-          //  console.log("FECHA DE REUNION - ", info.date);
-
-           this.idReunion = info.draggedEl.childNodes[0].textContent.split(" ")[0]
-           this.fechaReunion = new Date(info.dateStr).toISOString()
-
-
-           console.log("REUNION EN DROP - ", this.idReunion, this.fechaReunion );
-           //put(idreunion)
-          // this.agendarReunion(idReunion, fechaReunion)
-
-
-          // this.agendarReunion(this.idReunion, this.fechaReunion)
-
-           // is the "remove after drop" checkbox checked?
-           if (checkbox.checked) {
-             // if so, remove the element from the "Draggable Events" list
-             info.draggedEl.parentNode.removeChild(info.draggedEl);
-           }
-         }
-         });
-         calendar.render();
-
-
-
+      this.renderCalendar();
 
     })
-
   }
-
-  ngOnInit(){
-    this.temasInput = {
-      tema1: "",
-      tema2: "",
-      tema3: "",
-      tema4: "",
-      tema5: ""
-    }
-
-
-    this.temas = [
-      {
-        descripcion: ""
-      },
-      {
-        descripcion: ""
-      },
-      {
-        descripcion: ""
-      },
-      {
-        descripcion: ""
-      },
-      {
-        descripcion: ""
-      }
-    ]
-  }
-
-
-
-recuperarEze(event){
-  console.log("evento"+event);
-}
 
   drop(event: CdkDragDrop<string[]>) {
     let  array = event.container.element.nativeElement.textContent.split(" ");
@@ -237,33 +169,103 @@ recuperarEze(event){
     if(listEvents.length>0){
       this.cd.markForCheck();
         this.calendarEvents.push({title:listEvents[0].title,date: listEvents[0].date});
+        console.log("AGENDAR REUNION DROPS");
+
       this.cd.detectChanges();
 
     }
   }
 
+  renderCalendar(){
+    var calendarEl = this.calendar.nativeElement
+    var containerEl = this.externalEvents.nativeElement
+    var checkbox = this.dropRemove.nativeElement
+    console.log("ngOnInit LIST EVENTS - ", this.listEvents );
+    console.log("ngOnInit CALENDAR EVENTS - ", this.calendarEvents );
+    new Draggable(containerEl, {
+       itemSelector: '.fc-event',
+       eventData: function(eventEl) {
+         let className = eventEl.getElementsByClassName('calendar-events')[0].children[0].classList[2];
+         let color;
+         switch(className){
+           case 'success' :  color = '#06d79c';
+           break;
+           case 'danger' :  color = '#ef5350';
+           break;
+           case 'warning' :  color = '#ffb22b';
+           break;
+           case 'info' :  color = '#398bf7';
+           break;
+         }
+         return {
+           title: eventEl.innerText,
+           color: color
+         };
+       }
+     });
+
+    this.calendar2 = new Calendar(calendarEl, {
+      plugins: [ dayGridPlugin, timeGridPlugin, listPlugin,interactionPlugin ],
+      eventDurationEditable   : false,
+      eventLimit : true,
+      events: this.calendarEvents,
+      locale : 'es',
+      editable: false,
+      droppable: false, // this allows things to be dropped onto the calendar
+      buttonText: {
+       today: "Hoy"
+       },
+
+      drop: function(info) {
+        console.log("THIS DROP", this)
+
+       //  console.log("FECHA DE REUNION STRING",info.dateStr);
+       //  console.log("FECHA DE REUNION - ", info.date);
+
+        this.idReunion = info.draggedEl.childNodes[0].textContent.split(" ")[0]
+        this.fechaReunion = new Date(info.dateStr).toISOString()
+
+        console.log("REUNION EN DROP - ", this.idReunion, this.fechaReunion );
+        //put(idreunion)
+       // this.agendarReunion(this.idReunion, this.fechaReunion)
+
+      //  this.reunionesService.agendarReunion(this.idReunion, this.fechaReunion).subscribe(
+      //    (response) => console.log(response),
+      //    (error) => console.log(error))
+
+        // is the "remove after drop" checkbox checked?
+        if (checkbox.checked) {
+          // if so, remove the element from the "Draggable Events" list
+          info.draggedEl.parentNode.removeChild(info.draggedEl);
+        }
+      }
+      });
+
+
+      this.calendar2.render();
+ }
+
+
   nuevaReunion(){
-    console.log("NUEVA REUNION - ", this.nombreReunion, this.colorReunion, this.temasInput);
+    console.log("NUEVA REUNION - ", this.nombreReunion, this.colorReunion, this.temasInput, this.fechaReunionCalendar);
 
     this.temas[0].descripcion = this.temasInput.tema1
     this.temas[1].descripcion = this.temasInput.tema2
     this.temas[2].descripcion = this.temasInput.tema3
     this.temas[3].descripcion = this.temasInput.tema4
     this.temas[4].descripcion = this.temasInput.tema5
-
-
-    console.log("TEMAS - ", this.temas)
-
     this.temas = this.temas.filter(tema => tema.descripcion!=="")
 
-    console.log("TEMAS filtrados- ", this.temas)
-
-    this.reunionesService.crearReunion(this.nombreReunion, this.colorReunion, this.temas).subscribe(
+    this.reunionesService.crearReunion(this.nombreReunion, this.colorReunion, this.temas, this.fechaReunionCalendar).subscribe(
       (response) => console.log(response),
       (error) => console.log(error))
 
     setTimeout(() => {
       this.obtenerReuniones()
+
+      console.log("CALENDAR NATIVE ELEMENT", this.calendar);
+
+      // this.calendar.nativeElement.FullCalendarComponent.
     }, 1000);
 
 
@@ -297,12 +299,7 @@ recuperarEze(event){
           title: data[key].descripcion,
           date: data[key].fecha ? data[key].fecha : "",
           className: data[key].color,
-          item: [    {
-            "descripcion": "Pintura"
-          },
-          {
-            "descripcion": "Entrada"
-          }],
+          item: data[key].temas,
         }
 
         let reunionCalendario = {
@@ -315,17 +312,20 @@ recuperarEze(event){
         console.log("reuniones", reuniones)
         reuniones.push(reunion)
         reunionesCalendario.push(reunionCalendario)
-
-
       });
 
-      this.listEvents = reuniones;
-      this.calendarEvents = reunionesCalendario;
-      console.log("get reuniones LIST EVENTS - ", this.listEvents );
-      console.log("get reuniones CALENDAR EVENTS - ", this.calendarEvents );
-      this.router.navigate(['/reuniones/agendar-reuniones']);
+
+        this.listEvents = reuniones;
+        this.calendarEvents = reunionesCalendario;
+        console.log("get reuniones LIST EVENTS - ", this.listEvents );
+        console.log("get reuniones CALENDAR EVENTS - ", this.calendarEvents );
+
+        this.router.navigate(['/reuniones/agendar-reuniones'])
+
     })
+
   }
+
 }
 
   // addEvent() {

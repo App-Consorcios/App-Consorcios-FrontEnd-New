@@ -113,14 +113,14 @@ export class ExpensasService {
               this.conceptoAnterio = "gasto";
             }
             if(item)
-  // // console.log(exp.concepto.tipoConcepto.nombre);
-  //           if(this.conceptoAnterio!=exp.concepto.tipoConcepto.nombre){
-  //             // console.log(this.conceptoAnterio);
-  //
-  //             item.push({nombre:"Total categoría", descripcion:"",totalCat});
-  //             this.conceptoAnterio = exp.concepto.tipoConcepto.nombre
-  //             totalCat = 0;
-  //           }
+  // console.log(exp.concepto.tipoConcepto.nombre);
+            if(this.conceptoAnterio!=exp.concepto.tipoConcepto.nombre){
+              // console.log(this.conceptoAnterio);
+
+              item.push({nombre:"Total categoría", descripcion:"",totalCat});
+              this.conceptoAnterio = exp.concepto.tipoConcepto.nombre
+              totalCat = 0;
+            }
           }
           console.log(item);
           return item;

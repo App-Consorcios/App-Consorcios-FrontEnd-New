@@ -4,8 +4,8 @@
 }
 .example-viewport {
   height: 400px;
-  width: 230px;
-  border: 1px solid #acacac;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .example-list {
   border: solid 1px #ccc;
@@ -61,4 +61,9 @@
 
 .temas{
   margin-top: 15px;
+}
+
+::ng-deep .cdk-overlay-container {
+  position: fixed !important;
+  z-index: 100000 !important; /* set value you need */
 }

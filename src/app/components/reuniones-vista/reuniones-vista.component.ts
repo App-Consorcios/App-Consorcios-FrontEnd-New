@@ -64,7 +64,7 @@ export class ReunionesVistaComponent implements OnInit {
         let reunion = {
           id: data[key].id,
           title: data[key].descripcion,
-          date: data[key].fecha ? data[key].fecha : "",
+          date: data[key].fecha ? data[key].fecha.toString().substr(0,10) : "",
           className: data[key].color,
           item: data[key].temas
         }

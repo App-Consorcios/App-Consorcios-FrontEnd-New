@@ -21,6 +21,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PanelModule } from './dashboard/panel.module';
 
+import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
+
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { PanelModule } from './dashboard/panel.module';
     SharedModule,
     ScrollingModule,
     DragDropModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FullCalendarModule // for FullCalendar!
   ],
   providers: [],
   bootstrap: [AppComponent]

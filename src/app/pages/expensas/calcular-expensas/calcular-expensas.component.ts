@@ -21,12 +21,13 @@ export class CalcularExpensasComponent implements OnInit {
   costos:any[] = [];
   forma:FormGroup;
   mensaje:string;
-
+  expensas:any;
   displayedColumns:any[] = [];
   columnDinamic:any[] = [];
   tableData:any[] = [];
+  conceptoData:any[]=[];
+  saldos:any;
   periodo:Date = new Date();
-  dataSource = this.tableData;
   // ['name', 'position', 'weight', 'symbol', 'position', 'weight', 'symbol', 'star'];
   // dataSource = ELEMENT_DATA;
   constructor(private _exp:ExpensasService,
@@ -35,18 +36,22 @@ export class CalcularExpensasComponent implements OnInit {
   ngOnInit() {
 
     this.ufSuscription = this._uf.getUnidades().subscribe((data:any)=>{
-      this.unidadFuncionales  = data;
-      for(let col of data){
+      // this.unidadFuncionales  = data.filter( unidades =>{
+      //   console.log(unidades.inquilino != undefined && unidades.propietario != undefined)
+      //   return unidades.inquilino != undefined && unidades.propietario != undefined
+      // });
+      this.unidadFuncionales = data;
+      for(let col of this.unidadFuncionales){
         this.displayedColumns.push(col.codigoDepartamento.toString());
       }
       this.displayedColumns.push("TOTALES")
       for(let i = 0;i<this.displayedColumns.length-1;i++){
         this.columnDinamic.push(this.displayedColumns[i]);
       }
+      this.recuperaSaldos();
     });
-    console.log("UFS - ", this.unidadFuncionales);
 
-    this.recuperaSaldos()
+
     let formControl:any = []
     for(let i = 0;i<this.conceptos.length;i++){
       formControl.push(new FormControl(this.costos[i]))
@@ -55,7 +60,7 @@ export class CalcularExpensasComponent implements OnInit {
     this.forma = new FormGroup({
       'costos': new FormArray(formControl)
     });
-    console.log("FORMA COSTOS - ", this.forma);
+    // console.log("FORMA COSTOS - ", this.forma);
 
   }
   recuperaSaldos(){
@@ -63,10 +68,10 @@ export class CalcularExpensasComponent implements OnInit {
     let contador = mes.toString().length;
     let periodoActual =`${this.periodo.getFullYear()}-${('0'.repeat(2-contador)).concat(mes.toString())}`;
     this._exp.getSaldos(periodoActual).subscribe( saldos =>{
-      this.tableData = saldos;
+      this.saldos = saldos;
+      this.tableData = this.createMatrizNovedad();
       console.log(this.tableData);
-      this.matriz = this.createMatrizNovedad();
-        console.log(this.matriz);
+        // console.log(this.matriz);
       // let monto:any[] = [];
       // let conceptoSaldo:any[] = [];
       // for(let costo of saldos){
@@ -85,20 +90,55 @@ export class CalcularExpensasComponent implements OnInit {
   createMatrizNovedad(){
     let matriz:any[] = [];
     let item:any = [];
-    console.log(this.tableData);
-    let cantConceptos = this.conceptos.length;
-    let j
-    for(let i = 0; i<cantConceptos+1; i++){
-      item = [];
-      for(j = 0; j < this.unidadFuncionales.length; j++){
-        item.push(this.unidadFuncionales[j].prorrateo);
-        console.log("PRORRATEO - ", this.unidadFuncionales[j].prorrateo);
+    let unidadFuncional = {
+        codigoDepartamento: "",
+        items: []
+    }
+    let expensasUFs =  {
+        periodo: "",
+        expensasUnidadesFuncionales: []
+    }
+    let unfuncional:any[]=[];
+    if(this.saldos.length>0){
+      let cantConceptos = this.saldos[0].itemsGenerales.length;
+      let j
+      expensasUFs.periodo = this.saldos[0].periodo;
+      for(let i = 0; i<cantConceptos; i++){
+        item = [];
+        for(j = 0; j < this.unidadFuncionales.length+1; j++){
+          if(j<this.unidadFuncionales.length){
+          let uf = unfuncional.filter((data:any)=>{return (data.codigoDepartamento.toString()).trim() == this.unidadFuncionales[j].codigoDepartamento.toString().trim()});
+            if(uf.length==0){
+              unfuncional.push({
+                codigoDepartamento : this.unidadFuncionales[j].codigoDepartamento,
+                items: [{conceptoNombre: this.saldos[0].itemsGenerales[i].conceptoNombre.nombre,
+                         monto: this.saldos[0].itemsGenerales[i].monto * this.unidadFuncionales[j].prorrateo}]
+              })
+            }else{
+              if(i<cantConceptos){
+                let item = uf[0].items.filter(data=>{ return (data.conceptoNombre.toString()).trim() === this.saldos[0].itemsGenerales[i].conceptoNombre.nombre.toString().trim();});
+                if(item.length==0){
+                  uf[0].items.push({conceptoNombre: this.saldos[0].itemsGenerales[i].conceptoNombre.nombre,
+                                    monto: this.saldos[0].itemsGenerales[i].monto  * this.unidadFuncionales[j].prorrateo});
+                  }
+                }
+              }
+            }
+          if(j<this.unidadFuncionales.length){
+            let concept = this.conceptoData.filter(data=>{return data.nombre == this.saldos[0].itemsGenerales[i].conceptoNombre.nombre});
+            if(concept.length==0){
+              this.conceptoData.push({nombre:this.saldos[0].itemsGenerales[i].conceptoNombre.nombre});
+            }
+            item.push(this.unidadFuncionales[j].prorrateo * this.saldos[0].itemsGenerales[i].monto);
+          }else{
+            item.push(this.saldos[0].itemsGenerales[i].monto)
+          }
+        }
+        matriz.push(item);
       }
-      matriz.push(item);
-
+      this.expensas =  expensasUFs.expensasUnidadesFuncionales.push(unfuncional);
     }
     return matriz;
-
   }
   modificarSaldos(){
     let saldos:SaldoTotales[] = []
@@ -111,13 +151,12 @@ export class CalcularExpensasComponent implements OnInit {
     })
   }
   calcularNovedad(){
-    this.recuperaSaldos();
-    console.log("calcularNovedad COSTOS - ", this.costos)
-
-
-
-    this.matriz = this._exp.createMatrizNovedad();
-    console.log("MATRIZ", this.matriz);
+    // this.recuperaSaldos();
+    // console.log("calcularNovedad COSTOS - ", this.costos)
+    this.tableData = this.createMatrizNovedad();
+    console.log(this.tableData)
+        console.log(this.conceptoData)
+    // console.log("MATRIZ", this.matriz);
 
     // this.matrizCalculada = this.matriz
 

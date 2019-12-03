@@ -9,6 +9,7 @@ import { ReunionesService } from 'src/app/services/reuniones/reuniones.service';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { EstadisticaModule } from 'src/app/pages/estadisticas/estadistica.module';
 import { DateAdapter } from '@angular/material';
+import { Router } from '@angular/router';
 // import { type } from 'os';
 declare var jQuery:any;
 @Component({
@@ -75,7 +76,7 @@ export class CalendarComponent implements OnInit {
   // calendarEvents = [
   //   { title: 'event 1', date: '2019-04-01' }
   // ];
-  constructor(public cd:ChangeDetectorRef, private reunionesService: ReunionesService, private dateAdapter: DateAdapter<Date>) { 
+  constructor(public cd:ChangeDetectorRef, private reunionesService: ReunionesService, private dateAdapter: DateAdapter<Date>, private router: Router) { 
     this.dateAdapter.setLocale('es');
   }
 
@@ -120,7 +121,7 @@ export class CalendarComponent implements OnInit {
         console.log("GET REUNIONES ID -----", data[key].id);
 
         console.log("TYPE OF DATE -.------ ", typeof data[key].fecha);
-        
+
         //mapeo
 
         let reunion = {
@@ -130,7 +131,7 @@ export class CalendarComponent implements OnInit {
           className: data[key].color,
           item: data[key].temas
         }
-        
+
         let reunionCalendario = {
           title: data[key].descripcion,
           date: data[key].fecha ? data[key].fecha.toString().substr(0,10) : "",
@@ -154,9 +155,6 @@ export class CalendarComponent implements OnInit {
 
     })
   }
-
-
-
 
   drop(event: CdkDragDrop<string[]>) {
     let  array = event.container.element.nativeElement.textContent.split(" ");
@@ -293,7 +291,7 @@ export class CalendarComponent implements OnInit {
         console.log("GET REUNIONES ID -----", data[key].id);
 
         console.log("TYPE OF DATE -.------ ", typeof data[key].fecha);
-        
+
         //mapeo
 
         let reunion = {
@@ -303,7 +301,7 @@ export class CalendarComponent implements OnInit {
           className: data[key].color,
           item: data[key].temas,
         }
-        
+
         let reunionCalendario = {
           title: data[key].descripcion,
           date: data[key].fecha ? data[key].fecha.toString().substr(0,10) : "",
@@ -321,21 +319,12 @@ export class CalendarComponent implements OnInit {
         this.calendarEvents = reunionesCalendario;
         console.log("get reuniones LIST EVENTS - ", this.listEvents );
         console.log("get reuniones CALENDAR EVENTS - ", this.calendarEvents );
-        // this.cd.markForCheck();
-        // this.cd.detectChanges();    
-        // let ultimaReunionCreada = {
-        //   title: this.calendarEvents[this.calendarEvents.length-1].descripcion,
-        //   start: new Date(this.calendarEvents[this.calendarEvents.length-1].date).toISOString()
-        // }
 
-        
-        // jQuery('#calendar').fullCalendar('refetchEvents', ultimaReunionCreada, true)
+        this.router.navigate(['/reuniones/agendar-reuniones'])
 
     })
 
   }
-
-
 
 }
 
@@ -420,7 +409,3 @@ export class CalendarComponent implements OnInit {
     //   themeSystem: 'bootstrap'
     // });
   // }
-
-
-
-

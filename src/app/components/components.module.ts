@@ -55,6 +55,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExeclsMigrationComponent } from './execls-migration/execls-migration.component';
 import { AngularTableComponent } from './angular-table/angular-table.component';
+import { TableConceptosExpComponent } from './table-conceptos-exp/table-conceptos-exp.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { AngularTableComponent } from './angular-table/angular-table.component';
   IconLikeComponent,
   ModalComponent,
   ExeclsMigrationComponent,
-  AngularTableComponent
+  AngularTableComponent,
+  TableConceptosExpComponent
 ],
   imports: [
     CommonModule,
@@ -133,7 +135,8 @@ import { AngularTableComponent } from './angular-table/angular-table.component';
     ReunionesVistaComponent,
     VotacionComponent,
     ExeclsMigrationComponent,
-    AngularTableComponent
+    AngularTableComponent,
+    TableConceptosExpComponent
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},

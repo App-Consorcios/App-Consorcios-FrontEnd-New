@@ -43,8 +43,8 @@
         </div>
     </div>
     <div class="col-md-8" style="margin-left:-10px;">
-        <div class="calender-sidebar">
-            <div #calendar id="calendar"></div>
+        <div class="calender-sidebar" >
+            <div #calendar id="calendar"  (ngModelChange)="recuperarEze($event)"  ></div>
         </div>
         <!-- <div id="guardarReunion">
             <button type="button" (click)="agendarReunion()" class="btn btn-success save-event waves-effect waves-light">Guardar</button>

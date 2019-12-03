@@ -3,11 +3,11 @@
     <div class="contact-page-aside">
 
       <div class="left-aside bg-light-part">
-        <form [formGroup]="forma" (ngSubmit)="guardarConcepto()" novalidate="novalidate" style="margin-top:30px">
+        <!-- <form [formGroup]="forma" (ngSubmit)="guardarConcepto()" novalidate="novalidate" style="margin-top:30px">
           <div class="form-group">
             <ul class="list-style-none">
-              <li class="box-label"><a href="javascript:void(0)">Categorías<span> </span></a></li>
-              <li class="divider"></li>
+
+              <li ></li>
               <li *ngFor="let item of conceptos;let i = index">
 
                 <div class="row" formArrayName="costos">
@@ -18,14 +18,21 @@
               </li>
             </ul>
           </div>
-        </form>
+        </form> -->
+        <h4 style="margin-top:34px">Categorías</h4>
+        <h6 class="text-muted">Hay <strong>{{conceptoData.length}}</strong> categorías</h6>
+        <hr>
+        <app-table-conceptos-exp [headers] = "['nombre']" [tableContent2] = "conceptoData"></app-table-conceptos-exp>
       </div>
 
-      <div class="right-aside scroll-aside" style="margin-top:20px; margin-left: 200px">
+
+      <div class="right-aside" style="margin-top:20px; margin-left: 200px">
         <div class="right-page-header">
             <div class="d-flex">
               <div class="align-self-center">
                 <h4 class="card-title m-t-10">Costos / Unidad Funcional</h4>
+                <h6 class="text-muted">Hay <strong>{{columnDinamic.length}}</strong> unidades funcionales cargadas</h6>
+                <hr>
               </div>
               <div class="ml-auto">
                 <button (click)="calcularNovedad()" type="button" class="btn btn-success btn-rounded"

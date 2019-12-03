@@ -34,7 +34,7 @@
                         <div class="row">
                           <div class="col-md-6 title-expensa">
                             <h4 class="card-title m-t-8">Detalle de la expensa</h4>
-                            <h6 class="text-muted">Hay <strong>{{detalles[0].itemsGenerales.length || 0}}</strong> detalles cargados</h6>
+                            <h6 class="text-muted">Hay <strong>{{detalles.length>0?detalles[0].itemsGenerales.length:0}}</strong> detalles cargados</h6>
                           </div>
                           <div class="col-md-6 title-month">
                             <app-date-picker (periodo)="periodo = $event"></app-date-picker>

@@ -3,14 +3,14 @@
 <table mat-table [dataSource]="dataSource">
   <ng-container *ngFor="let disCol of columnDinamic; let colIndex = index" matColumnDef="{{disCol}}">
     <th mat-header-cell *matHeaderCellDef>{{disCol}}</th>
-    <td mat-cell *matCellDef="let element">{{element[disCol]}}</td>
-    <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
+    <td mat-cell *matCellDef="let element">{{element[colIndex]| currency}}</td>
+    <td mat-footer-cell *matFooterCellDef> {{getTotalCost(colIndex) | currency}} </td>
   </ng-container>
 
   <ng-container matColumnDef="TOTALES" stickyEnd>
     <th mat-header-cell *matHeaderCellDef>TOTALES</th>
-    <td mat-cell *matCellDef="let element" class="sticky">{{element.TOTALES}}</td>
-    <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
+    <td mat-cell *matCellDef="let element" class="sticky">{{element[columnDinamic.length]| currency}}</td>
+    <td mat-footer-cell *matFooterCellDef> {{getTotalCost(columnDinamic.length)| currency}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

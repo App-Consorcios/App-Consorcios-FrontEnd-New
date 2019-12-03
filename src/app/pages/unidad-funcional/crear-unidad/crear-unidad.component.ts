@@ -75,8 +75,8 @@ export class CrearUnidadComponent implements OnInit {
         let unidadFuncional = {
            "codigoDepartamento": this.fileContent[f][0],
            "descripcionDepartamento": this.fileContent[f][1],
-           "metrosCuadrados": this.fileContent[f][2],
-           "prorrateo": this.fileContent[f][3],
+           "prorrateo": this.fileContent[f][2],
+           "metrosCuadrados": this.fileContent[f][3],
            "codigoUbicacion": this.fileContent[f][4],
            "descripcionUbicacion": this.fileContent[f][5]
         }

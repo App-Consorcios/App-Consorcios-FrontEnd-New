@@ -18,7 +18,9 @@ export class ExpensasService {
   conceptos:Concepto[] = [];
   expensas:any[] = [];
   unidadFuncionales:UnidadFuncional[]=[];
-  saldos:Saldo[] = []
+  saldos:Saldo[] = [];
+  conceptoVisitado:any[] = [];
+  conceptoAnterio:any="";
 
   constructor(public _uf:UnidadFuncionalService,
               private _http:HttpClient) {
@@ -64,22 +66,6 @@ export class ExpensasService {
     let url = `${URL_SERVICIOS}/concepto?nombre=${nombre}`;
     return this._http.delete(url);
   }
-  createMatrizNovedad(){
-    let matriz:any[] = [];
-    let item:any = [];
-    let cantConceptos = this.conceptos.length;
-    let j
-    for(let i = 0; i<cantConceptos+1; i++){
-      item = [];
-      for(j = 0; j < this.unidadFuncionales.length; j++){
-        item.push(this.unidadFuncionales[j].prorrateo);
-      }
-      matriz.push(item);
-
-    }
-    return matriz;
-
-  }
   getSaldos(periodo):Observable<any>{
     let url = `${URL_SERVICIOS}/expensas?periodo=${periodo}`;
     return this._http.get(url).pipe(map((data:any) =>{
@@ -103,38 +89,52 @@ export class ExpensasService {
     var headers = new HttpHeaders({
       "Content-Type": "application/json"
     });
-    console.log(JSON.stringify(expensa))
     return this._http.post(url,JSON.stringify(expensa),{headers: headers});
   }
-  putSaldos(saldos):Observable<any>{
-    return new Observable((payload) =>{
-      console.log(saldos);
-      // for(let i = 0;i<this.saldos.length;i++){
-      //   if(this.saldos[i].concepto.nombre == saldos[i].nombre){
-      //     this.saldos[i].monto = saldos[i].monto;
-      //   }
-      // }
-      console.log(this.saldos);
+  getExpensas(periodo):Observable<any>{
+    let item = [];
+    let arritem = [];
+    let totalCat = 0;
+    let url = `${URL_SERVICIOS}/expensas-unidades-funcionales?periodo=${periodo}`;
+    return this._http.get(url).pipe(map((data:any)=>{
+        if(data.expensasUnidadesFuncionales.length>0){
+          for(let  exp of data.expensasUnidadesFuncionales[0].items ){
+            let concept = this.conceptoVisitado.filter( data=>{return data == exp.concepto.tipoConcepto.nombre;})
+            if(concept.length>0){
+              item.push({nombre:exp.conceptoNombre,descripcion:"",gasto:exp.monto});
+              totalCat += exp.monto;
+            }else{
+              this.conceptoVisitado.push(exp.concepto.tipoConcepto.nombre);
+              item.push({nombre:exp.concepto.tipoConcepto.nombre,descripcion:"",gasto:"GASTO A"});
+              item.push({nombre:exp.conceptoNombre,descripcion:"",gasto:exp.monto});
+              totalCat += exp.monto
+            }
+            if(this.conceptoAnterio==""){
+              this.conceptoAnterio = "gasto";
+            }
+            if(item)
+  // console.log(exp.concepto.tipoConcepto.nombre);
+            if(this.conceptoAnterio!=exp.concepto.tipoConcepto.nombre){
+              // console.log(this.conceptoAnterio);
 
-      payload.next({
-        ok:true,
-        message: 'Los saldos se modificaron correctamente'
-      });
-    })
-  }
-
-
-  getExpensas():Observable<any>{
-    console.log("SERVICE GET EXPENSAS");
-
-    return new Observable(expensas => {
-      expensas.next(this.expensas);
-     });
+              item.push({nombre:"Total categoría", descripcion:"",totalCat});
+              this.conceptoAnterio = exp.concepto.tipoConcepto.nombre
+              totalCat = 0;
+            }
+          }
+          console.log(item);
+          return item;
+        }
+      return [];
+    }));
    }
-
-
    //POST de total expensas generales
-   postExpensas(){
+   postExpensas(expensas:any):Observable<any>{
+     let url = `${URL_SERVICIOS}/expensas-unidades-funcionales`;
+     var headers = new HttpHeaders({
+       "Content-Type": "application/json"
+     });
+     return this._http.post(url,JSON.stringify(expensas),{headers: headers});
    }
 
 }

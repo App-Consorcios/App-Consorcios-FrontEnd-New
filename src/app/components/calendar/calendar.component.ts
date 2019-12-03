@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 // import { type } from 'os';
 declare var jQuery:any;
 @Component({
-  selector: 'app-calendar', 
+  selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
 })
@@ -27,7 +27,7 @@ export class CalendarComponent implements OnInit {
 
   fechaReunionCalendar: Date
 
-  temasInput: {      
+  temasInput: {
     tema1: "",
     tema2: "",
     tema3: "",
@@ -76,7 +76,7 @@ export class CalendarComponent implements OnInit {
   // calendarEvents = [
   //   { title: 'event 1', date: '2019-04-01' }
   // ];
-  constructor(public cd:ChangeDetectorRef, private reunionesService: ReunionesService, private dateAdapter: DateAdapter<Date>, private router: Router) { 
+  constructor(public cd:ChangeDetectorRef, private reunionesService: ReunionesService, private dateAdapter: DateAdapter<Date>, private router: Router) {
     this.dateAdapter.setLocale('es');
   }
 
@@ -170,7 +170,7 @@ export class CalendarComponent implements OnInit {
       this.cd.markForCheck();
         this.calendarEvents.push({title:listEvents[0].title,date: listEvents[0].date});
         console.log("AGENDAR REUNION DROPS");
-        
+
       this.cd.detectChanges();
 
     }
@@ -218,7 +218,7 @@ export class CalendarComponent implements OnInit {
 
       drop: function(info) {
         console.log("THIS DROP", this)
-        
+
        //  console.log("FECHA DE REUNION STRING",info.dateStr);
        //  console.log("FECHA DE REUNION - ", info.date);
 
@@ -228,7 +228,7 @@ export class CalendarComponent implements OnInit {
         console.log("REUNION EN DROP - ", this.idReunion, this.fechaReunion );
         //put(idreunion)
        // this.agendarReunion(this.idReunion, this.fechaReunion)
-       
+
       //  this.reunionesService.agendarReunion(this.idReunion, this.fechaReunion).subscribe(
       //    (response) => console.log(response),
       //    (error) => console.log(error))
@@ -264,12 +264,12 @@ export class CalendarComponent implements OnInit {
       this.obtenerReuniones()
 
       console.log("CALENDAR NATIVE ELEMENT", this.calendar);
-      
+
       // this.calendar.nativeElement.FullCalendarComponent.
     }, 1000);
-    
 
-      
+
+
   }
 
   agendarReunion(){
@@ -311,7 +311,7 @@ export class CalendarComponent implements OnInit {
         console.log("REUNION -----", reunion)
         console.log("reuniones", reuniones)
         reuniones.push(reunion)
-        reunionesCalendario.push(reunionCalendario)      
+        reunionesCalendario.push(reunionCalendario)
       });
 
 

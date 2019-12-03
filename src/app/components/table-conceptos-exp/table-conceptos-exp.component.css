@@ -1,11 +1,33 @@
-.example-container {
-  height: 500px;
-  width: 100%;
+* {margin:0;padding:0;
+  position:relative;}
+
+.uno {
+  width: 80%;
+  height: 275px;
   overflow: auto;
+  direction: rtl;
+  margin: 30px auto;
+  /* box-shadow: 0 0 3px rgba(0,0,0,.4); */
+}
+.uno div {
+  /* background: linear-gradient(to bottom, #A0CBA4, #4E8953) no-repeat 100%; */
+  widht: auto;
+  height: 500%;
+  direction: ltr;
+  color: #fff;
+  font-size: 1.3rem;
+  padding: .5rem;
+}
+.example-container {
+    height: 500px;
+  /* height: auto; */
+  width: 100%;
+  overflow-y: auto;
+  /* overflow-y: hidden; */
 }
 table {
   width: 100%;
-  height: auto;
+  height: 450px;
 }
 .bg-light-part{
   background-color: rgba(0, 0, 0, 0.02);

@@ -3,6 +3,14 @@
   height: 600px;
   overflow: auto;
 }
+.title-month{
+  position:relative;
+  top:-10px;
+}
+.title-expensa{
+  position:relative;
+  top:15px;
+}
 .left-aside{
   /* height: 600px; */
   width: 200px;

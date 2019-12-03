@@ -30,7 +30,7 @@ export class DetalleExpensasComponent implements OnInit {
   ngOnInit() {
     this.cd.markForCheck();
     this.cargarConceptos();
-    this.cargarExpensas();
+    // this.cargarExpensas();
     this.cd.detectChanges();
 
   }
@@ -51,8 +51,7 @@ export class DetalleExpensasComponent implements OnInit {
       }else{
         this.detalles = [];
       }
-    })
-
+    });
   }
   drop(event: CdkDragDrop<string[]>) {
     // let  array = event.container.element.nativeElement.textContent.split(" ");

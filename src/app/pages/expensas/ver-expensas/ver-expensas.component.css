@@ -8,8 +8,13 @@ h1, h2, h3, h4, h5, h6 {
   height: 600px;
   overflow: auto;
 }
-.sorting{
-  
+.title-month{
+  position:relative;
+  top:-10px;
+}
+.title-expensa{
+  position:relative;
+  top:15px;
 }
 .label {
     padding: 3px 10px;

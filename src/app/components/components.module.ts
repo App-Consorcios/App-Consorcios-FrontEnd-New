@@ -56,6 +56,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExeclsMigrationComponent } from './execls-migration/execls-migration.component';
 import { AngularTableComponent } from './angular-table/angular-table.component';
 import { TableConceptosExpComponent } from './table-conceptos-exp/table-conceptos-exp.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { TableConceptosExpComponent } from './table-conceptos-exp/table-concepto
   ModalComponent,
   ExeclsMigrationComponent,
   AngularTableComponent,
-  TableConceptosExpComponent
+  TableConceptosExpComponent,
+  PaginationComponent
 ],
   imports: [
     CommonModule,
@@ -136,7 +138,8 @@ import { TableConceptosExpComponent } from './table-conceptos-exp/table-concepto
     VotacionComponent,
     ExeclsMigrationComponent,
     AngularTableComponent,
-    TableConceptosExpComponent
+    TableConceptosExpComponent,
+    PaginationComponent
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},

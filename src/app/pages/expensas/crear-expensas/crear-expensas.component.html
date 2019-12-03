@@ -6,6 +6,8 @@
       <ul class="list-style-none">
           <li class="box-label"><h4>Tipos de categorias</h4></li>
           <li><h6 class="text-muted">Hay creados <strong>{{tipos.length}} </strong> tipos</h6></li>
+          <!-- <app-execls-migration [margenIzq]="5" [margenDer] = "6" (output-table)="fileContent=$event" [guardar]="impGuardar" [header]="[['Tipo','Categoría','Descripción','Monto']]" [fileExportName]="filename"></app-execls-migration> -->
+
           <li class="divider"><hr></li>
           <li *ngFor="let item of tipos">
             <a href="javascript:void(0)"><i (click)="eliminarTipoConcepto(item)" class="fa fa-close" style="padding:10px"></i>{{item.nombre | truncate: 10}}
@@ -68,7 +70,7 @@
         <div class="right-page-header">
                 <h4 style ="margin-top:-5px;">Lista de categorias</h4>
                 <h6 class="text-muted">Hay creadas <strong>{{conceptos.length}} </strong> categorias</h6>
-            <app-execls-migration [margenIzq]="6" [margenDer] = "6" (output-table)="fileContent=$event" [guardar]="impGuardar" [header]="[['Nombre','Tipo']]" [fileExportName]="filename"></app-execls-migration>
+            <app-execls-migration [titulos] = "['Tipos','Categoría']" [margenIzq]="6" [margenDer] = "6" (output-title) = "titulo = $event"(output-table)="fileContent=$event" [guardar]="impGuardar" [header]="[['Nombre','Tipo']]" [fileExportName]="filename"></app-execls-migration>
             <div *ngIf="fileContent.length>0" style="text-align:right;">
               <button type="button" class="btn btn-info btn-rounded" name="button" (click)="importar()">guardar</button>
             </div>

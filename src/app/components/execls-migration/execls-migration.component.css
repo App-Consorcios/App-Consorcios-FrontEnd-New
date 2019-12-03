@@ -32,6 +32,17 @@
     margin-top: -0.25em;
     margin-right: 0.25em;
 }
+.example-radio-group {
+  display: flex;
+  /* flex-direction: column; */
+  /* margin: 5px 0; */
+}
+
+.example-radio-button {
+  margin: 5px;
+  font-size:13px;
+  color:#745af2;
+}
 
 .iborrainputfile:hover {
   text-decoration: underline !important;

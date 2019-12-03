@@ -20,6 +20,7 @@ export class CrearExpensasComponent implements OnInit {
     nombre:"",
     color:""
   };
+  titulo:string;
   nuevoConcepto:any;
   nuevoTipo:any;
   mensaje:boolean = false;
@@ -107,22 +108,38 @@ export class CrearExpensasComponent implements OnInit {
 
     for(let f = 0;f<this.fileContent.length;f++){
       if(f!=0){
-        tipos = this.tipos.filter(data=>{
-          return data.nombre.toLowerCase().trim() ==  this.fileContent[f][1].toLowerCase().trim()}
-        );
-        tupla = {
-            nombre: this.fileContent[f][0].toString(),
-          	tipoConcepto: {
-                  nombre: tipos[0].nombre
+        if(this.titulo == "Categoría"){
+          tipos = this.tipos.filter(data=>{
+            return data.nombre.toLowerCase().trim() ==  this.fileContent[f][1].toLowerCase().trim()});
+
+          tupla = {
+              nombre: this.fileContent[f][0].toString(),
+              tipoConcepto: {
+                    nombre: tipos[0].nombre
+                }
               }
-            }
-        this._exp.postConcepto(tupla).subscribe(result =>{console.log(result)});
+          this._exp.postConcepto(tupla).subscribe(result =>{
+                  this.impGuardar = false;
+                  this.filename = "";
+                  this.fileContent = [];
+            console.log(result)});
+
+        }else{
+          tupla = ({
+            nombre:this.fileContent[f][0].toString(),
+            color:this.fileContent[f][1].toString()
+          })
+         this._exp.postTipo(tupla).subscribe(result =>{console.log(result)
+
+                 this.impGuardar = false;
+                 this.filename = "";
+                 this.fileContent = [];
+         });
         }
       }
+    }
 
-      this.impGuardar = false;
-      this.filename = "";
-      this.fileContent = [];
+
     }
 
 }

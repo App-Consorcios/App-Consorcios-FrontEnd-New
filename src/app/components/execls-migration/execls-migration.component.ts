@@ -9,11 +9,16 @@ export class ExeclsMigrationComponent implements OnInit {
   filename:any;
   data:any;
   @Input('guardar') guardar:boolean= false;
+  @Input('titulos') titulos:string[]= [];
   @Input('margenIzq') margenIzq:number = 6;
   @Input('margenDer') margenDer:number = 6;
   @Input('header') header:any[]=[];
   @Input('fileExportName') fileExportName:string = "";
+  @Output("output-title") title:EventEmitter<any[]> = new EventEmitter<any[]>();
+
   @Output("output-table") table:EventEmitter<any[]> = new EventEmitter<any[]>();
+  favoriteSeason: string;
+
   constructor() { }
 
   ngOnInit() {
@@ -40,6 +45,10 @@ export class ExeclsMigrationComponent implements OnInit {
        };
        reader.readAsBinaryString(target.files[0]);
 
+  }
+  onChekedChange(evt: any){
+    this.title.emit(evt.value)
+    console.log(evt.value)
   }
   exportarArchivo(){
     console.log(this.header)

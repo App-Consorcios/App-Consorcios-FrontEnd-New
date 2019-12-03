@@ -2210,8 +2210,8 @@ pre {
 
 .container-fluid {
   width: 100%;
-  padding-right: 20px;
-  padding-left: 20px;
+  /* padding-right: 20px;
+  padding-left: 20px; */
   margin-right: auto;
   margin-left: auto; }
 

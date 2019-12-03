@@ -7,8 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TableConceptosExpComponent implements OnInit {
   @Input('tableContent2') dataSource:any[] = [];
-  @Input('headers') displayedColumns:string[] = [];
-  // displayedColumns:any[] = ['nombre'];
+  // @Input('headers') displayedColumns:string[] = [];
+  displayedColumns:any[] = ['nombre'];
 
   constructor() {
     console.log(this.dataSource)

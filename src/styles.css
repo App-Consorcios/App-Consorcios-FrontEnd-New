@@ -965,7 +965,8 @@ File: scss
   position: relative; }
 
 .container-fluid {
-  padding: 25px 25px; }
+  /* padding: 25px 25px; */
+ }
 
 .card {
   margin-bottom: 30px; }

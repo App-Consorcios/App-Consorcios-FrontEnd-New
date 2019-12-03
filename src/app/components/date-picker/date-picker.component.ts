@@ -9,7 +9,7 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
   styleUrls: ['./date-picker.component.css']
 })
 export class DatePickerComponent implements OnInit {
-  @Output('periodo') eventos:EventEmitter<Date> = new EventEmitter()
+  @Output('eventos') eventos:EventEmitter<Date> = new EventEmitter()
   dateNew = new Date();
   date = new FormControl(new Date(this.dateNew.getFullYear(), this.dateNew.getMonth(), 1));
   myFilter = (d: Date): boolean => {
@@ -18,6 +18,7 @@ export class DatePickerComponent implements OnInit {
       return day == 1;
     }
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+    console.log(event.value)
     this.eventos.emit(event.value);
   }
   constructor() {

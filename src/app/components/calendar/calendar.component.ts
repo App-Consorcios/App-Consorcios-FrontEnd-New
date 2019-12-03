@@ -7,6 +7,7 @@ import { FullCalendarComponent } from '@fullcalendar/angular';
 import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
 import { ReunionesService } from 'src/app/services/reuniones/reuniones.service';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { Router } from '@angular/router';
 // import { type } from 'os';
 declare var jQuery:any;
 @Component({
@@ -70,7 +71,7 @@ export class CalendarComponent implements OnInit {
   // calendarEvents = [
   //   { title: 'event 1', date: '2019-04-01' }
   // ];
-  constructor(public cd:ChangeDetectorRef, private reunionesService: ReunionesService) {
+  constructor(public cd:ChangeDetectorRef, private reunionesService: ReunionesService,private router:Router) {
     this.reunionesService.getReuniones().subscribe(data => {
       console.log("data",data);
       var reuniones = []
@@ -322,11 +323,9 @@ recuperarEze(event){
       this.calendarEvents = reunionesCalendario;
       console.log("get reuniones LIST EVENTS - ", this.listEvents );
       console.log("get reuniones CALENDAR EVENTS - ", this.calendarEvents );
+      this.router.navigate(['/reuniones/agendar-reuniones']);
     })
   }
-
-
-
 }
 
   // addEvent() {

@@ -1,86 +1,47 @@
   <div class="card">
 
-    <div class="contact-page-aside">
-
-      <div class="left-aside bg-light-part">
-        <!-- <form [formGroup]="forma" (ngSubmit)="guardarConcepto()" novalidate="novalidate" style="margin-top:30px">
-          <div class="form-group">
-            <ul class="list-style-none">
-
-              <li ></li>
-              <li *ngFor="let item of conceptos;let i = index">
-
-                <div class="row" formArrayName="costos">
-                  <div class="col-md-12">
-                    {{item.nombre | truncate: 50}}
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </form> -->
-        <h4 style="margin-top:34px">Categorías</h4>
-        <h6 class="text-muted">Hay <strong>{{conceptoData.length}}</strong> categorías</h6>
-        <hr>
-        <app-table-conceptos-exp [headers] = "['nombre']" [tableContent2] = "conceptoData"></app-table-conceptos-exp>
-      </div>
-
-
-      <div class="right-aside" style="margin-top:20px; margin-left: 200px">
-        <div class="right-page-header">
-            <div class="d-flex">
-              <div class="align-self-center">
-                <h4 class="card-title m-t-10">Costos / Unidad Funcional</h4>
-                <h6 class="text-muted">Hay <strong>{{columnDinamic.length}}</strong> unidades funcionales cargadas</h6>
-                <hr>
-              </div>
-              <div class="ml-auto">
-                <button (click)="calcularNovedad()" type="button" class="btn btn-success btn-rounded"
-                  data-target="#add-contact" style="margin:-10px;padding:-10px"><i class="fa fa-calculator"
-                    style="margin-right:10px"></i>Calcular</button>
-              </div>
+<div class="contact-page-aside">
+  <div class="left-aside bg-light-part">
+    <h4 style="margin-top:34px">Categorías</h4>
+    <h6 class="text-muted">Hay <strong>{{conceptoData.length}}</strong> categorías</h6>
+    <hr style="margin-top:0px;">
+    <app-table-conceptos-exp  [tableContent2] = "conceptoData"></app-table-conceptos-exp>
+  </div>
+  <div class="right-aside" style="margin-top:20px; margin-left: 200px">
+    <div class="right-page-header">
+      <div class="d-flex">
+        <div class="align-self-center">
+          <div class="row">
+            <div style="margin-top:-35px;"class="col-md-7 title-expensa">
+              <h4 class="card-title m-t-10">Costos / Unidad Funcional</h4>
+              <h6 class="text-muted">Hay <strong>{{columnDinamic.length}}</strong> unidades funcionales cargadas</h6>
             </div>
-          <app-angular-table [headers] = "displayedColumns" [noStickyheaders] = "columnDinamic" [tableContent]="tableData"></app-angular-table>
+            <div  class="col-md-2 title-month">
+              <app-date-picker (eventos)="seleccion($event)"></app-date-picker>
+            </div>
+          </div>
 
-
-              <!-- <div class="UF_Totales" style="margin-top:-20px;">
-                  <div class="table-responsive">
-                    <table id="demo-foo-addrow" class="table  table-hover no-wrap contact-list table-striped" data-page-size="10">
-                      <thead>
-                        <tr>
-                          <th *ngFor="let uf of unidadFuncionales">{{uf.codigoDepartamento}}</th>
-                        </tr>
-                      </thead>
-                      <tbody class="tablaExpensas">
-                        <tr *ngFor="let item of matriz;let i = index">
-                          <td *ngFor="let item of matriz[i];">{{item * costos[i] | number:'1.0-2'}}
-                          </td>
-                        </tr>
-                      </tbody>
-                      <tfoot>
-                        <tr>
-
-                        </tr>
-                      </tfoot>
-                    </table>
-                  </div>
-
-                  <div class="totales">
-                    <ul class="list-style-none">
-                      <li class="box-label" style="text-align:center">Totales</li>
-                      <li *ngFor="let item of conceptos;let i = index">
-                        <div class="row">
-                          <input align='right' type='double' name='costo'
-                            style="text-align:center;border:none;padding-bottom: 0" [value]="costos[i]">
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-              </div> -->
+        </div>
+        <div class="ml-auto">
+          <button (click)="recuperaSaldos()" type="button" class="btn btn-danger btn-rounded"
+            data-target="#add-contact" style="margin:-10px;padding:-10px"><i class="fa fa-calendar"
+              style="margin-right:10px"></i>Recuperar</button>
+        </div>
+        <div class="ml-auto">
+          <button *ngIf="toggleCalcular" (click)="calcularNovedad()" type="button" class="btn btn-info btn-rounded"
+            data-target="#add-contact" style="margin:-10px;padding:-10px"><i class="fa fa-calculator"
+              style="margin-right:10px"></i>Calcular</button>
+          <button *ngIf="!toggleCalcular" (click)="guardarNovedad()" type="button" class="btn btn-success btn-rounded"
+            data-target="#add-contact" style="margin:-10px;padding:-10px"><i class="fa fa-save"
+              style="margin-right:10px"></i>Guardar</button>
         </div>
       </div>
+      <hr style="margin-top:-3px;margin-bottom:34px;">
 
+      <app-angular-table [headers] = "displayedColumns" [noStickyheaders] = "columnDinamic" [tableContent]="tableData"></app-angular-table>
     </div>
+  </div>
+</div>
 
     <!-- <footer class="footer">
       <div class="guardarCalculo">

@@ -14,13 +14,13 @@
                        'col-md-7': margenDer == 7}">
       <div class="row" style="padding: 0 20px;justify-content: flex-end;">
         <!-- <div class="col-md-6"> -->
-          <a class="iborrainputfile" style="margin-right:10px;cursor:pointer;" (click)="exportarArchivo()"><i class="fa fa-cloud-download-alt" style="margin-right:5px;cursor:pointer;"></i>Descargar archivo</a>
+          <a class="iborrainputfile" style="margin-right:10px;cursor:pointer;color:#745af2;" (click)="exportarArchivo()"><i class="fa fa-cloud-download-alt" style="margin-right:5px;cursor:pointer;"></i>Descargar archivo</a>
         <!-- </div> -->
         <!-- <div class="col-md-6"> -->
           <input type="file" name="file-1" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} archivos seleccionados"  (change)="onFileChange($event)" multiple />
           <label for="file-1">
-          <span *ngIf="!guardar"  class="iborrainputfile"><i class="fa fa-cloud-upload-alt" style="margin-right:5px;"></i>Seleccionar archivo</span>
-          <span *ngIf="guardar" class="iborrainputfile" [attr.value]="filename"><i class="fa fa-cloud-upload-alt" style="margin-right:5px;"></i>{{filename | truncate:'20'}}</span>
+          <span *ngIf="!guardar" class="iborrainputfile" style="margin-right:10px;cursor:pointer;color:#745af2;"><i class="fa fa-cloud-upload-alt" style="margin-right:5px;cursor:pointer;"></i>Subir archivo</span>
+          <span *ngIf="guardar" class="iborrainputfile" style="color:#745af2;" [attr.value]="filename"><i class="fa fa-cloud-upload-alt" style="margin-right:5px;cursor:pointer;"></i>{{filename | truncate:'20'}}</span>
           </label>
         <!-- </div> -->
       </div>

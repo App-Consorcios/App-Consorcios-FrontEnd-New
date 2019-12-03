@@ -33,6 +33,10 @@
     margin-right: 0.25em;
 }
 
+.iborrainputfile:hover {
+  text-decoration: underline !important;
+}
+
 .iborrainputfile {
 	font-size:16px;
 	font-weight:normal;

@@ -4,7 +4,7 @@
     <label for="file_1"></label>
     <input id="file_1" class="upload" type="file" (change)="onFileChange($event)" multiple="false" C:\Users\usuario\Desktop\APP-CONSORCIOS-FRONT-NEW\src\app\components\execls-migration\execls-migration.component.html>
   </div> -->
-<hr style="margin-top=-10px;">
+<hr style="margin-top:7px;">
   <div class="row">
     <div [ngClass]="{'col-md-5': margenIzq == 5,
                      'col-md-6': margenIzq == 6}">
@@ -17,7 +17,7 @@
           <a class="iborrainputfile" style="margin-right:10px;cursor:pointer;" (click)="exportarArchivo()"><i class="fa fa-cloud-download-alt" style="margin-right:10px;cursor:pointer;"></i>Descargar archivo</a>
         <!-- </div> -->
         <!-- <div class="col-md-6"> -->
-          <input type="file" name="file-1" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} archivos seleccionados"  (change)="onFileChange($event)"multiple />
+          <input type="file" name="file-1" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} archivos seleccionados"  (change)="onFileChange($event)" multiple />
           <label for="file-1">
           <span *ngIf="!guardar"  class="iborrainputfile"><i class="fa fa-cloud-upload-alt" style="margin-right:10px;"></i>Seleccionar archivo</span>
           <span *ngIf="guardar" class="iborrainputfile" [attr.value]="filename"><i class="fa fa-cloud-upload-alt" style="margin-right:10px;"></i>{{filename | truncate:'20'}}</span>
@@ -26,4 +26,4 @@
       </div>
     </div>
   </div>
-<hr style="margin-top=-20px;">
+<hr style="margin-top:10px;">

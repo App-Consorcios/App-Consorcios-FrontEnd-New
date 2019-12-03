@@ -5622,6 +5622,7 @@ File: scss
 /*-- ==============================================================
  Small Desktop & above all (1024px)
  ============================================================== */
+ /*
 @media (min-width: 1024px) {
   .page-wrapper {
     margin-left: 240px; } }
@@ -5653,7 +5654,7 @@ File: scss
       display: -webkit-flex !important;
       display: -ms-flexbox !important;
       display: flex !important; } }
-
+*/
 /*-- ==============================================================
  Ipad & above all(768px)
  ============================================================== */

@@ -1,18 +1,18 @@
     <div class="card">
         <div class="card-body">
           <div class="row">
-            <div class="col-md-4" style="margin-left:50px; margin-top:15px;">
+            <div class="col-md-4" style="margin-left:10px; margin-top:20px;">
                 <app-usuario-icon (propietario)="esPropietario=$event" (inquilino)="esInquilino=$event" (unidad)="esUnidadFuncional=$event"></app-usuario-icon>
             </div>
-            <div  *ngIf="esUnidadFuncional && !esPropietario && !esInquilino" class="col-md-5" style="margin-left:-180px">
+            <div  *ngIf="esUnidadFuncional && !esPropietario && !esInquilino" class="col-md-5" style="margin-left:-150px">
               <h4 class="box-title">Unidad funcional <span style = "color:#9C27B0"><strong>{{this._vu.getCodigo()}}</strong></span></h4>
               <h6 class="text-muted">Datos de su unidad funcional</h6>
             </div>
-            <div  *ngIf="!esUnidadFuncional && !esPropietario && esInquilino" class="col-md-5" style="margin-left:-180px">
+            <div  *ngIf="!esUnidadFuncional && !esPropietario && esInquilino" class="col-md-5" style="margin-left:-150px">
               <h4 class="box-title">Inquilino</h4>
               <h6 class="text-muted">Datos del Inquilino</h6>
             </div>
-            <div  *ngIf="!esUnidadFuncional && esPropietario && !esInquilino" class="col-md-5" style="margin-left:-180px">
+            <div  *ngIf="!esUnidadFuncional && esPropietario && !esInquilino" class="col-md-5" style="margin-left:-150px">
               <h4 class="box-title">Propietario</h4>
               <h6 class="text-muted">Datos del propietario</h6>
             </div>

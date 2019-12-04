@@ -19,7 +19,7 @@
           <hr style="margin-top:-10px;margin-bottom:-2px;">
 
             <div class="table-responsive">
-                <table id="example23" class="display  table table-hover table-striped table-bordered" [class.sorting]="false" cellspacing="0" width="100%">
+                <table id="example23" class="" [class.sorting]="false" cellspacing="0" width="100%">
                     <!--<thead>
                         <tr>
                             <th>Concepto</th>
@@ -46,10 +46,12 @@
                     </tbody>-->
 
                     <tbody *ngIf="expensas.length>0">
-                        <tr *ngFor="let item of expensas">
-                          <td >{{item.nombre}}</td>
-                          <td >{{item.descripcion}}</td>
-                          <td >{{item.gasto}}</td>
+                        <tr *ngFor="let item of expensas" [ngClass]="{'rows': item.css == 'rows',
+                                                                      'totales': item.css == 'totales',
+                                                                      'cabecera': item.css == 'cabecera'}">
+                          <td style="padding:0px 10px;">  {{item.nombre}}</td>
+                          <td >  {{item.descripcion}}</td>
+                          <td >  {{item.gasto}}</td>
                         </tr>
                     </tbody>
                 </table>

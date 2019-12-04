@@ -20,7 +20,7 @@ export class ExpensasService {
   unidadFuncionales:UnidadFuncional[]=[];
   saldos:Saldo[] = [];
   conceptoVisitado:any[] = [];
-  conceptoAnterio:any="";
+  total:boolean=false;
 
   constructor(public _uf:UnidadFuncionalService,
               private _http:HttpClient) {
@@ -95,34 +95,29 @@ export class ExpensasService {
     let item = [];
     let arritem = [];
     let totalCat = 0;
+    let contador = 1;
     let url = `${URL_SERVICIOS}/expensas-unidades-funcionales?periodo=${periodo}`;
     return this._http.get(url).pipe(map((data:any)=>{
         if(data.expensasUnidadesFuncionales.length>0){
           for(let  exp of data.expensasUnidadesFuncionales[0].items ){
+
             let concept = this.conceptoVisitado.filter( data=>{return data == exp.concepto.tipoConcepto.nombre;})
             if(concept.length>0){
-              item.push({nombre:exp.conceptoNombre,descripcion:"",gasto:exp.monto});
-              totalCat += exp.monto;
+              item.push({nombre:exp.conceptoNombre,descripcion:"",gasto:exp.monto,css:'rows'});
             }else{
+              if(this.total){
+                item.push({nombre:"", descripcion:"Total categoría",gasto:totalCat,css:'totales'});
+                totalCat = 0;
+              }
               this.conceptoVisitado.push(exp.concepto.tipoConcepto.nombre);
-              item.push({nombre:exp.concepto.tipoConcepto.nombre,descripcion:"",gasto:"GASTO A"});
-              item.push({nombre:exp.conceptoNombre,descripcion:"",gasto:exp.monto});
+              item.push({nombre:exp.concepto.tipoConcepto.nombre,descripcion:"",gasto:"GASTO A",css:"cabecera"});
+              item.push({nombre:exp.conceptoNombre,descripcion:"",gasto:exp.monto,css:'rows'});
               totalCat += exp.monto
+              this.total=true;
             }
-            if(this.conceptoAnterio==""){
-              this.conceptoAnterio = "gasto";
-            }
-            if(item)
-  // console.log(exp.concepto.tipoConcepto.nombre);
-            if(this.conceptoAnterio!=exp.concepto.tipoConcepto.nombre){
-              // console.log(this.conceptoAnterio);
-
-              item.push({nombre:"Total categoría", descripcion:"",totalCat});
-              this.conceptoAnterio = exp.concepto.tipoConcepto.nombre
-              totalCat = 0;
-            }
+            contador++;
           }
-          console.log(item);
+              item.push({nombre:"", descripcion:"Total categoría",gasto:totalCat,css:'totales'});
           return item;
         }
       return [];

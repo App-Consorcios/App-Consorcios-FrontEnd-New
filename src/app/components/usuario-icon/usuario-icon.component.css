@@ -1,6 +1,6 @@
 .dot {
-  height: 94px;
-  width: 94px;
+  height: 60px;
+  width: 60px;
   padding-top: 7px;
   text-align: center;
   vertical-align: center;
@@ -10,22 +10,22 @@
   display: inline-block;
 }
 .nav-profile-image-home img {
-    width: 94px;
-    height: 94px;
+    width: 60px;
+    height: 60px;
     background-color: #06d79c;
     border-radius: 100%;
     border: 2px solid #198ae3;
 }
 .nav-profile-image-prop img {
-    width: 94px;
-    height: 94px;
+    width: 60px;
+    height: 60px;
     background-color: #06d79c;
     border-radius: 100%;
     border: 2px solid #06d79c;
 }
 .nav-profile-image-inq img {
-    width: 94px;
-    height: 94px;
+    width: 60px;
+    height: 60px;
     background-color: #ffb22b;
     border-radius: 100%;
     border: 2px solid #ffb22b;

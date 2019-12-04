@@ -30,6 +30,11 @@ export class VerExpensasComponent implements OnInit {
           info: false,
           ordering:false,
           bPaginate: false,
+          // columnDefs: [
+          //     { "height": "10%", "targets": 1 }
+          //   ],
+
+
           language: {
             url: '//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'
           }

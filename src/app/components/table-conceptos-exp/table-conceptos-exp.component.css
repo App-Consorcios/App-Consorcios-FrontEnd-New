@@ -3,7 +3,7 @@
 
 .uno {
   width: 80%;
-  height: 275px;
+  max-height: 275px;
   overflow: auto;
   direction: rtl;
   margin: 30px auto;
@@ -12,14 +12,14 @@
 .uno div {
   /* background: linear-gradient(to bottom, #A0CBA4, #4E8953) no-repeat 100%; */
   widht: auto;
-  height: 500%;
+  max-height: 500%;
   direction: ltr;
   color: #fff;
   font-size: 1.3rem;
   padding: .5rem;
 }
 .example-container {
-    height: 500px;
+    max-height: 500px;
   /* height: auto; */
   width: 100%;
   overflow-y: auto;
@@ -27,7 +27,7 @@
 }
 table {
   width: 100%;
-  height: 450px;
+  max-height: 450px;
 }
 .bg-light-part{
   background-color: rgba(0, 0, 0, 0.02);
@@ -36,7 +36,7 @@ table {
     overflow: auto;
 }
 .lista{
-  height: 450px;
+  max-height: 450px;
   width: 100%;
   overflow: auto;
 }

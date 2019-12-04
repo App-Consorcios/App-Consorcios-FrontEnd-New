@@ -8,6 +8,32 @@ h1, h2, h3, h4, h5, h6 {
   height: 600px;
   overflow: auto;
 }
+.rows{
+  height: 30px;
+  color:#555555;
+  border: 0.75px solid;
+  border-bottom:3px solid;
+  background:#fbfbfb;
+  font-weight:500;
+  font-size:12px;
+}
+.totales{
+  height: 35px;
+  color:#555555;
+  border: 0.75px solid;
+  border-bottom:3px solid;
+  background:#fff;
+  font-weight:600;
+  font-size:12px;
+}
+.cabecera{
+  height: 50px;
+  color:#393939;
+  border: 0.75px solid;
+  border-bottom:3px solid;
+  background:#f1efef;
+  font-weight:600;
+}
 .title-month{
   position:relative;
   top:-10px;

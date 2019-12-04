@@ -53,6 +53,9 @@
 
 
               <br>
+              <form class="" action="index.html" method="post">
+
+
                   <div class="table-responsive scroll-aside" style="margin-top:-10px; height: 460px;" >
                       <table id="demo-foo-addrow" class="table table-hover no-wrap contact-list" data-page-size="10">
                           <thead class="border-table">
@@ -84,10 +87,11 @@
                                    <td><span class="label" [ngClass]="{'label-danger': item.concepto.tipoConcepto.color == 'Rojo',
                                                                   'label-info': item.concepto.tipoConcepto.color == 'Celeste',
                                                                   'label-warning': item.concepto.tipoConcepto.color == 'Amarillo',
-                                                                  'label-success': item.concepto.tipoConcepto.color == 'Verde'}">{{item.concepto.tipoConcepto.nombre | sigla:2}}</span></td>
+                                                                  'label-success': item.concepto.tipoConcepto.color == 'Verde'}">
+                                                                  {{item.concepto.tipoConcepto.nombre | sigla:2}}</span></td>
                                   <td id="td1">{{item.concepto.nombre}}</td>
-                                  <td id="td2"><input type="text" name="" [value]="item.descripcion" placeholder="Ingrese una descripción.."> </td>
-                                  <td id="td3"><input type="text" name="" [value]="item.monto | number:'1.0-2'" ></td>
+                                  <td id="td2"><input type="text" [(ngModel)]="descripcion" name="descripcion" [value]="item.descripcion" placeholder="Ingrese una descripción.."></td>
+                                  <td id="td3"><input type="text" [(ngModel)]="monto" name="monto" [value]="item.monto | number:'1.0-2'" ></td>
                                   <td (click)="eliminarDetalle(i)"><i  class="fa fa-trash text-danger" style="margin:10px;text-align:center"></i></td>
                               </tr>
 
@@ -107,8 +111,8 @@
 
                           </tfoot>
                       </table>
-
-              </div>
+                    </div>
+                    </form>
           </div>
       </div>
     </div>

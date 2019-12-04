@@ -15,6 +15,8 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./detalle-expensas.component.css']
 })
 export class DetalleExpensasComponent implements OnInit {
+  descripcion:string;
+  monto:any;
   categorias:Concepto[] = [];
   detalles:any[] = [];
   saveDetalle:any;
@@ -62,6 +64,7 @@ export class DetalleExpensasComponent implements OnInit {
     this._exp.getSaldos(periodoActual).subscribe( data=>{
       if(data!=undefined){
         this.detalles = data;
+        console.log(this.detalles);
       }else{
         this.detalles = [];
       }
@@ -193,13 +196,15 @@ export class DetalleExpensasComponent implements OnInit {
     let contador = mes.toString().length;
     let periodoActual =`${this.periodo.getFullYear()}-${('0'.repeat(2-contador)).concat(mes.toString())}`;
     this.saveDetalle = {periodo:periodoActual,itemsGenerales:[]}
+    console.log(this.descripcion)
     for(let saldoDetalle of this.detalles[0].itemsGenerales){
-      console.log(saldoDetalle.descripcion)
-      console.log(saldoDetalle.monto)
+
+      // console.log(saldoDetalle)
+      // console.log(saldoDetalle.monto)
       this.saveDetalle.itemsGenerales.push({
            conceptoNombre:saldoDetalle.concepto.nombre,
-           descripcion:saldoDetalle.descripcion,
-           monto:saldoDetalle.monto});
+           descripcion:this.descripcion,
+           monto:this.monto});
     }
     this._exp.getSaldos(periodoActual).subscribe( data=>{
       console.log(data);
@@ -210,6 +215,7 @@ export class DetalleExpensasComponent implements OnInit {
           html: 'La expensa para el periodo <strong>'+ periodoActual.toString()+'</strong> ya se encuentra fue cargada',
         })
       }else{
+        console.log(this.saveDetalle)
         this._exp.postSaldos(this.saveDetalle).subscribe( data =>{
           console.log(data);
         },(error)=>{

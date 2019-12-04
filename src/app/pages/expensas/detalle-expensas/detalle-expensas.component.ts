@@ -199,7 +199,7 @@ export class DetalleExpensasComponent implements OnInit {
            descripcion:saldoDetalle.descripcion,
            monto:saldoDetalle.monto});
     }
-    this._exp.getSaldos(this.detalles[0].periodo).subscribe( data=>{
+    this._exp.getSaldos(periodoActual).subscribe( data=>{
       console.log(data);
       if(data.length>0 && data!=undefined){
         Swal.fire({

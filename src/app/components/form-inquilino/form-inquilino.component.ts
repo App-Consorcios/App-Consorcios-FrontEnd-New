@@ -20,6 +20,7 @@ export class FormInquilinoComponent implements OnInit {
     }
   }
   constructor() {
+    console.log(this.usuario);
     this.forma = new FormGroup({
       'nombre': new FormControl(''),
       'apellido': new FormControl(''),

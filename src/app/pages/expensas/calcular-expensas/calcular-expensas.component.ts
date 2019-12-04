@@ -27,10 +27,11 @@ export class CalcularExpensasComponent implements OnInit {
   conceptoData:any[]=[];
   saldos:any;
   periodo:Date = new Date();
-  // ['name', 'position', 'weight', 'symbol', 'position', 'weight', 'symbol', 'star'];
-  // dataSource = ELEMENT_DATA;
+
   constructor(private _exp:ExpensasService,
-              private _uf:UnidadFuncionalService) {}
+              private _uf:UnidadFuncionalService) {
+
+  }
 
   ngOnInit() {
 

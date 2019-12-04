@@ -7,6 +7,7 @@ import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
+import { LoadingComponent } from './loading/loading.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ComponentsModule } from '../components/components.module';
     SidebarComponent,
     BreadcrumbComponent,
     NopagefoundComponent,
-    TopbarComponent
+    TopbarComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { ComponentsModule } from '../components/components.module';
     SidebarComponent,
     BreadcrumbComponent,
     NopagefoundComponent,
-    TopbarComponent
+    TopbarComponent,
+    LoadingComponent
   ]
 })
 export class SharedModule { }

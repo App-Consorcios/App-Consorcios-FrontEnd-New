@@ -59,14 +59,14 @@ img {
 .propietario{
   position:absolute;
   top: 0px;
-  left: 120px;
+  left: 100px;
   /* z-index: 200; */
   cursor: pointer;
 }
 .inquilino{
   position:absolute;
   top: 0px;
-  left: 55px;
+  left: 50px;
   /* z-index: 100; */
   cursor: pointer;
 }

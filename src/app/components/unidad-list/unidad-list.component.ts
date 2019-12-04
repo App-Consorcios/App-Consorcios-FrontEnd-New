@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { UnidadFuncionalService } from 'src/app/services/unidad-funcional/unidad-funcional.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 export interface ListUsuario {
   nombre:string;
@@ -26,6 +27,7 @@ export interface ListUnidadesCompleta {
   styleUrls: ['./unidad-list.component.css']
 })
 export class UnidadListComponent implements OnInit {
+  loaded:boolean = false;
   rol:Roles;
   element:any;
   nombre:string;
@@ -48,8 +50,9 @@ export class UnidadListComponent implements OnInit {
   seleccionado:any[] = [];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(public _user:UsuarioService,
-              public _uni:UnidadFuncionalService,
+  constructor(private _user:UsuarioService,
+              public router:Router,
+              private _uni:UnidadFuncionalService,
               private ref:ChangeDetectorRef) { }
   selection = new SelectionModel<ListUnidadesCompleta>(true, []);
 
@@ -78,14 +81,12 @@ export class UnidadListComponent implements OnInit {
       seleccionado = this.seleccionado.filter( data => data.unidad == row.unidad );
       if(seleccionado.length==0){
         this.seleccionado.push(row);
-        console.log(this.seleccionado);
       }
     }else{
       if(this.seleccionado.length>0 && row!=undefined){
         noseleccionado = this.seleccionado.filter( data => data.unidad == row.unidad);
         if(noseleccionado.length>0){
           this.seleccionado.splice(this.seleccionado.indexOf(noseleccionado[0]),1)
-          console.log(this.seleccionado);
         }
       }
     }
@@ -144,7 +145,6 @@ export class UnidadListComponent implements OnInit {
         descripcion:""
       }
         if(unidades[i].propietario){
-          // console.log(`${unidades[i].propietario.nombre} ${unidades[i].propietario.apellido}`)
           tupla.propietario = `${unidades[i].propietario.nombre} ${unidades[i].propietario.apellido}`;
 
         }else{
@@ -195,7 +195,7 @@ export class UnidadListComponent implements OnInit {
           // this.matrizDataSource(this.unidadesSinInquilino,this.usuarioInquilinos,this.listUsuarioInquilino);
           // this.dataSourceInquilino = new MatTableDataSource(this.listUsuarioInquilino);
           // this.dataSourceInquilino.sort = this.sort;
-
+          this.router.navigate(['/unidad-funcional/asignar-unidad']);
             this.matrizDataSourceCompletas(data,this.listUnidadesCompleta)
             this.dataSourceUnidades = new MatTableDataSource(this.listUnidadesCompleta);
             this.dataSourceUnidades.sort = this.sort;
@@ -237,7 +237,7 @@ export class UnidadListComponent implements OnInit {
           }
           rol.inquilino = { mail: user[0].mail};
           this._uni.asignarUnidadFuncional(rol,unidad[0].id).subscribe( (data:any) =>{
-            console.log(data);
+            this.router.navigate(['/unidad-funcional/asignar-unidad']);
             this.matrizDataSourceCompletas(data,this.listUnidadesCompleta)
             this.dataSourceUnidades = new MatTableDataSource(this.listUnidadesCompleta);
             this.dataSourceUnidades.sort = this.sort;
@@ -259,6 +259,8 @@ export class UnidadListComponent implements OnInit {
                propietario:null
              };
      this._uni.asignarUnidadFuncional(rol,unidad[0].id).subscribe( (data:any) =>{
+       this.router.navigate(['/unidad-funcional/asignar-unidad']);
+
        this.matrizDataSourceCompletas(data,this.listUnidadesCompleta)
        this.dataSourceUnidades = new MatTableDataSource(this.listUnidadesCompleta);
        this.dataSourceUnidades.sort = this.sort;

@@ -7,6 +7,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 import { Saldo } from 'src/app/models/saldo.model';
 import Swal from 'sweetalert2';
 import { catchError } from 'rxjs/operators';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-detalle-expensas',
@@ -23,13 +24,26 @@ export class DetalleExpensasComponent implements OnInit {
   impGuardar:boolean = false;
   filename:string="Detalles-expensas.xlsx";
   constructor(private _exp:ExpensasService,
-              public cd:ChangeDetectorRef) {
-
+              public cd:ChangeDetectorRef,
+              public router:Router) {
+    // this.router.routeReuseStrategy.shouldReuseRoute = function(){
+    //   return false;
+    // }
+    //
+    // this.router.events.subscribe((evt) => {
+    //     if (evt instanceof NavigationEnd) {
+    //     this.router.navigated = false;
+    //     window.scrollTo(0, 0);
+    //   }
+    // });
+    // this.cargarConceptos();
    }
 
   ngOnInit() {
     this.cd.markForCheck();
+  this.cd.detectChanges();
     this.cargarConceptos();
+
     // this.cargarExpensas();
     this.cd.detectChanges();
 
@@ -38,6 +52,7 @@ export class DetalleExpensasComponent implements OnInit {
     this.conceptosSubscription = this._exp.getConceptos()
                   .subscribe(categorias =>{
                     this.categorias = categorias;
+                    console.log(categorias)
                   });
   }
   cargarExpensas(){
@@ -48,6 +63,7 @@ export class DetalleExpensasComponent implements OnInit {
     this._exp.getSaldos(periodoActual).subscribe( data=>{
       if(data!=undefined){
         this.detalles = data;
+        console.log(this.detalles)
       }else{
         this.detalles = [];
       }

@@ -42,13 +42,8 @@ export class ExpensasService {
     return this._http.post(url,JSON.stringify(tipo),{headers: headers});
   }
   deleteTipo(tipo:Tipo):Observable<any>{
-    return new Observable( tipos =>{
-      this.tipos.splice(this.tipos.indexOf(tipo), 1);
-      tipos.next({
-        ok:true,
-        message: 'El tipo fue eliminado correctamente'
-      });
-    })
+    let url = `${URL_SERVICIOS}/conceptos/tipo?nombre=${tipo.nombre}`;
+    return this._http.delete(url);
   }
   getConceptos():Observable<any>{
    let url = URL_SERVICIOS + '/conceptos'

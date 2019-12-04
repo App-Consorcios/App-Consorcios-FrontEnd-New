@@ -48,6 +48,7 @@ export class VerUnidadComponent implements OnInit {
     this._uf.getUnidades().subscribe( (data:any) =>{
       this.unidadesFuncionales = data;
       if(this.unidadesFuncionales.length>0){
+        // this.unidadesFuncionales = this.unidadesFuncionales.filter(data=>{return data.inquilino !== undefined || data.propietario !== undefined})
         this._vu.setCodigo(this.unidadesFuncionales[this.pagActual].codigoDepartamento)
         this._vu.setProrrateo(this.unidadesFuncionales[this.pagActual].prorrateo)
         this._vu.setTamanio(this.unidadesFuncionales[this.pagActual].metrosCuadrados)
@@ -58,6 +59,11 @@ export class VerUnidadComponent implements OnInit {
         this.forma.controls['metrosCuadrados'].setValue(this.unidadesFuncionales[this.pagActual].metrosCuadrados)
         this.forma.controls['codigoUbicacion'].setValue(this.unidadesFuncionales[this.pagActual].codigoUbicacion)
         this.forma.controls['descripcionUbicacion'].setValue(this.unidadesFuncionales[this.pagActual].descripcionUbicacion)
+        console.log(this.unidadesFuncionales)
+        this.inquilino = this.unidadesFuncionales[this.pagActual].inquilino;
+        this.propietario = this.unidadesFuncionales[this.pagActual].propietario;
+        console.log(this.inquilino);
+        console.log(this.propietario);
       }
     });
     this.forma = new FormGroup({
@@ -69,9 +75,11 @@ export class VerUnidadComponent implements OnInit {
     })
   }
   ngOnInit() {
-    if(this.unidadesFuncionales.length>0){
-      this.inquilino = this.unidadesFuncionales[this.pagActual].inquilino;
-      this.propietario = this.unidadesFuncionales[this.pagActual].propietario;
-    }
+    console.log(this.unidadesFuncionales)
+    // if(this.unidadesFuncionales.length>0){
+    //   console.log(this.pagActual)
+    //   this.inquilino = this.unidadesFuncionales[this.pagActual].inquilino;
+    //   this.propietario = this.unidadesFuncionales[this.pagActual].propietario;
+    // }
   }
 }

@@ -1,13 +1,12 @@
 <div class="card" style="min-height:500px;">
-
-<div class="contact-page-aside">
-  <div class="left-aside bg-light-part">
-    <h4 style="margin-top:34px">Categorías</h4>
-    <h6 class="text-muted">Hay <strong>{{conceptoData.length}}</strong> categorías</h6>
-    <hr style="margin-top:0px;">
-    <app-table-conceptos-exp  [tableContent2] = "conceptoData"></app-table-conceptos-exp>
-  </div>
-  <div class="right-aside" style="margin-top:20px; margin-left: 200px">
+  <div class="contact-page-aside">
+    <div class="left-aside bg-light-part">
+      <h4 style="margin-top:34px">Categorías</h4>
+      <h6 class="text-muted">Hay <strong>{{conceptoData.length}}</strong> categorías</h6>
+      <hr style="margin-top:0px;">
+      <app-table-conceptos-exp  [tableContent2] = "conceptoData"></app-table-conceptos-exp>
+    </div>
+    <div class="right-aside" style="margin-top:20px; margin-left: 200px">
       <div class="right-page-header">
         <div class="row">
         <div class="col-md-4 title-expensa" style="margin-top:-35px;">
@@ -32,8 +31,6 @@
         <hr style="margin-top:-3px;margin-bottom:34px;">
       </div>
       <app-angular-table [headers] = "displayedColumns" [noStickyheaders] = "columnDinamic" [tableContent]="tableData"></app-angular-table>
-
     </div>
   </div>
-
 </div>

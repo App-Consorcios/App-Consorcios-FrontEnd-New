@@ -81,8 +81,7 @@
                                 <td></td>
                               </tr>
                               <tr *ngFor="let item of detail.itemsGenerales" class="border-table">
-
-                                  <td><span class="label" [ngClass]="{'label-danger': item.conceptoNombre.tipoConcepto.color == 'Rojo',
+                                   <td><span class="label" [ngClass]="{'label-danger': item.conceptoNombre.tipoConcepto.color == 'Rojo',
                                                                   'label-info': item.conceptoNombre.tipoConcepto.color == 'Celeste',
                                                                   'label-warning': item.conceptoNombre.tipoConcepto.color == 'Amarillo',
                                                                   'label-success': item.conceptoNombre.tipoConcepto.color == 'Verde'}">{{item.conceptoNombre.tipoConcepto.nombre | sigla:2}}</span></td>

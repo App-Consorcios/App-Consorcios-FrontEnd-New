@@ -37,12 +37,9 @@ export class SelectUnidadComponent implements OnInit {
   ngOnInit() {
   }
   somethingChanged(selected){
-    console.log("SELECTED - ", selected);
     
-    const unidad = this.unidades.filter(data => data.codigo == selected)
-    console.log("SELECTED UNIDAD - ", unidad);
+    const unidad = this.unidades.filter(data => data.codigoDepartamento == selected)
     if(unidad.length>0){
-
       this.elegido.emit();
       this.router.navigate(['unidad-funcional','ver-unidades',unidad[0].id])
     }

@@ -4,7 +4,7 @@ import { UnidadFuncionalService } from 'src/app/services/unidad-funcional/unidad
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-crear-unidad',
   templateUrl: './crear-unidad.component.html',
@@ -53,21 +53,27 @@ export class CrearUnidadComponent implements OnInit {
     this._uf.crearUnidad(unidadFuncional).subscribe((data:any) =>{
       this.unidadFuncional = data;
       this.unidad = this.unidadFuncional.codigoDepartamento;
+      this._uf.getUnidades().subscribe( (data:any) =>{
+        this.unidadesFuncionales = data;
+        this.forma.reset({
+         codigoDepartamento:"",
+          prorrateo:"",
+          metrosCuadrados:"",
+          ubicacion:{
+           codigoUbicacion: "",
+           descripcionUbicacion: ""
+          }
+        });
+      });
     }),catchError( err=>{
-        return throwError(err);
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        html: 'La unidad funcional <strong>'+ unidadFuncional.codigoDepartamento.toString()+' </strong> ya fue creada ',
+      })
     })
-    this.forma.reset({
-     codigoDepartamento:"",
-      prorrateo:"",
-      metrosCuadrados:"",
-      ubicacion:{
-       codigoUbicacion: "",
-       descripcionUbicacion: ""
-      }
-    });
-    this._uf.getUnidades().subscribe( (data:any) =>{
-      this.unidadesFuncionales = data;
-    });
+
+
   }
   importar(){
     for(let f = 0;f<this.fileContent.length;f++){

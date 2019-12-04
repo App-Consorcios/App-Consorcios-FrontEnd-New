@@ -4,6 +4,8 @@ import { ExpensasService } from 'src/app/services/expensas/expensas.service';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { Concepto } from 'src/app/models/concepto.model';
+import Swal from 'sweetalert2';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-crear-expensas',
@@ -21,9 +23,13 @@ export class CrearExpensasComponent implements OnInit {
     color:""
   };
   titulo:string;
-  nuevoConcepto:any;
+  nuevoConcepto:any= { nombre:"", tipoConcepto:{
+    nombre:"",
+    color:""
+  }};
   nuevoTipo:any;
   mensaje:boolean = false;
+  mensajeError:boolean = false;
   conceptos:Concepto[]=[];
   concepto:Concepto = {
     nombre:"",
@@ -33,9 +39,19 @@ export class CrearExpensasComponent implements OnInit {
     }
   }
   conceptosSubscription:Subscription;
-  // mensaje:string="";
 
-  constructor(private _exp:ExpensasService) {
+  constructor(private _exp:ExpensasService,
+              private router:Router) {
+      this.router.routeReuseStrategy.shouldReuseRoute = function(){
+          return false;
+       }
+
+       this.router.events.subscribe((evt) => {
+          if (evt instanceof NavigationEnd) {
+             this.router.navigated = false;
+             window.scrollTo(0, 0);
+          }
+      });
 
   }
 
@@ -71,7 +87,17 @@ export class CrearExpensasComponent implements OnInit {
     let tipo = new Tipo(item.nombre,item.color);
     this._exp.deleteTipo(item).subscribe(data =>{
        this.mensaje = data.message;
-    })
+       this._exp.getTipos()
+                     .subscribe(tipos =>{
+                       this.tipos = tipos;
+                     });
+    },(error)=>{
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'El tipo de categoría esta siendo utilizado en una o varias categorías!'
+      });
+    });
   }
   cargarConceptos(){
     this.conceptosSubscription = this._exp.getConceptos()
@@ -89,6 +115,7 @@ export class CrearExpensasComponent implements OnInit {
           color:""
         }});
         this.mensaje = true;
+
         setTimeout(()=>{this.mensaje = false},3000)
         this._exp.getConceptos()
                       .subscribe(conceptos =>{
@@ -100,7 +127,18 @@ export class CrearExpensasComponent implements OnInit {
     let nombre =item.nombre.replace(/ /g,"+");
     this._exp.deleteConcepto(nombre).subscribe(data =>{
        console.log(data);
-    })
+       this.mensajeError = true;
+       setTimeout(()=>{this.mensajeError = false},3000)
+       this._exp.getConceptos()
+                     .subscribe(conceptos =>{
+                       this.conceptos = conceptos;});
+    },(error)=>{
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'La categoría esta siendo utilizado en un detalle!'
+      });
+    });
   }
   importar(){
     let tipos:any;
@@ -111,7 +149,7 @@ export class CrearExpensasComponent implements OnInit {
         if(this.titulo == "Categoría"){
           tipos = this.tipos.filter(data=>{
             return data.nombre.toLowerCase().trim() ==  this.fileContent[f][1].toLowerCase().trim()});
-
+          console.log(tipos);
           tupla = {
               nombre: this.fileContent[f][0].toString(),
               tipoConcepto: {
@@ -119,10 +157,17 @@ export class CrearExpensasComponent implements OnInit {
                 }
               }
           this._exp.postConcepto(tupla).subscribe(result =>{
-                  this.impGuardar = false;
-                  this.filename = "";
-                  this.fileContent = [];
-            console.log(result)});
+
+            this._exp.getConceptos()
+                          .subscribe(conceptos =>{
+                            this.conceptos = conceptos;
+                            this.impGuardar = false;
+                            this.filename = "";
+                            this.fileContent = [];
+
+              });
+
+          });
 
         }else{
           tupla = ({
@@ -131,10 +176,18 @@ export class CrearExpensasComponent implements OnInit {
           })
          this._exp.postTipo(tupla).subscribe(result =>{console.log(result)
 
-                 this.impGuardar = false;
-                 this.filename = "";
-                 this.fileContent = [];
+
+                 this._exp.getTipos()
+                               .subscribe(tipos =>{
+                                 this.tipos = tipos;
+                                 this.impGuardar = false;
+                                 this.filename = "";
+                                 this.fileContent = [];
+                                 this.router.navigate(['/expensas/crear-expensas'])
+
+                               });
          });
+
         }
       }
     }

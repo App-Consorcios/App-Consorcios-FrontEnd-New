@@ -1,14 +1,18 @@
 <div class="card">
   <!-- .left-right-aside-column-->
   <div class="contact-page-aside" style="height: 665px;">
+
     <!-- .left-aside-column-->
     <div class="left-aside bg-light-part">
-      <ul class="list-style-none">
-          <li class="box-label"><h4>Tipos de categorias</h4></li>
-          <li><h6 class="text-muted">Hay creados <strong>{{tipos.length}} </strong> tipos</h6></li>
+      <h4>Tipos de categorias</h4>
+      <h6 class="text-muted">Hay creados <strong>{{tipos.length}} </strong> tipos</h6>
+      <hr>
+      <ul class="list-style-none scroll-aside">
+          <li class="box-label"></li>
+          <li></li>
           <!-- <app-execls-migration [margenIzq]="5" [margenDer] = "6" (output-table)="fileContent=$event" [guardar]="impGuardar" [header]="[['Tipo','Categoría','Descripción','Monto']]" [fileExportName]="filename"></app-execls-migration> -->
 
-          <li class="divider"><hr></li>
+          <!-- <li class="divider"><hr></li> -->
           <li *ngFor="let item of tipos">
             <a href="javascript:void(0)"><i (click)="eliminarTipoConcepto(item)" class="fa fa-close" style="padding:10px"></i>{{item.nombre | truncate: 10}}
               <span class="label" [ngClass]="{'label-danger': item.color == 'Rojo',
@@ -16,7 +20,8 @@
                                               'label-warning': item.color == 'Amarillo',
                                               'label-success': item.color == 'Verde'}">{{item.nombre | sigla: 2}}</span></a>
           </li>
-          <li class="box-label"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" class="btn btn-info text-white">+ Crear tipo de categoría</a></li>
+          <li class="box-label">
+            </li>
           <div id="myModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                   <div class="modal-content">
@@ -64,6 +69,7 @@
               <!-- /.modal-dialog -->
           </div>
       </ul>
+      <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" class="btn btn-info text-white">+ Crear tipo de categoría</a>
     </div>
     <!-- /.left-aside-column-->
     <div class="right-aside">
@@ -136,7 +142,10 @@
                             </select>
                           </div>
                           <div *ngIf="mensaje" style="text-align:center;margin-top:5px;">
-                            <h5 ><i class="fa fa-check text-success" style="margin-right:10px;"> </i>Genial !! El concepto <strong>{{nuevoConcepto.nombre}}</strong> se a guardado con éxito... </h5>
+                            <h5 ><i class="fa fa-check text-success" style="margin-right:10px;"> </i>Genial !! El concepto <strong>{{nuevoConcepto.nombre}}</strong> se ha guardado con éxito... </h5>
+                          </div>
+                          <div *ngIf="mensajeError" style="text-align:center;margin-top:5px;">
+                            <h5 ><i class="fa fa-warning text-warning" style="margin-right:10px;"> </i>Aviso !! El concepto <strong>{{nuevoConcepto.nombre}}</strong> se ha eliminado correctamente... </h5>
                           </div>
                           <div class="modal-footer">
 

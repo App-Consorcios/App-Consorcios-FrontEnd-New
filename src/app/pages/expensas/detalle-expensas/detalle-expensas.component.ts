@@ -192,8 +192,10 @@ export class DetalleExpensasComponent implements OnInit {
     let mes = this.periodo.getMonth()+1;
     let contador = mes.toString().length;
     let periodoActual =`${this.periodo.getFullYear()}-${('0'.repeat(2-contador)).concat(mes.toString())}`;
-    this.saveDetalle = {periodo:this.detalles[0].periodo,itemsGenerales:[]}
+    this.saveDetalle = {periodo:periodoActual,itemsGenerales:[]}
     for(let saldoDetalle of this.detalles[0].itemsGenerales){
+      console.log(saldoDetalle.descripcion)
+      console.log(saldoDetalle.monto)
       this.saveDetalle.itemsGenerales.push({
            conceptoNombre:saldoDetalle.concepto.nombre,
            descripcion:saldoDetalle.descripcion,

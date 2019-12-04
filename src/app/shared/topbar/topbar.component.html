@@ -4,10 +4,11 @@
     <a class="navbar-brand brand-logo-mini"><img src="assets/images/isologoConsorcios.png" class="log-size"alt="logo"></a>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-stretch bg-dark">
+
     <!-- <button *ngIf="!panel" class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
       <span class="mdi mdi-menu"></span>
     </button> -->
-<!--    <div class="search-field d-none d-md-block">
+   <!-- <div class="search-field d-none d-md-block">
       <form class="d-flex align-items-center h-100" action="#">
         <div *ngIf="!panel" class="input-group">
           <div class="input-group-prepend bg-transparent">
@@ -16,7 +17,7 @@
           <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
         </div>
       </form>
-    </div>-->
+    </div> -->
     <ul class="navbar-dark navbar-nav navbar-nav-right">
       <li class="nav-item nav-profile dropdown">
         <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
@@ -41,13 +42,13 @@
       </li>
 
 
-      <!-- <li class="nav-item d-none d-lg-block full-screen-link">
+    <!-- <li *ngIf="grid"class="nav-item d-none d-lg-block full-screen-link">
         <a class="nav-link">
-          <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+          <i class="mdi mdi-view-grid" (click)="navegar()" ></i>
         </a>
-      </li>
+      </li> -->
 
-
+  <!--
 
       <li *ngIf="!panel" class="nav-item dropdown">
         <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">

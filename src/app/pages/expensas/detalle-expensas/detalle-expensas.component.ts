@@ -16,7 +16,7 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class DetalleExpensasComponent implements OnInit {
   categorias:Concepto[] = [];
-  detalles:Saldo[] = [];
+  detalles:any[] = [];
   saveDetalle:any;
   periodo:Date = new Date();
   fileContent:any[] =[];
@@ -52,7 +52,6 @@ export class DetalleExpensasComponent implements OnInit {
     this.conceptosSubscription = this._exp.getConceptos()
                   .subscribe(categorias =>{
                     this.categorias = categorias;
-                    console.log(categorias)
                   });
   }
   cargarExpensas(){
@@ -63,20 +62,23 @@ export class DetalleExpensasComponent implements OnInit {
     this._exp.getSaldos(periodoActual).subscribe( data=>{
       if(data!=undefined){
         this.detalles = data;
-        console.log(this.detalles)
       }else{
         this.detalles = [];
       }
     });
   }
+  seleccion(evento){
+    this.periodo = evento
+  }
   drop(event: CdkDragDrop<string[]>) {
-    // let  array = event.container.element.nativeElement.textContent.split(" ");
+    let  array = event.container.element.nativeElement.textContent.split("#");
+
     let item:string;
     let categoria:any;
     let mes = this.periodo.getMonth()+1
     let contador = mes.toString().length
     let periodoActual =`${this.periodo.getFullYear()}-${('0'.repeat(2-contador)).concat(mes.toString())}`
-    categoria = this.categorias[parseInt((event.container.id).replace("cdk-drop-list-",""))]
+    categoria = this.categorias[parseInt(array[0])];
     this.saveDetalle = {periodo:periodoActual,itemsGenerales:[]}
       this.cd.markForCheck();
       let detalle = this.detalles.filter( data=> {return data.periodo == periodoActual})[0]
@@ -86,7 +88,7 @@ export class DetalleExpensasComponent implements OnInit {
       }
       detalle.itemsGenerales.push(
         {
-           conceptoNombre:categoria,
+           concepto:categoria,
            descripcion:"",
            monto:0}
       )
@@ -100,7 +102,7 @@ export class DetalleExpensasComponent implements OnInit {
 
   }
   eliminarDetalle(item){
-    this.detalles.splice(this.detalles.indexOf(item),1);
+    this.detalles[0].itemsGenerales.splice(item,1);
   }
   recuperarUltimoMes(){
     let mes = this.periodo.getMonth()+1
@@ -139,12 +141,14 @@ export class DetalleExpensasComponent implements OnInit {
               this.detalles = [];
               this._exp.getSaldos(periodoActual).subscribe(saldos =>{
                 this.detalles=saldos;
+                console.log(this.detalles);
               });
           }
         })
     }else{
       this._exp.getSaldos(periodoActual).subscribe(saldos =>{
         this.detalles=saldos;
+          console.log(this.detalles);
       });
     }
 
@@ -165,15 +169,16 @@ export class DetalleExpensasComponent implements OnInit {
           return data.nombre.toLowerCase().trim() ==  this.fileContent[f][1].toLowerCase().trim()}
         );
           item ={
-               conceptoNombre: categoria[0],
+               concepto: categoria[0],
                descripcion:this.fileContent[f][2],
                monto:this.fileContent[f][3]
              };
           this.detalles[0].itemsGenerales.push(item);
+
           this.saveDetalle.itemsGenerales.push({
            conceptoNombre:categoria[0].nombre,
            descripcion:this.fileContent[f][2],
-           monto:this.fileContent[f][3]})
+           monto:this.fileContent[f][3]});
         }
       }
 
@@ -184,11 +189,13 @@ export class DetalleExpensasComponent implements OnInit {
     }
 
   guardarMesActual(){
-    let periodo =  this.detalles[0].periodo;
+    let mes = this.periodo.getMonth()+1;
+    let contador = mes.toString().length;
+    let periodoActual =`${this.periodo.getFullYear()}-${('0'.repeat(2-contador)).concat(mes.toString())}`;
     this.saveDetalle = {periodo:this.detalles[0].periodo,itemsGenerales:[]}
     for(let saldoDetalle of this.detalles[0].itemsGenerales){
       this.saveDetalle.itemsGenerales.push({
-           conceptoNombre:saldoDetalle.conceptoNombre.nombre,
+           conceptoNombre:saldoDetalle.concepto.nombre,
            descripcion:saldoDetalle.descripcion,
            monto:saldoDetalle.monto});
     }
@@ -198,7 +205,7 @@ export class DetalleExpensasComponent implements OnInit {
         Swal.fire({
           type: 'error',
           title: 'Oops...',
-          html: 'La expensa ya para el periodo <strong>'+ periodo.toString()+'</strong> ya se encuentra fue cargada',
+          html: 'La expensa para el periodo <strong>'+ periodoActual.toString()+'</strong> ya se encuentra fue cargada',
         })
       }else{
         this._exp.postSaldos(this.saveDetalle).subscribe( data =>{
@@ -208,15 +215,12 @@ export class DetalleExpensasComponent implements OnInit {
             Swal.fire({
               type: 'error',
               title: 'Oops...',
-              html: 'La expensa ya para el periodo <strong>'+ periodo.toString()+'</strong> ya se encuentra fue cargada',
+              html: 'La expensa para el periodo <strong>'+ periodoActual.toString()+'</strong> ya se encuentra fue cargada',
             })
           }
         });
       }
-    })
-
-
-    // console.log(this.detalles);
+    });
   }
 
 }

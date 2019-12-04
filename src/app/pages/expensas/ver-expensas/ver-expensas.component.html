@@ -19,33 +19,8 @@
           <hr style="margin-top:-10px;margin-bottom:-2px;">
 
             <div class="table-responsive">
-                <table id="example23" class="" [class.sorting]="false" cellspacing="0" width="100%">
-                    <!--<thead>
-                        <tr>
-                            <th>Concepto</th>
-                            <th>Monto</th>
-                            <th>prorrateo</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Concepto</th>
-                            <th>Monto</th>
-                            <th>prorrateo</th>
-                            <th>Total</th>
-                          </tr>
-                    </tfoot>
-                    <tbody>
-                        <tr>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                        </tr>
-                    </tbody>-->
-
-                    <tbody *ngIf="expensas.length>0">
+                <table  class="" [class.sorting]="false" cellspacing="0" width="100%">
+                      <tbody *ngIf="expensas.length>0">
                         <tr *ngFor="let item of expensas" [ngClass]="{'rows': item.css == 'rows',
                                                                       'totales': item.css == 'totales',
                                                                       'cabecera': item.css == 'cabecera'}">

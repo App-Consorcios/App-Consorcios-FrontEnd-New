@@ -61,7 +61,7 @@ export class CalcularExpensasComponent implements OnInit {
       if(this.saldos.length>0){
         let cantConceptos = this.saldos[0].itemsGenerales.length;
         for(let i = 0; i<cantConceptos; i++){
-          conceptos.push({nombre:this.saldos[0].itemsGenerales[i].conceptoNombre.nombre});
+          conceptos.push({nombre:this.saldos[0].itemsGenerales[i].concepto.nombre});
         }
         this.conceptoData = conceptos;
         this.tableData =  this.crearMatrizVacia();
@@ -117,23 +117,23 @@ export class CalcularExpensasComponent implements OnInit {
           if(uf.length==0){
             unfuncional.push({
               codigoDepartamento : this.unidadFuncionales[j].codigoDepartamento,
-              items: [{conceptoNombre: this.saldos[0].itemsGenerales[i].conceptoNombre.nombre,
+              items: [{conceptoNombre: this.saldos[0].itemsGenerales[i].concepto.nombre,
                        monto: this.saldos[0].itemsGenerales[i].monto * this.unidadFuncionales[j].prorrateo}]
             })
           }else{
             if(i<cantConceptos){
-              let item = uf[0].items.filter(data=>{ return (data.conceptoNombre.toString()).trim() === this.saldos[0].itemsGenerales[i].conceptoNombre.nombre.toString().trim();});
+              let item = uf[0].items.filter(data=>{ return (data.conceptoNombre.toString()).trim() === this.saldos[0].itemsGenerales[i].concepto.nombre.toString().trim();});
               if(item.length==0){
-                uf[0].items.push({conceptoNombre: this.saldos[0].itemsGenerales[i].conceptoNombre.nombre,
+                uf[0].items.push({conceptoNombre: this.saldos[0].itemsGenerales[i].concepto.nombre,
                                   monto: this.saldos[0].itemsGenerales[i].monto  * this.unidadFuncionales[j].prorrateo});
                 }
               }
             }
           }
         if(j<this.unidadFuncionales.length){
-          let concept = this.conceptoData.filter(data=>{return data.nombre == this.saldos[0].itemsGenerales[i].conceptoNombre.nombre});
+          let concept = this.conceptoData.filter(data=>{return data.nombre == this.saldos[0].itemsGenerales[i].concepto.nombre});
           if(concept.length==0){
-            this.conceptoData.push({nombre:this.saldos[0].itemsGenerales[i].conceptoNombre.nombre});
+            this.conceptoData.push({nombre:this.saldos[0].itemsGenerales[i].concepto.nombre});
           }
           item.push(this.unidadFuncionales[j].prorrateo * this.saldos[0].itemsGenerales[i].monto);
         }else{

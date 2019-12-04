@@ -13,7 +13,7 @@
                              #categorias="cdkDropList"
                              [cdkDropListData]="categorias"
                              (cdkDropListDropped)="drop($event)"
-                             cdkDrag>
+                             cdkDrag><span style="display:none">{{i}}#</span>
                             <span class="label" [ngClass]="{'label-danger': item.tipoConcepto.color == 'Rojo',
                                                             'label-info': item.tipoConcepto.color == 'Celeste',
                                                             'label-warning': item.tipoConcepto.color == 'Amarillo',
@@ -37,7 +37,7 @@
                             <h6 class="text-muted">Hay <strong>{{detalles.length>0?detalles[0].itemsGenerales.length:0}}</strong> detalles cargados</h6>
                           </div>
                           <div class="col-md-6 title-month">
-                            <app-date-picker (periodo)="periodo = $event"></app-date-picker>
+                            <app-date-picker (eventos)="seleccion($event)"></app-date-picker>
                           </div>
                         </div>
                       </div>
@@ -80,15 +80,15 @@
                                 <td></td>
                                 <td></td>
                               </tr>
-                              <tr *ngFor="let item of detail.itemsGenerales" class="border-table">
-                                   <td><span class="label" [ngClass]="{'label-danger': item.conceptoNombre.tipoConcepto.color == 'Rojo',
-                                                                  'label-info': item.conceptoNombre.tipoConcepto.color == 'Celeste',
-                                                                  'label-warning': item.conceptoNombre.tipoConcepto.color == 'Amarillo',
-                                                                  'label-success': item.conceptoNombre.tipoConcepto.color == 'Verde'}">{{item.conceptoNombre.tipoConcepto.nombre | sigla:2}}</span></td>
-                                  <td id="td1">{{item.conceptoNombre.nombre}}</td>
+                              <tr *ngFor="let item of detail.itemsGenerales;let i = index" class="border-table">
+                                   <td><span class="label" [ngClass]="{'label-danger': item.concepto.tipoConcepto.color == 'Rojo',
+                                                                  'label-info': item.concepto.tipoConcepto.color == 'Celeste',
+                                                                  'label-warning': item.concepto.tipoConcepto.color == 'Amarillo',
+                                                                  'label-success': item.concepto.tipoConcepto.color == 'Verde'}">{{item.concepto.tipoConcepto.nombre | sigla:2}}</span></td>
+                                  <td id="td1">{{item.concepto.nombre}}</td>
                                   <td id="td2"><input type="text" name="" [value]="item.descripcion" placeholder="Ingrese una descripción.."> </td>
                                   <td id="td3"><input type="text" name="" [value]="item.monto | number:'1.0-2'" ></td>
-                                  <td><i (click)="eliminarDetalle(item)" class="fa fa-trash text-danger" style="margin:10px;text-align:center"></i></td>
+                                  <td (click)="eliminarDetalle(i)"><i  class="fa fa-trash text-danger" style="margin:10px;text-align:center"></i></td>
                               </tr>
 
                           </tbody>

@@ -63,21 +63,7 @@ export class ExpensasService {
   }
   getSaldos(periodo):Observable<any>{
     let url = `${URL_SERVICIOS}/expensas?periodo=${periodo}`;
-    return this._http.get(url).pipe(map((data:any) =>{
-      this.saldos =[];
-      if(data.length>0 && data!=undefined){
-        this.saldos.push({periodo:data[0].periodo,itemsGenerales:[]})
-        for(let saldo of data[0].itemsGenerales){
-          this.saldos[0].itemsGenerales.push({
-              conceptoNombre:saldo.concepto,
-              descripcion: saldo.descripcion,
-              monto: saldo.monto
-            });
-        }
-        return this.saldos;
-      }
-      return data;
-    }));
+    return this._http.get(url)
   }
   postSaldos(expensa:any):Observable<any>{
     let url = `${URL_SERVICIOS}/expensa`;
@@ -107,9 +93,10 @@ export class ExpensasService {
               this.conceptoVisitado.push(exp.concepto.tipoConcepto.nombre);
               item.push({nombre:exp.concepto.tipoConcepto.nombre,descripcion:"",gasto:"GASTO A",css:"cabecera"});
               item.push({nombre:exp.conceptoNombre,descripcion:"",gasto:exp.monto,css:'rows'});
-              totalCat += exp.monto
+
               this.total=true;
             }
+            totalCat += exp.monto
             contador++;
           }
               item.push({nombre:"", descripcion:"Total categoría",gasto:totalCat,css:'totales'});
@@ -118,7 +105,6 @@ export class ExpensasService {
       return [];
     }));
    }
-   //POST de total expensas generales
    postExpensas(expensas:any):Observable<any>{
      let url = `${URL_SERVICIOS}/expensas-unidades-funcionales`;
      var headers = new HttpHeaders({

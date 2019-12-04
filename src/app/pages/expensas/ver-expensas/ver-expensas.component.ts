@@ -1,55 +1,48 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Expensa } from 'src/app/models/expensa.model';
 import { ExpensasService } from 'src/app/services/expensas/expensas.service';
+import { Router, NavigationEnd } from '@angular/router';
 declare var jQuery: any;
 @Component({
   selector: 'app-ver-expensas',
   templateUrl: './ver-expensas.component.html',
   styleUrls: ['./ver-expensas.component.css']
 })
-export class VerExpensasComponent implements OnInit {
+export class VerExpensasComponent implements OnInit, OnDestroy {
+  ngOnDestroy(): void {
+    this.expensasSubscription.unsubscribe();
+  }
   expensasSubscription: Subscription;
   expensas: Expensa[] = [];
   periodo:Date = new Date();
   conceptoVisitado:any[]=[];
 
   constructor(
-    private _exp: ExpensasService
-  ) { }
+    private _exp: ExpensasService,public router:Router
+  ) {
+    console.log("hola1")
+
+    // this.router.routeReuseStrategy.shouldReuseRoute = function(){
+    //         return false;
+    //      }
+    //
+    //      this.router.events.subscribe((evt) => {
+    //         if (evt instanceof NavigationEnd) {
+    //            this.router.navigated = false;
+    //            window.scrollTo(0, 0);
+    //         }
+    //     });
+  }
 
   ngOnInit() {
-    // hacky way to solve the 'No data available in table' message
-    // https://stackoverflow.com/questions/44940021/data-table-is-showing-no-data-available-in-table-using-angular
-    // dirty but works ¯\_(°°.)_/¯
-    setTimeout(() => {
-      // jQuery(() => {
-        jQuery('#example23').DataTable({
-          dom: 'Bfrtip',
-          buttons: [], // 'pdf', 'print'
-          info: false,
-          ordering:false,
-          bPaginate: false,
-          // columnDefs: [
-          //     { "height": "10%", "targets": 1 }
-          //   ],
-
-
-          language: {
-            url: '//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'
-          }
-        });
-      // });
-    }, 300);
-    // this.cargarExpensas();
+    console.log("hola2")
   }
   seleccion(evento){
     this.periodo = evento;
 
   }
-  seleccionTotal(item){
 
-  }
   seleccionconcepto(item){
     let concept = this.conceptoVisitado.filter( data=>{return data == item.concepto.tipoConcepto.nombre;})
     if(concept.length>0){
@@ -58,7 +51,6 @@ export class VerExpensasComponent implements OnInit {
       this.conceptoVisitado.push(item.concepto.tipoConcepto.nombre);
     }
     return true;
-    // console.log(item)
   }
   recuperaExpensas(){
     let mes = this.periodo.getMonth()+1;
@@ -67,15 +59,8 @@ export class VerExpensasComponent implements OnInit {
     this.expensasSubscription = this._exp.getExpensas(periodoActual)
                   .subscribe(expensas => {
                     this.expensas = expensas;
-                    console.log(this.expensas[0])
+                    console.log(expensas)
+
                   });
   }
-
-  // cargarExpensas() {
-  //   this.expensasSubscription = this._exp.getExpensas()
-  //                 .subscribe(expensas => {
-  //                   this.expensas = expensas; });
-  //   console.log('EXPENSAS SUB - ', this.expensas);
-  // }
-
 }

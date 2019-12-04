@@ -65,7 +65,7 @@ export class CrearUnidadComponent implements OnInit {
           }
         });
       });
-    }),catchError( err=>{
+    },(error)=>{
       Swal.fire({
         type: 'error',
         title: 'Oops...',
@@ -89,6 +89,8 @@ export class CrearUnidadComponent implements OnInit {
         this._uf.crearUnidad(unidadFuncional).subscribe((data:any) =>{
           this.unidadFuncional = data;
           this.unidad = this.unidadFuncional.codigoDepartamento;
+          this._uf.getUnidades().subscribe( (data:any) =>{
+            this.unidadesFuncionales = data;});
         }),catchError( err=>{
             return throwError(err);
         });

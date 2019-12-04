@@ -11,10 +11,11 @@
     cursor: pointer;
   }
   .log-size{
-    width: 85%;
+    /* width: 85%;
     height: auto;
-    margin-left: 8%;
+    margin-left: 8%; */
     margin-bottom: 4%;
+    text-align: center;
   }
   .dorado{
     background: -webkit-gradient(linear, left top, right top, from(#f2f189), to(#a69c77));

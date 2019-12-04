@@ -9,40 +9,21 @@ declare var jQuery: any;
   templateUrl: './ver-expensas.component.html',
   styleUrls: ['./ver-expensas.component.css']
 })
-export class VerExpensasComponent implements OnInit, OnDestroy {
-  ngOnDestroy(): void {
-    this.expensasSubscription.unsubscribe();
-  }
+export class VerExpensasComponent implements OnInit{
+
   expensasSubscription: Subscription;
   expensas: Expensa[] = [];
   periodo:Date = new Date();
   conceptoVisitado:any[]=[];
 
   constructor(
-    private _exp: ExpensasService,public router:Router
-  ) {
-    console.log("hola1")
-
-    // this.router.routeReuseStrategy.shouldReuseRoute = function(){
-    //         return false;
-    //      }
-    //
-    //      this.router.events.subscribe((evt) => {
-    //         if (evt instanceof NavigationEnd) {
-    //            this.router.navigated = false;
-    //            window.scrollTo(0, 0);
-    //         }
-    //     });
-  }
+    private _exp: ExpensasService,public router:Router) { }
 
   ngOnInit() {
-    console.log("hola2")
   }
   seleccion(evento){
     this.periodo = evento;
-
   }
-
   seleccionconcepto(item){
     let concept = this.conceptoVisitado.filter( data=>{return data == item.concepto.tipoConcepto.nombre;})
     if(concept.length>0){

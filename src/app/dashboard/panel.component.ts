@@ -9,6 +9,7 @@ import { Usuario } from '../models';
 })
 export class PanelComponent implements OnInit {
   usuario:Usuario;
+  
   constructor(public _router:Router) {
   }
 

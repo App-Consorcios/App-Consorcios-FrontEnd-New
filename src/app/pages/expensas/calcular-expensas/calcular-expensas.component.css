@@ -54,3 +54,7 @@
 .tablaExpensas tr:last-of-type{
   background-color:#fee272;
 }
+
+#botones{
+  text-align: right;
+}
